@@ -19,7 +19,7 @@ from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.ofproto import ofproto_v1_5
-from ryu.lib.packet import packet, ipv6, ipv4, arp
+from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 
@@ -73,6 +73,8 @@ class SimpleSwitch15(app_manager.RyuApp):
         ipv6_proto = pkt.get_protocol(ipv6.ipv6)
         ipv4_proto = pkt.get_protocol(ipv4.ipv4)
         arp_proto = pkt.get_protocol(arp.arp)
+        tcp_proto = pkt.get_protocol(tcp.tcp)
+        udp_proto = pkt.get_protocol(udp.udp)
 
         if eth.ethertype == ether_types.ETH_TYPE_LLDP:
             # ignore lldp packet
@@ -88,10 +90,11 @@ class SimpleSwitch15(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        self.logger.info("packet in %s %s %s %s\n", dpid, src, dst, in_port)
         self.logger.info(pkt)
+        self.logger.info("")
         self.logger.info(ipv4_proto)
-        self.logger.info("--------------------------------------------------------------")
+        self.logger.info("")
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -107,13 +110,36 @@ class SimpleSwitch15(app_manager.RyuApp):
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
-                match = parser.OFPMatch(
-                    in_port=in_port,
-                    eth_type=ether_types.ETH_TYPE_IP,
-                    ip_proto=ipv4_proto.proto,
-                    ipv4_src=ipv4_proto.src,
-                    ipv4_dst=ipv4_proto.dst)
-                priority = 3
+                if ipv4_proto.proto is in_proto.IPPROTO_TCP:
+                    self.logger.info(tcp_proto)
+                    self.logger.info("")
+                    match = parser.OFPMatch(
+                        in_port=in_port,
+                        eth_type=ether_types.ETH_TYPE_IP,
+                        ip_proto=ipv4_proto.proto,
+                        ipv4_src=ipv4_proto.src,
+                        ipv4_dst=ipv4_proto.dst,
+                        tcp_dst=tcp_proto.dst_port)
+                    priority = 30
+                elif ipv4_proto.proto is in_proto.IPPROTO_UDP:
+                    self.logger.info(udp_proto)
+                    self.logger.info("")
+                    match = parser.OFPMatch(
+                        in_port=in_port,
+                        eth_type=ether_types.ETH_TYPE_IP,
+                        ip_proto=ipv4_proto.proto,
+                        ipv4_src=ipv4_proto.src,
+                        ipv4_dst=ipv4_proto.dst,
+                        udp_dst=tcp_proto.dst_port)
+                    priority = 30
+                else:
+                    match = parser.OFPMatch(
+                        in_port=in_port,
+                        eth_type=ether_types.ETH_TYPE_IP,
+                        ip_proto=ipv4_proto.proto,
+                        ipv4_src=ipv4_proto.src,
+                        ipv4_dst=ipv4_proto.dst)
+                    priority = 20
             elif arp_proto is not None:
                 match = parser.OFPMatch(
                     in_port=in_port,
@@ -121,7 +147,7 @@ class SimpleSwitch15(app_manager.RyuApp):
                     arp_op=arp_proto.opcode,
                     arp_spa=arp_proto.src_ip,
                     arp_tpa=arp_proto.dst_ip)
-                priority = 2
+                priority = 10
             else:
                 match = parser.OFPMatch(
                     in_port=in_port,
@@ -139,3 +165,4 @@ class SimpleSwitch15(app_manager.RyuApp):
         out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
                                   match=match, actions=actions, data=data)
         datapath.send_msg(out)
+        self.logger.info("--------------------------------------------------------------")
