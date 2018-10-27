@@ -1,4 +1,4 @@
-# Copyright (C) 2016 Nippon Telegraph and Telephone Corporation.
+# Copyright (C) 2011 Nippon Telegraph and Telephone Corporation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,39 +12,24 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import array
 
 from ryu.base import app_manager
 from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.ofproto import ofproto_v1_5
-from ryu.lib import dpid as dpid_lib
-from ryu.lib import stplib
-from ryu.lib.packet import packet
+from ryu.lib.packet import packet, ipv6, ipv4, arp
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 
 
 class SimpleSwitch15(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_5.OFP_VERSION]
-    _CONTEXTS = {'stplib': stplib.Stp}
 
     def __init__(self, *args, **kwargs):
         super(SimpleSwitch15, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
-        self.stp = kwargs['stplib']
-
-        # Sample of stplib config.
-        #  please refer to stplib.Stp.set_config() for details.
-        config = {dpid_lib.str_to_dpid('0000000000000001'):
-                      {'bridge': {'priority': 0x8000}},
-                  dpid_lib.str_to_dpid('0000000000000002'):
-                      {'bridge': {'priority': 0x9000}},
-                  dpid_lib.str_to_dpid('0000000000000003'):
-                      {'bridge': {'priority': 0xa000}},
-                  dpid_lib.str_to_dpid('0000000000000004'):
-                      {'bridge': {'priority': 0xb000}}}
-        self.stp.set_config(config)
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
     def switch_features_handler(self, ev):
@@ -68,26 +53,14 @@ class SimpleSwitch15(app_manager.RyuApp):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
 
-        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS,
-                                             actions)]
+        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
 
         mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
                                 match=match, instructions=inst)
         datapath.send_msg(mod)
+        self.logger.info("Flow successfully installed")
 
-    def delete_flow(self, datapath):
-        ofproto = datapath.ofproto
-        parser = datapath.ofproto_parser
-
-        for dst in self.mac_to_port[datapath.id].keys():
-            match = parser.OFPMatch(eth_dst=dst)
-            mod = parser.OFPFlowMod(
-                datapath, command=ofproto.OFPFC_DELETE,
-                out_port=ofproto.OFPP_ANY, out_group=ofproto.OFPG_ANY,
-                priority=1, match=match)
-            datapath.send_msg(mod)
-
-    @set_ev_cls(stplib.EventPacketIn, MAIN_DISPATCHER)
+    @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
         msg = ev.msg
         datapath = msg.datapath
@@ -97,9 +70,16 @@ class SimpleSwitch15(app_manager.RyuApp):
 
         pkt = packet.Packet(msg.data)
         eth = pkt.get_protocols(ethernet.ethernet)[0]
+        ipv6_proto = pkt.get_protocol(ipv6.ipv6)
+        ipv4_proto = pkt.get_protocol(ipv4.ipv4)
+        arp_proto = pkt.get_protocol(arp.arp)
 
         if eth.ethertype == ether_types.ETH_TYPE_LLDP:
             # ignore lldp packet
+            return
+
+        #Ignoring IPv6 traffic
+        if ipv6_proto is not None:
             return
 
         dst = eth.dst
@@ -109,10 +89,14 @@ class SimpleSwitch15(app_manager.RyuApp):
         self.mac_to_port.setdefault(dpid, {})
 
         self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        self.logger.info(pkt)
+        self.logger.info(ipv4_proto)
+        self.logger.info("--------------------------------------------------------------")
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
 
+        # determine to which port should FW send the traffic
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
         else:
@@ -122,35 +106,36 @@ class SimpleSwitch15(app_manager.RyuApp):
 
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
-            match = parser.OFPMatch(in_port=in_port, eth_dst=dst)
-            self.add_flow(datapath, 1, match, actions)
+            if ipv4_proto is not None:
+                match = parser.OFPMatch(
+                    in_port=in_port,
+                    eth_type=ether_types.ETH_TYPE_IP,
+                    ip_proto=ipv4_proto.proto,
+                    ipv4_src=ipv4_proto.src,
+                    ipv4_dst=ipv4_proto.dst)
+                priority = 3
+            elif arp_proto is not None:
+                match = parser.OFPMatch(
+                    in_port=in_port,
+                    eth_type=ether_types.ETH_TYPE_ARP,
+                    arp_op=arp_proto.opcode,
+                    arp_spa=arp_proto.src_ip,
+                    arp_tpa=arp_proto.dst_ip)
+                priority = 2
+            else:
+                match = parser.OFPMatch(
+                    in_port=in_port,
+                    eth_dst=dst)
+                priority = 1
+
+            self.add_flow(datapath, priority, match, actions)
 
         data = None
         if msg.buffer_id == ofproto.OFP_NO_BUFFER:
             data = msg.data
 
+        match = parser.OFPMatch(in_port=in_port)
+
         out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
-                                  in_port=in_port, actions=actions, data=data)
+                                  match=match, actions=actions, data=data)
         datapath.send_msg(out)
-
-    @set_ev_cls(stplib.EventTopologyChange, MAIN_DISPATCHER)
-    def _topology_change_handler(self, ev):
-        dp = ev.dp
-        dpid_str = dpid_lib.dpid_to_str(dp.id)
-        msg = 'Receive topology change event. Flush MAC table.'
-        self.logger.debug("[dpid=%s] %s", dpid_str, msg)
-
-        if dp.id in self.mac_to_port:
-            self.delete_flow(dp)
-            del self.mac_to_port[dp.id]
-
-    @set_ev_cls(stplib.EventPortStateChange, MAIN_DISPATCHER)
-    def _port_state_change_handler(self, ev):
-        dpid_str = dpid_lib.dpid_to_str(ev.dp.id)
-        of_state = {stplib.PORT_STATE_DISABLE: 'DISABLE',
-                    stplib.PORT_STATE_BLOCK: 'BLOCK',
-                    stplib.PORT_STATE_LISTEN: 'LISTEN',
-                    stplib.PORT_STATE_LEARN: 'LEARN',
-                    stplib.PORT_STATE_FORWARD: 'FORWARD'}
-        self.logger.debug("[dpid=%s][port=%d] state=%s",
-                          dpid_str, ev.port_no, of_state[ev.port_state])
