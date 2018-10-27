@@ -12,16 +12,18 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import array
+
+import thread
+import time
 
 from ryu.base import app_manager
 from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
-from ryu.ofproto import ofproto_v1_5
-from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
-from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
+from ryu.lib.packet import ethernet
+from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
+from ryu.ofproto import ofproto_v1_5
 
 
 class SimpleSwitch15(app_manager.RyuApp):
@@ -48,6 +50,7 @@ class SimpleSwitch15(app_manager.RyuApp):
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
                                           ofproto.OFPCML_NO_BUFFER)]
         self.add_flow(datapath, 0, match, actions)
+        thread.start_new_thread(self.send_flow_stats_request, (datapath,))
 
     def add_flow(self, datapath, priority, match, actions):
         ofproto = datapath.ofproto
@@ -58,7 +61,7 @@ class SimpleSwitch15(app_manager.RyuApp):
         mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
                                 match=match, instructions=inst)
         datapath.send_msg(mod)
-        self.logger.info("Flow successfully installed")
+        self.logger.info("Flow successfully installed\n")
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -80,7 +83,7 @@ class SimpleSwitch15(app_manager.RyuApp):
             # ignore lldp packet
             return
 
-        #Ignoring IPv6 traffic
+        # Ignoring IPv6 traffic
         if ipv6_proto is not None:
             return
 
@@ -166,3 +169,40 @@ class SimpleSwitch15(app_manager.RyuApp):
                                   match=match, actions=actions, data=data)
         datapath.send_msg(out)
         self.logger.info("--------------------------------------------------------------")
+
+    def send_flow_stats_request(self, datapath):
+        print '[' + str(datapath.id) + ']: Thread started'
+        while 1:
+            time.sleep(10)
+            print '[' + str(datapath.id) + ']: Requesting flow stats...'
+            ofp = datapath.ofproto
+            ofp_parser = datapath.ofproto_parser
+
+            cookie = cookie_mask = 0
+            match = ofp_parser.OFPMatch(in_port=1)
+            req = ofp_parser.OFPFlowStatsRequest(datapath, 0,
+                                                 ofp.OFPTT_ALL,
+                                                 ofp.OFPP_ANY, ofp.OFPG_ANY,
+                                                 cookie, cookie_mask,
+                                                 match)
+            datapath.send_msg(req)
+
+    @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
+    def flow_stats_reply_handler(self, ev):
+        flows = []
+        for stat in ev.msg.body:
+            flows.append('table_id=%s '
+                         'duration_sec=%d duration_nsec=%d '
+                         'priority=%d '
+                         'idle_timeout=%d hard_timeout=%d flags=0x%04x '
+                         'importance=%d cookie=%d packet_count=%d '
+                         'byte_count=%d match=%s instructions=%s' %
+                         (stat.table_id,
+                          stat.duration_sec, stat.duration_nsec,
+                          stat.priority,
+                          stat.idle_timeout, stat.hard_timeout,
+                          stat.flags, stat.importance,
+                          stat.cookie, stat.packet_count, stat.byte_count,
+                          stat.match, stat.instructions))
+
+        self.logger.debug('FlowStats: %s', flows)
