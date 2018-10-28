@@ -28,6 +28,9 @@ from ryu.ofproto import ofproto_v1_4
 
 class SimpleSwitch14(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_4.OFP_VERSION]
+    TABLE_HOST_COUNT = 0
+    TABLE_SERVICE_COUNT = 1
+    TABLE_SWITCHING = 10
 
     def __init__(self, *args, **kwargs):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
@@ -47,21 +50,30 @@ class SimpleSwitch14(app_manager.RyuApp):
         # truncated packet data. In that case, we cannot output packets
         # correctly.  The bug has been fixed in OVS v2.1.0.
         match = parser.OFPMatch()
+        inst = [parser.OFPInstructionGotoTable(self.TABLE_SERVICE_COUNT,
+                                               ofproto.OFPIT_GOTO_TABLE)]
+        self.add_flow(datapath, 0, match, inst, self.TABLE_HOST_COUNT)
+
+        inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
+                                               ofproto.OFPIT_GOTO_TABLE)]
+        self.add_flow(datapath, 0, match, inst, self.TABLE_SERVICE_COUNT)
+
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
                                           ofproto.OFPCML_NO_BUFFER)]
-        self.add_flow(datapath, 0, match, actions)
+        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
+        self.add_flow(datapath, 0, match, inst, self.TABLE_SWITCHING)
+
         thread.start_new_thread(self.send_flow_stats_request, (datapath,))
 
-    def add_flow(self, datapath, priority, match, actions):
-        ofproto = datapath.ofproto
+    def add_flow(self, datapath, priority, match, inst, table_id):
         parser = datapath.ofproto_parser
-
-        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
-
-        mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
-                                match=match, instructions=inst)
+        mod = parser.OFPFlowMod(datapath=datapath,
+                                table_id=table_id,
+                                priority=priority,
+                                match=match,
+                                instructions=inst)
         datapath.send_msg(mod)
-        self.logger.info("Flow successfully installed\n")
+        self.logger.info("Flow successfully installed")
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -113,7 +125,28 @@ class SimpleSwitch14(app_manager.RyuApp):
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
+                # Add match to table 0 for counting connections to hosts
+                match = parser.OFPMatch(
+                    in_port=in_port,
+                    eth_type=ether_types.ETH_TYPE_IP,
+                    ipv4_dst=ipv4_proto.dst)
+                priority = 10
+                inst = [parser.OFPInstructionGotoTable(self.TABLE_SERVICE_COUNT,
+                                                       ofproto.OFPIT_GOTO_TABLE)]
+                self.add_flow(datapath, priority, match, inst, self.TABLE_HOST_COUNT)
+
                 if ipv4_proto.proto is in_proto.IPPROTO_TCP:
+                    # Add match to table 1 for counting connections to services
+                    match = parser.OFPMatch(
+                        in_port=in_port,
+                        eth_type=ether_types.ETH_TYPE_IP,
+                        ip_proto=ipv4_proto.proto,
+                        tcp_dst=tcp_proto.dst_port)
+                    priority = 10
+                    inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
+                                                           ofproto.OFPIT_GOTO_TABLE)]
+                    self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
+
                     self.logger.info(tcp_proto)
                     self.logger.info("")
                     match = parser.OFPMatch(
@@ -125,6 +158,17 @@ class SimpleSwitch14(app_manager.RyuApp):
                         tcp_dst=tcp_proto.dst_port)
                     priority = 30
                 elif ipv4_proto.proto is in_proto.IPPROTO_UDP:
+                    # Add match to table 1 for counting connections to services
+                    match = parser.OFPMatch(
+                        in_port=in_port,
+                        eth_type=ether_types.ETH_TYPE_IP,
+                        ip_proto=ipv4_proto.proto,
+                        udp_dst=udp_proto.dst_port)
+                    priority = 10
+                    inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
+                                                           ofproto.OFPIT_GOTO_TABLE)]
+                    self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
+
                     self.logger.info(udp_proto)
                     self.logger.info("")
                     match = parser.OFPMatch(
@@ -133,7 +177,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ip_proto=ipv4_proto.proto,
                         ipv4_src=ipv4_proto.src,
                         ipv4_dst=ipv4_proto.dst,
-                        udp_dst=tcp_proto.dst_port)
+                        udp_dst=udp_proto.dst_port)
                     priority = 30
                 else:
                     match = parser.OFPMatch(
@@ -157,7 +201,8 @@ class SimpleSwitch14(app_manager.RyuApp):
                     eth_dst=dst)
                 priority = 1
 
-            self.add_flow(datapath, priority, match, actions)
+            inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
+            self.add_flow(datapath, priority, match, inst, self.TABLE_SWITCHING)
 
         data = None
         if msg.buffer_id == ofproto.OFP_NO_BUFFER:
@@ -187,7 +232,6 @@ class SimpleSwitch14(app_manager.RyuApp):
                                                  cookie=cookie,
                                                  cookie_mask=cookie_mask,
                                                  match=match)
-            print req
             datapath.send_msg(req)
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
