@@ -166,7 +166,8 @@ class SimpleSwitch15(app_manager.RyuApp):
         match = parser.OFPMatch(in_port=in_port)
 
         out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
-                                  match=match, actions=actions, data=data)
+                                 match=match, actions=actions, data=data)
+
         datapath.send_msg(out)
         self.logger.info("--------------------------------------------------------------")
 
@@ -180,15 +181,20 @@ class SimpleSwitch15(app_manager.RyuApp):
 
             cookie = cookie_mask = 0
             match = ofp_parser.OFPMatch(in_port=1)
-            req = ofp_parser.OFPFlowStatsRequest(datapath, 0,
-                                                 ofp.OFPTT_ALL,
-                                                 ofp.OFPP_ANY, ofp.OFPG_ANY,
-                                                 cookie, cookie_mask,
-                                                 match)
+            req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
+                                                 flags=0,
+                                                 table_id=ofp.OFPTT_ALL,
+                                                 out_port=ofp.OFPP_ANY,
+                                                 out_group=ofp.OFPG_ANY,
+                                                 cookie=cookie,
+                                                 cookie_mask=cookie_mask,
+                                                 match=match)
+            print req
             datapath.send_msg(req)
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
+        print '[' + str(ev.msg.datapath.id) + ']: Received flow stats:'
         flows = []
         for stat in ev.msg.body:
             flows.append('table_id=%s '
