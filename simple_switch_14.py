@@ -23,14 +23,14 @@ from ryu.controller.handler import set_ev_cls
 from ryu.lib.packet import ether_types
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
-from ryu.ofproto import ofproto_v1_5
+from ryu.ofproto import ofproto_v1_4
 
 
-class SimpleSwitch15(app_manager.RyuApp):
-    OFP_VERSIONS = [ofproto_v1_5.OFP_VERSION]
+class SimpleSwitch14(app_manager.RyuApp):
+    OFP_VERSIONS = [ofproto_v1_4.OFP_VERSION]
 
     def __init__(self, *args, **kwargs):
-        super(SimpleSwitch15, self).__init__(*args, **kwargs)
+        super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
@@ -163,10 +163,8 @@ class SimpleSwitch15(app_manager.RyuApp):
         if msg.buffer_id == ofproto.OFP_NO_BUFFER:
             data = msg.data
 
-        match = parser.OFPMatch(in_port=in_port)
-
         out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
-                                 match=match, actions=actions, data=data)
+                                  in_port=in_port, actions=actions, data=data)
 
         datapath.send_msg(out)
         self.logger.info("--------------------------------------------------------------")
