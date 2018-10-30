@@ -35,6 +35,7 @@ class SimpleSwitch14(app_manager.RyuApp):
     def __init__(self, *args, **kwargs):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
+        self.stats = {}
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
     def switch_features_handler(self, ev):
@@ -217,7 +218,6 @@ class SimpleSwitch14(app_manager.RyuApp):
     def send_flow_stats_request(self, datapath):
         print '[' + str(datapath.id) + ']: Thread started'
         while 1:
-            time.sleep(10)
             print '[' + str(datapath.id) + ']: Requesting flow stats...'
             ofp = datapath.ofproto
             ofp_parser = datapath.ofproto_parser
@@ -233,24 +233,66 @@ class SimpleSwitch14(app_manager.RyuApp):
                                                  cookie_mask=cookie_mask,
                                                  match=match)
             datapath.send_msg(req)
+            match = ofp_parser.OFPMatch(in_port=2)
+            req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
+                                                 flags=0,
+                                                 table_id=ofp.OFPTT_ALL,
+                                                 out_port=ofp.OFPP_ANY,
+                                                 out_group=ofp.OFPG_ANY,
+                                                 cookie=cookie,
+                                                 cookie_mask=cookie_mask,
+                                                 match=match)
+            datapath.send_msg(req)
+            time.sleep(10)
+            print 'Starting flow stats parser...'
+            self.flow_stats_parser()
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
-        print '[' + str(ev.msg.datapath.id) + ']: Received flow stats:'
-        flows = []
+        dpid = ev.msg.datapath.id
+        print '[' + str(dpid) + ']: Received flow stats:'
+        # flows = []
+        self.stats.setdefault(dpid, {})
         for stat in ev.msg.body:
-            flows.append('table_id=%s '
-                         'duration_sec=%d duration_nsec=%d '
-                         'priority=%d '
-                         'idle_timeout=%d hard_timeout=%d flags=0x%04x '
-                         'importance=%d cookie=%d packet_count=%d '
-                         'byte_count=%d match=%s instructions=%s' %
-                         (stat.table_id,
-                          stat.duration_sec, stat.duration_nsec,
-                          stat.priority,
-                          stat.idle_timeout, stat.hard_timeout,
-                          stat.flags, stat.importance,
-                          stat.cookie, stat.packet_count, stat.byte_count,
-                          stat.match, stat.instructions))
+            # self.logger.info(stat)
+            # self.logger.info('***************************************************************')
+            in_port = stat.match['in_port']
+            if in_port not in self.stats[dpid]:
+                self.stats[dpid][in_port] = [stat]
+            else:
+                self.stats[dpid][in_port].append(stat)
+            # flows.append('table_id=%s '
+            #              'duration_sec=%d duration_nsec=%d '
+            #              'priority=%d '
+            #              'idle_timeout=%d hard_timeout=%d flags=0x%04x '
+            #              'importance=%d cookie=%d packet_count=%d '
+            #              'byte_count=%d match=%s instructions=%s' %
+            #              (stat.table_id,
+            #               stat.duration_sec, stat.duration_nsec,
+            #               stat.priority,
+            #               stat.idle_timeout, stat.hard_timeout,
+            #               stat.flags, stat.importance,
+            #               stat.cookie, stat.packet_count, stat.byte_count,
+            #               stat.match, stat.instructions))
 
-        self.logger.debug('FlowStats: %s', flows)
+
+        #self.logger.debug('FlowStats: %s', flows)
+
+    def flow_stats_parser(self):
+        parsed_flows = {}
+        for sw_id in self.stats:
+            print 'Switch ' + str(sw_id) + ':'
+            for port in self.stats[sw_id]:
+                print 'Input port ' + str(port) + ':'
+                for idx in range(0, len(self.stats[sw_id][port])):
+                    print self.stats[sw_id][port][idx]
+                    print '************************************************************'
+                print '************************************************************'
+            print '************************************************************'
+        for sw_id in self.stats:
+            for port in self.stats[sw_id]:
+                for idx in range(0, len(self.stats[sw_id][port])):
+                    stat = self.stats[sw_id][port][idx]
+        # TODO determine where I should run this function.
+        # Running it inside a thread for switch is probably not a good idea
+        self.stats = {}
