@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import threading
+
 import time
 import Queue
 
@@ -25,27 +25,29 @@ from ryu.lib.packet import ether_types
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
 from ryu.ofproto import ofproto_v1_4
+from dnn_module import DNNModule
 
 queue = Queue.Queue()
 
-# Defined numbers of tables
-TABLE_HOST_COUNT = 0
-TABLE_SERVICE_COUNT = 1
-TABLE_SWITCHING = 10
-
-# Refresh rate defines how often is called DNN module
-REFRESH_RATE = 10
-FW_REFRESH_RATE = 1     # TODO maybe this time will cause a bug if there are multiple forwarders (ask Rudo)
-
-
 class SimpleSwitch14(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_4.OFP_VERSION]
+
+    # Defined numbers of tables
+    TABLE_HOST_COUNT = 0
+    TABLE_SERVICE_COUNT = 1
+    TABLE_SWITCHING = 10
+
+    # Refresh rate defines how often is called DNN module (seconds)
+    REFRESH_RATE = 10
+    FW_REFRESH_RATE = 1  # TODO maybe this time will cause a bug if there are multiple forwarders (ask Rudo)
 
     def __init__(self, *args, **kwargs):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
         self.stats = {}
-        self.dnn_module = DNNModule()
+
+        # Initialize and start DNN module
+        self.dnn_module = DNNModule(self, queue)
         self.dnn_module.start()
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
@@ -64,18 +66,18 @@ class SimpleSwitch14(app_manager.RyuApp):
         # truncated packet data. In that case, we cannot output packets
         # correctly.  The bug has been fixed in OVS v2.1.0.
         match = parser.OFPMatch()
-        inst = [parser.OFPInstructionGotoTable(TABLE_SERVICE_COUNT,
+        inst = [parser.OFPInstructionGotoTable(self.TABLE_SERVICE_COUNT,
                                                ofproto.OFPIT_GOTO_TABLE)]
-        self.add_flow(datapath, 0, match, inst, TABLE_HOST_COUNT)
+        self.add_flow(datapath, 0, match, inst, self.TABLE_HOST_COUNT)
 
-        inst = [parser.OFPInstructionGotoTable(TABLE_SWITCHING,
+        inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
                                                ofproto.OFPIT_GOTO_TABLE)]
-        self.add_flow(datapath, 0, match, inst, TABLE_SERVICE_COUNT)
+        self.add_flow(datapath, 0, match, inst, self.TABLE_SERVICE_COUNT)
 
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
                                           ofproto.OFPCML_NO_BUFFER)]
         inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
-        self.add_flow(datapath, 0, match, inst, TABLE_SWITCHING)
+        self.add_flow(datapath, 0, match, inst, self.TABLE_SWITCHING)
 
     def add_flow(self, datapath, priority, match, inst, table_id):
         parser = datapath.ofproto_parser
@@ -85,7 +87,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                                 match=match,
                                 instructions=inst)
         datapath.send_msg(mod)
-        self.logger.info("Flow successfully installed")
+        self.logger.info('[' + str(datapath.id) + ']: Flow successfully installed')
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -143,9 +145,9 @@ class SimpleSwitch14(app_manager.RyuApp):
                     eth_type=ether_types.ETH_TYPE_IP,
                     ipv4_dst=ipv4_proto.dst)
                 priority = 10
-                inst = [parser.OFPInstructionGotoTable(TABLE_SERVICE_COUNT,
+                inst = [parser.OFPInstructionGotoTable(self.TABLE_SERVICE_COUNT,
                                                        ofproto.OFPIT_GOTO_TABLE)]
-                self.add_flow(datapath, priority, match, inst, TABLE_HOST_COUNT)
+                self.add_flow(datapath, priority, match, inst, self.TABLE_HOST_COUNT)
 
                 if ipv4_proto.proto is in_proto.IPPROTO_TCP:
                     # Add match to table 1 for counting connections to services
@@ -155,9 +157,9 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ip_proto=ipv4_proto.proto,
                         tcp_dst=tcp_proto.dst_port)
                     priority = 10
-                    inst = [parser.OFPInstructionGotoTable(TABLE_SWITCHING,
+                    inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
                                                            ofproto.OFPIT_GOTO_TABLE)]
-                    self.add_flow(datapath, priority, match, inst, TABLE_SERVICE_COUNT)
+                    self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
 
                     self.logger.info(tcp_proto)
                     self.logger.info("")
@@ -177,9 +179,9 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ip_proto=ipv4_proto.proto,
                         udp_dst=udp_proto.dst_port)
                     priority = 10
-                    inst = [parser.OFPInstructionGotoTable(TABLE_SWITCHING,
+                    inst = [parser.OFPInstructionGotoTable(self.TABLE_SWITCHING,
                                                            ofproto.OFPIT_GOTO_TABLE)]
-                    self.add_flow(datapath, priority, match, inst, TABLE_SERVICE_COUNT)
+                    self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
 
                     self.logger.info(udp_proto)
                     self.logger.info("")
@@ -214,7 +216,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                 priority = 1
 
             inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
-            self.add_flow(datapath, priority, match, inst, TABLE_SWITCHING)
+            self.add_flow(datapath, priority, match, inst, self.TABLE_SWITCHING)
 
         data = None
         if msg.buffer_id == ofproto.OFP_NO_BUFFER:
@@ -227,36 +229,31 @@ class SimpleSwitch14(app_manager.RyuApp):
         self.logger.info("--------------------------------------------------------------")
 
     def send_flow_stats_request(self, datapath):
-        print '[' + str(datapath.id) + ']: Thread started'
-        while 1:
-            print '[' + str(datapath.id) + ']: Requesting flow stats...'
-            ofp = datapath.ofproto
-            ofp_parser = datapath.ofproto_parser
+        print '[' + str(datapath.id) + ']: Requesting flow stats...'
+        ofp = datapath.ofproto
+        ofp_parser = datapath.ofproto_parser
 
-            cookie = cookie_mask = 0
-            match = ofp_parser.OFPMatch(in_port=1)
-            req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
-                                                 flags=0,
-                                                 table_id=ofp.OFPTT_ALL,
-                                                 out_port=ofp.OFPP_ANY,
-                                                 out_group=ofp.OFPG_ANY,
-                                                 cookie=cookie,
-                                                 cookie_mask=cookie_mask,
-                                                 match=match)
-            datapath.send_msg(req)
-            match = ofp_parser.OFPMatch(in_port=2)
-            req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
-                                                 flags=0,
-                                                 table_id=ofp.OFPTT_ALL,
-                                                 out_port=ofp.OFPP_ANY,
-                                                 out_group=ofp.OFPG_ANY,
-                                                 cookie=cookie,
-                                                 cookie_mask=cookie_mask,
-                                                 match=match)
-            datapath.send_msg(req)
-            time.sleep(10)
-            print 'Starting flow stats parser...'
-            self.flow_stats_parser()
+        cookie = cookie_mask = 0
+        match = ofp_parser.OFPMatch(in_port=1)
+        req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
+                                             flags=0,
+                                             table_id=ofp.OFPTT_ALL,
+                                             out_port=ofp.OFPP_ANY,
+                                             out_group=ofp.OFPG_ANY,
+                                             cookie=cookie,
+                                             cookie_mask=cookie_mask,
+                                             match=match)
+        datapath.send_msg(req)
+        match = ofp_parser.OFPMatch(in_port=2)
+        req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
+                                             flags=0,
+                                             table_id=ofp.OFPTT_ALL,
+                                             out_port=ofp.OFPP_ANY,
+                                             out_group=ofp.OFPG_ANY,
+                                             cookie=cookie,
+                                             cookie_mask=cookie_mask,
+                                             match=match)
+        datapath.send_msg(req)
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
@@ -306,28 +303,3 @@ class SimpleSwitch14(app_manager.RyuApp):
         # TODO determine where I should run this function.
         # Running it inside a thread for switch is probably not a good idea
         self.stats = {}
-
-
-class DNNModule(threading.Thread):
-
-    def __init__(self):
-        super(DNNModule, self).__init__()
-        self.forwarders = []
-        print 'DNN module initialized'
-
-    def run(self):
-        self.get_forwarders()
-        print 'Forwarders: ', self.forwarders
-        while 1:
-            print 'DNN module is running'
-            time.sleep(REFRESH_RATE)
-
-    def get_forwarders(self):
-        print 'Getting forwarders datapaths...'
-        while queue.empty():
-            time.sleep(FW_REFRESH_RATE)
-        while not queue.empty():
-            if not self.forwarders:
-                self.forwarders = [queue.get()]
-            else:
-                self.forwarders.append(queue.get())
