@@ -51,6 +51,7 @@ class SimpleSwitch15(app_manager.RyuApp):
                                           ofproto.OFPCML_NO_BUFFER)]
         self.add_flow(datapath, 0, match, actions)
         thread.start_new_thread(self.send_flow_stats_request, (datapath,))
+        #thread.start_new_thread(self.send_port_stats_request, (datapath,))
 
     def add_flow(self, datapath, priority, match, actions):
         ofproto = datapath.ofproto
@@ -174,7 +175,6 @@ class SimpleSwitch15(app_manager.RyuApp):
     def send_flow_stats_request(self, datapath):
         print '[' + str(datapath.id) + ']: Thread started'
         while 1:
-            time.sleep(10)
             print '[' + str(datapath.id) + ']: Requesting flow stats...'
             ofp = datapath.ofproto
             ofp_parser = datapath.ofproto_parser
@@ -190,7 +190,12 @@ class SimpleSwitch15(app_manager.RyuApp):
                                                  cookie_mask=cookie_mask,
                                                  match=match)
             print req
+            print '-------------------------------------------------------------------------'
             datapath.send_msg(req)
+            req = ofp_parser.OFPFlowStatsRequest(datapath)
+            print req
+            datapath.send_msg(req)
+            time.sleep(10)
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
@@ -212,3 +217,29 @@ class SimpleSwitch15(app_manager.RyuApp):
                           stat.match, stat.instructions))
 
         self.logger.debug('FlowStats: %s', flows)
+
+    def send_port_stats_request(self, datapath):
+        print '[' + str(datapath.id) + ']: Thread started'
+        while 1:
+            time.sleep(10)
+            print '[' + str(datapath.id) + ']: Requesting flow stats...'
+            ofp = datapath.ofproto
+            ofp_parser = datapath.ofproto_parser
+
+            req = ofp_parser.OFPPortStatsRequest(datapath, 0, ofp.OFPP_ANY)
+            datapath.send_msg(req)
+
+    @set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
+    def port_stats_reply_handler(self, ev):
+        ports = []
+        for stat in ev.msg.body:
+            print stat
+            print '-----------------------------------------------------------------'
+            # ports.append(stat.length, stat.port_no,
+            #              stat.duration_sec, stat.duration_nsec,
+            #              stat.rx_packets, stat.tx_packets,
+            #              stat.rx_bytes, stat.tx_bytes,
+            #              stat.rx_dropped, stat.tx_dropped,
+            #              stat.rx_errors, stat.tx_errors,
+            #              repr(stat.properties))
+        self.logger.debug('PortStats: %s', ports)
