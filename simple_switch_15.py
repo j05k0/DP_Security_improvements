@@ -16,9 +16,10 @@
 import thread
 import time
 
+from ryu import utils
 from ryu.base import app_manager
 from ryu.controller import ofp_event
-from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
+from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER, HANDSHAKE_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.lib.packet import ether_types
 from ryu.lib.packet import ethernet
@@ -190,10 +191,8 @@ class SimpleSwitch15(app_manager.RyuApp):
                                                  cookie_mask=cookie_mask,
                                                  match=match)
             print req
+            print type(req)
             print '-------------------------------------------------------------------------'
-            datapath.send_msg(req)
-            req = ofp_parser.OFPFlowStatsRequest(datapath)
-            print req
             datapath.send_msg(req)
             time.sleep(10)
 
@@ -243,3 +242,12 @@ class SimpleSwitch15(app_manager.RyuApp):
             #              stat.rx_errors, stat.tx_errors,
             #              repr(stat.properties))
         self.logger.debug('PortStats: %s', ports)
+
+    @set_ev_cls(ofp_event.EventOFPErrorMsg,
+                [HANDSHAKE_DISPATCHER, CONFIG_DISPATCHER, MAIN_DISPATCHER])
+    def error_handler(self, ev):
+        msg = ev.msg
+
+        self.logger.debug('OFPErrorMsg received: type=0x%02x code=0x%02x '
+                          'message=%s',
+                          msg.type, msg.code, utils.hex_array(msg.data))
