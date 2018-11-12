@@ -228,6 +228,23 @@ class SimpleSwitch14(app_manager.RyuApp):
         datapath.send_msg(out)
         self.logger.info("--------------------------------------------------------------")
 
+    def send_port_stats_request(self, datapath):
+        print '[' + str(datapath.id) + ']: Requesting port stats...'
+        ofp = datapath.ofproto
+        ofp_parser = datapath.ofproto_parser
+
+        req = ofp_parser.OFPPortStatsRequest(datapath, 0, ofp.OFPP_ANY)
+        datapath.send_msg(req)
+
+    @set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
+    def port_stats_reply_handler(self, ev):
+        ports = []
+        ofp = ev.msg.datapath.ofproto
+        for stat in ev.msg.body:
+            if stat.port_no is not ofp.OFPP_ANY:
+                ports.append(stat.port_no)
+        queue.put((ev.msg.datapath, ports))
+
     def send_flow_stats_request(self, datapath):
         print '[' + str(datapath.id) + ']: Requesting flow stats...'
         ofp = datapath.ofproto

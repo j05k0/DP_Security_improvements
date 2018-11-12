@@ -6,7 +6,7 @@ class DNNModule(threading.Thread):
 
     def __init__(self, controller, queue):
         super(DNNModule, self).__init__()
-        self.forwarders = []
+        self.forwarders = {}
         self.controller = controller
         self.queue = queue
         print 'DNN module initialized'
@@ -21,12 +21,24 @@ class DNNModule(threading.Thread):
 
     def get_forwarders(self):
         print 'Waiting for forwarders...'
+        self.wait_for_items_in_queue()
+
+        print 'Getting datapaths of the forwarders...'
+        while not self.queue.empty():
+            self.forwarders[self.queue.get()] = []
+
+        print 'Getting ports of the forwarders...'
+        for fw in self.forwarders:
+            print 'Datapath: ', fw
+            self.controller.send_port_stats_request(fw)
+        self.wait_for_items_in_queue()
+        while not self.queue.empty():
+            datapath, ports = self.queue.get()
+            self.forwarders[datapath] = ports
+
+        print 'Forwarders: ', self.forwarders
+
+
+    def wait_for_items_in_queue(self):
         while self.queue.empty():
             time.sleep(self.controller.FW_REFRESH_RATE)
-        print 'Getting forwarders datapaths...'
-        while not self.queue.empty():
-            if not self.forwarders:
-                self.forwarders = [self.queue.get()]
-            else:
-                self.forwarders.append(self.queue.get())
-        print 'Forwarders: ', self.forwarders
