@@ -268,6 +268,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         print '[' + str(dpid) + ']: Received flow stats:'
         # flows = []
         self.stats.setdefault(dpid, {})
+        in_port = 0
         for stat in ev.msg.body:
             # self.logger.info(stat)
             # self.logger.info('***************************************************************')
@@ -289,23 +290,8 @@ class SimpleSwitch14(app_manager.RyuApp):
             #               stat.flags, stat.importance,
             #               stat.cookie, stat.packet_count, stat.byte_count,
             #               stat.match, stat.instructions))
+        queue.put((ev.msg.datapath, in_port))
         # self.logger.debug('FlowStats: %s', flows)
 
-    def flow_stats_parser(self):
-        parsed_flows = {}
-        for sw_id in self.stats:
-            print 'Switch ' + str(sw_id) + ':'
-            for port in self.stats[sw_id]:
-                print 'Input port ' + str(port) + ':'
-                for idx in range(0, len(self.stats[sw_id][port])):
-                    print self.stats[sw_id][port][idx]
-                    print '************************************************************'
-                print '************************************************************'
-            print '************************************************************'
-        for sw_id in self.stats:
-            for port in self.stats[sw_id]:
-                for idx in range(0, len(self.stats[sw_id][port])):
-                    stat = self.stats[sw_id][port][idx]
-        # TODO determine where I should run this function.
-        # Running it inside a thread for switch is probably not a good idea
-        self.stats = {}
+    def getStats(self):
+        return self.stats
