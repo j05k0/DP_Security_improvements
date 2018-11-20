@@ -245,23 +245,13 @@ class SimpleSwitch14(app_manager.RyuApp):
                 ports.append(stat.port_no)
         queue.put((ev.msg.datapath, ports))
 
-    def send_flow_stats_request(self, datapath):
+    def send_flow_stats_request(self, datapath, in_port):
         print '[' + str(datapath.id) + ']: Requesting flow stats...'
         ofp = datapath.ofproto
         ofp_parser = datapath.ofproto_parser
 
         cookie = cookie_mask = 0
-        match = ofp_parser.OFPMatch(in_port=1)
-        req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
-                                             flags=0,
-                                             table_id=ofp.OFPTT_ALL,
-                                             out_port=ofp.OFPP_ANY,
-                                             out_group=ofp.OFPG_ANY,
-                                             cookie=cookie,
-                                             cookie_mask=cookie_mask,
-                                             match=match)
-        datapath.send_msg(req)
-        match = ofp_parser.OFPMatch(in_port=2)
+        match = ofp_parser.OFPMatch(in_port=in_port)
         req = ofp_parser.OFPFlowStatsRequest(datapath=datapath,
                                              flags=0,
                                              table_id=ofp.OFPTT_ALL,
@@ -299,7 +289,6 @@ class SimpleSwitch14(app_manager.RyuApp):
             #               stat.flags, stat.importance,
             #               stat.cookie, stat.packet_count, stat.byte_count,
             #               stat.match, stat.instructions))
-
         # self.logger.debug('FlowStats: %s', flows)
 
     def flow_stats_parser(self):

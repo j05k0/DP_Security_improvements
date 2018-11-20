@@ -16,7 +16,8 @@ class DNNModule(threading.Thread):
         while 1:
             print 'DNN module is running'
             for fw in self.forwarders:
-                self.controller.send_flow_stats_request(fw)
+                for port in self.forwarders[fw]:
+                    self.controller.send_flow_stats_request(fw, port)
             time.sleep(self.controller.REFRESH_RATE)
 
     def get_forwarders(self):
