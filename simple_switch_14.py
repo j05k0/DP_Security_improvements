@@ -295,3 +295,6 @@ class SimpleSwitch14(app_manager.RyuApp):
 
     def getStats(self):
         return self.stats
+
+    def clearStats(self):
+        self.stats = {}
