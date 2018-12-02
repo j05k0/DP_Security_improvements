@@ -73,7 +73,29 @@ class DNNModule(threading.Thread):
                 print '************************************************************'
             print '************************************************************'
 
+    def print_flows(self, flows):
+        for idx in range(0, len(flows)):
+            print flows[idx]
+            print '************************************************************'
+
     def flow_stats_parser(self, stats):
+        parsed_flows = self.parse_flows(stats)
+        print 'Parsed flows:'
+        self.print_flows(parsed_flows)
+
+        parsed_flows = self.unique_flows(parsed_flows)
+        print 'Unique flows:'
+        self.print_flows(parsed_flows)
+
+        parsed_flows = self.extended_stats(parsed_flows)
+        print 'Extended flows:'
+        self.print_flows(parsed_flows)
+
+        parsed_flows = self.merge_flows(parsed_flows)
+        print 'Merged flows:'
+        self.print_flows(parsed_flows)
+
+    def parse_flows(self, stats):
         parsed_flows = []
         id = 0
         for sw_id in stats:
@@ -100,65 +122,53 @@ class DNNModule(threading.Thread):
                         flow['byte_count'] = stat.byte_count
                         parsed_flows.append(flow)
                         id += 1
-        for f in range(0, len(parsed_flows)):
-            parsed_flows[f]['host_count'] = 0
-            parsed_flows[f]['service_count'] = 0
-            for ft in range(0, len(parsed_flows)):
-                if parsed_flows[f]['ipv4_dst'] == parsed_flows[ft]['ipv4_dst']:
-                    parsed_flows[f]['host_count'] += 1
-                if parsed_flows[f]['proto'] == parsed_flows[ft]['proto']:
-                    try:
-                        if parsed_flows[f]['port_dst'] == parsed_flows[ft]['port_dst']:
-                            parsed_flows[f]['service_count'] += 1
-                    except:
-                        parsed_flows[f]['service_count'] += 1
-        print 'Parsed flows:'
-        for idx in range(0, len(parsed_flows)):
-            print parsed_flows[idx]
-            print '************************************************************'
-        unique_flows = []
-        unique_flows.append(parsed_flows[0])
-        for f in range(1, len(parsed_flows)):
+        return parsed_flows
+
+    def unique_flows(self, flows):
+        unique_flows = [flows[0]]
+        for f in range(1, len(flows)):
             for u in range(0, len(unique_flows)):
-                if (parsed_flows[f]['ipv4_src'] == unique_flows[u]['ipv4_src']
-                        and parsed_flows[f]['ipv4_dst'] == unique_flows[u]['ipv4_dst']
-                        and parsed_flows[f]['proto'] == unique_flows[u]['proto']
-                        and parsed_flows[f]['packet_count'] == unique_flows[u]['packet_count']
-                        and parsed_flows[f]['byte_count'] == unique_flows[u]['byte_count']
-                        and parsed_flows[f]['host_count'] == unique_flows[u]['host_count']
-                        and parsed_flows[f]['service_count'] == unique_flows[u]['service_count']):
-                    if parsed_flows[f]['proto'] == in_proto.IPPROTO_TCP or parsed_flows[f]['proto'] == in_proto.IPPROTO_UDP:
-                        if parsed_flows[f]['port_dst'] == unique_flows[u]['port_dst']:
+                if (flows[f]['ipv4_src'] == unique_flows[u]['ipv4_src']
+                        and flows[f]['ipv4_dst'] == unique_flows[u]['ipv4_dst']
+                        and flows[f]['proto'] == unique_flows[u]['proto']
+                        and flows[f]['packet_count'] == unique_flows[u]['packet_count']
+                        and flows[f]['byte_count'] == unique_flows[u]['byte_count']):
+                    if flows[f]['proto'] == in_proto.IPPROTO_TCP or flows[f][
+                        'proto'] == in_proto.IPPROTO_UDP:
+                        if flows[f]['port_dst'] == unique_flows[u]['port_dst']:
                             break
                     else:
                         break
                 if u == len(unique_flows) - 1:
-                    unique_flows.append(parsed_flows[f])
+                    unique_flows.append(flows[f])
                     break
-        parsed_flows = []
+        return unique_flows
 
-        print 'Unique flows:'
-        for idx in range(0, len(unique_flows)):
-            print unique_flows[idx]
-            print '************************************************************'
+    def extended_stats(self, flows):
+        for f in range(0, len(flows)):
+            flows[f]['host_count'] = 0
+            flows[f]['service_count'] = 0
+            for ft in range(0, len(flows)):
+                if flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']:
+                    flows[f]['host_count'] += 1
+                if flows[f]['proto'] == flows[ft]['proto']:
+                    try:
+                        if flows[f]['port_dst'] == flows[ft]['port_dst']:
+                            flows[f]['service_count'] += 1
+                    except:
+                        flows[f]['service_count'] += 1
+        return flows
 
-        merged_flows = []
-        merged_flows.append(unique_flows[0])
-        for f in range (1, len(unique_flows)):
+    def merge_flows(self, flows):
+        merged_flows = [flows[0]]
+        for f in range(1, len(flows)):
             for u in range(0, len(merged_flows)):
-                if (unique_flows[f]['ipv4_src'] == merged_flows[u]['ipv4_dst']
-                        and unique_flows[f]['ipv4_dst'] == merged_flows[u]['ipv4_src']
-                        and unique_flows[f]['proto'] == merged_flows[u]['proto']):
+                if (flows[f]['ipv4_src'] == merged_flows[u]['ipv4_dst']
+                        and flows[f]['ipv4_dst'] == merged_flows[u]['ipv4_src']
+                        and flows[f]['proto'] == merged_flows[u]['proto']):
                     break
                 if u == len(merged_flows) - 1:
-                    merged_flows.append(unique_flows[f])
-                    #TODO Add anothoer flow stats to merged flows
+                    merged_flows.append(flows[f])
+                    # TODO Add anothoer flow stats to merged flows
                     break
-
-        print 'Merged flows:'
-        for idx in range(0, len(merged_flows)):
-            print merged_flows[idx]
-            print '************************************************************'
-        unique_flows = []
-
-
+        return merged_flows
