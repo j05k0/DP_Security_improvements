@@ -141,3 +141,24 @@ class DNNModule(threading.Thread):
         for idx in range(0, len(unique_flows)):
             print unique_flows[idx]
             print '************************************************************'
+
+        merged_flows = []
+        merged_flows.append(unique_flows[0])
+        for f in range (1, len(unique_flows)):
+            for u in range(0, len(merged_flows)):
+                if (unique_flows[f]['ipv4_src'] == merged_flows[u]['ipv4_dst']
+                        and unique_flows[f]['ipv4_dst'] == merged_flows[u]['ipv4_src']
+                        and unique_flows[f]['proto'] == merged_flows[u]['proto']):
+                    break
+                if u == len(merged_flows) - 1:
+                    merged_flows.append(unique_flows[f])
+                    #TODO Add anothoer flow stats to merged flows
+                    break
+
+        print 'Merged flows:'
+        for idx in range(0, len(merged_flows)):
+            print merged_flows[idx]
+            print '************************************************************'
+        unique_flows = []
+
+
