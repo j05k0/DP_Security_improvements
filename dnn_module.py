@@ -32,6 +32,7 @@ class DNNModule(threading.Thread):
                     self.flow_stats_parser(stats)
                 except:
                     # TODO Here maybe different print string
+                    #testing comment
                     print 'No stats available'
                 while not self.queue.empty():
                     self.queue.get()
