@@ -277,6 +277,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                 self.stats[dpid][in_port] = [stat]
             else:
                 self.stats[dpid][in_port].append(stat)
+            # print stat.stats
             # flows.append('table_id=%s '
             #              'duration_sec=%d duration_nsec=%d '
             #              'priority=%d '

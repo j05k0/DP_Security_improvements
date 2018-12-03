@@ -28,7 +28,11 @@ class DNNModule(threading.Thread):
                 stats = self.controller.getStats()
                 self.controller.clearStats()
                 self.print_flow_stats(stats)
-                self.flow_stats_parser(stats)
+                try:
+                    self.flow_stats_parser(stats)
+                except:
+                    # TODO Here maybe different print string
+                    print 'No stats available'
                 while not self.queue.empty():
                     self.queue.get()
             else:
@@ -160,15 +164,29 @@ class DNNModule(threading.Thread):
         return flows
 
     def merge_flows(self, flows):
-        merged_flows = [flows[0]]
-        for f in range(1, len(flows)):
-            for u in range(0, len(merged_flows)):
-                if (flows[f]['ipv4_src'] == merged_flows[u]['ipv4_dst']
-                        and flows[f]['ipv4_dst'] == merged_flows[u]['ipv4_src']
-                        and flows[f]['proto'] == merged_flows[u]['proto']):
-                    break
-                if u == len(merged_flows) - 1:
-                    merged_flows.append(flows[f])
-                    # TODO Add anothoer flow stats to merged flows
-                    break
+        merged_flows = []
+        for f in range(0, len(flows) - 1):
+            for ft in range(f + 1, len(flows)):
+                if (flows[f]['ipv4_src'] == flows[ft]['ipv4_dst']
+                        and flows[f]['ipv4_dst'] == flows[ft]['ipv4_src']
+                        and flows[f]['proto'] == flows[ft]['proto']):
+                    # Destination port of the opposite flow is the src port of current flow
+                    print flows[f]
+                    print flows[ft]
+                    tmp_flow = {'ipv4_src': flows[f]['ipv4_src'],
+                                'ipv4_dst': flows[f]['ipv4_dst'],
+                                'proto': flows[f]['proto'],
+                                'bytes_src': flows[f]['byte_count'],
+                                'bytes_dst': flows[ft]['byte_count'],
+                                'packets_src': flows[f]['packet_count'],
+                                'packets_dst': flows[ft]['packet_count'],
+                                'host_count': flows[f]['host_count'],
+                                'service_count': flows[f]['service_count']}
+                    if tmp_flow['proto'] == in_proto.IPPROTO_TCP or tmp_flow['proto'] == in_proto.IPPROTO_UDP:
+                        tmp_flow['port_src'] = flows[ft]['port_dst']
+                        tmp_flow['port_dst'] = flows[f]['port_dst']
+                    else:
+                        tmp_flow['port_src'] = 0
+                        tmp_flow['port_dst'] = 0
+                    merged_flows.append(tmp_flow)
         return merged_flows
