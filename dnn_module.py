@@ -32,7 +32,7 @@ class DNNModule(threading.Thread):
                     self.flow_stats_parser(stats)
                 except:
                     # TODO Here maybe different print string
-                    #testing comment
+                    # testing comment
                     print 'No stats available'
                 while not self.queue.empty():
                     self.queue.get()
@@ -118,7 +118,8 @@ class DNNModule(threading.Thread):
                             elif flow['proto'] == in_proto.IPPROTO_UDP:
                                 flow['port_dst'] = stat.match['udp_dst']
                         elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
-                            flow['proto'] = 'arp'
+                            #TODO Here maybe different representation for ARP protocol
+                            flow['proto'] = -1
                             flow['ipv4_src'] = stat.match['arp_spa']
                             flow['ipv4_dst'] = stat.match['arp_tpa']
                         else:
