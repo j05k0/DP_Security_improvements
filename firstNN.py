@@ -1,19 +1,43 @@
-import tensorflow as tf
-from numba.typing import typeof
-from tensorflow import keras
+# Use scikit-learn to grid search the batch size and epochs
+import numpy
+from sklearn.model_selection import GridSearchCV
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasClassifier
+import time
 
-import numpy as np
-import matplotlib.pyplot as plt
+# Function to create model, required for KerasClassifier
+def create_model():
+    # create model
+    model = Sequential()
+    model.add(Dense(12, input_dim=8, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))
+    # Compile model
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    return model
 
-types = ['i4', 'f8', 'U20', 'U10', 'U3', 'i4', 'i4', 'i4', 'i4', 'f8',
-         'i4', 'i4', 'f8', 'f8', 'i4', 'i4', 'f8', 'f8', 'f8', 'f8',
-         'i4', 'i4', 'i4', 'i4', 'f8', 'f8', 'f8', 'i4', 'i4', 'i4',
-         'i4', 'i4', 'i4', 'i4', 'i4', 'i4', 'i4', 'i4', 'i4', 'i4',
-         'i4', 'i4', 'i4', 'U20', 'i4']
-#train = np.genfromtxt('datasets/UNSW_NB15_train_small.csv',dtype=types, delimiter=',', names=True)
-train = np.genfromtxt('datasets/UNSW_NB15_training-set.csv', dtype=types, delimiter=',', names=True)
-trainLabels = train['label']
-print len(trainLabels)
-print 'Training set: ', train.shape
-
-#TODO how to deal with categorical data
+start = time.time()
+# fix random seed for reproducibility
+seed = 7
+numpy.random.seed(seed)
+# load dataset
+dataset = numpy.loadtxt("/home/jozef/PycharmProjects/DP_Security_improvements/datasets/UNSW-NB15_1_chosen_features.csv", delimiter=",")
+# split into input (X) and output (Y) variables
+X = dataset[:, 0:8]
+Y = dataset[:, 8]
+# create model
+model = KerasClassifier(build_fn=create_model, verbose=0)
+# define the grid search parameters
+batch_size = [10, 20, 40, 60, 80, 100]
+epochs = [10, 50, 100]
+param_grid = dict(batch_size=batch_size, epochs=epochs)
+grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
+grid_result = grid.fit(X, Y)
+# summarize results
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print("%f (%f) with: %r" % (mean, stdev, param))
+print "Elapsed time: ", time.time() - start, " s."
