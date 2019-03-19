@@ -42,6 +42,12 @@ class DNNModule(threading.Thread):
                 print 'Size of the queue is ', self.queue.qsize()
                 record_count = 0
 
+            print 'Actual MAC to port table:'
+            for sw_id in self.controller.mac_to_port:
+                print 'Switch ' + str(sw_id) + ':'
+                for dst in self.controller.mac_to_port[sw_id]:
+                    print dst, self.controller.mac_to_port[sw_id][dst]
+
             time.sleep(self.controller.REFRESH_RATE)
 
     def get_forwarders(self):

@@ -88,6 +88,8 @@ class SimpleSwitch14(app_manager.RyuApp):
                                 instructions=inst)
         datapath.send_msg(mod)
         self.logger.info('[' + str(datapath.id) + ']: Flow successfully installed')
+        print '[', str(datapath.id), ']: Flow successfully installed'
+        print mod, '\n'
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -119,11 +121,19 @@ class SimpleSwitch14(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        self.logger.info("packet in %s %s %s %s\n", dpid, src, dst, in_port)
+        print '*****************************************************************'
+        self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        if ipv4_proto is not None:
+            self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
         self.logger.info(pkt)
         self.logger.info("")
-        self.logger.info(ipv4_proto)
-        self.logger.info("")
+        #self.logger.info(ipv4_proto)
+
+        print "packet in ", dpid, src, dst, in_port
+        print pkt
+        if ipv4_proto is not None:
+            print ipv4_proto.src, ipv4_proto.dst
+            print ipv4_proto
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -131,8 +141,11 @@ class SimpleSwitch14(app_manager.RyuApp):
         # determine to which port should FW send the traffic
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
+            print 'Forwarding packet to', self.mac_to_port[dpid][dst], 'on forwarder', dpid
         else:
             out_port = ofproto.OFPP_FLOOD
+            print 'Setting flooding flag on forwarder', dpid
+        print '*****************************************************************'
 
         actions = [parser.OFPActionOutput(out_port)]
 
