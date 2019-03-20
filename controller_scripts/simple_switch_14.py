@@ -45,6 +45,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
         self.stats = {}
+        self.packet_ins = []
 
         # Initialize and start DNN module
         self.dnn_module = DNNModule(self, queue)
@@ -154,6 +155,9 @@ class SimpleSwitch14(app_manager.RyuApp):
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
+                # Save the first packet of the new flow
+                self.packet_ins.append(pkt)
+
                 # Add match to TABLE_HOST_COUNT for counting connections to hosts
                 match = parser.OFPMatch(
                     in_port=in_port,
@@ -219,6 +223,8 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ipv4_dst=ipv4_proto.dst)
                     priority = 20
             elif arp_proto is not None:
+                # Save the first packet of the new flow
+                self.packet_ins.append(pkt)
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_type=ether_types.ETH_TYPE_ARP,

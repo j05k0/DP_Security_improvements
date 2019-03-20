@@ -29,6 +29,7 @@ class DNNModule(threading.Thread):
                 self.controller.clearStats()
                 self.print_flow_stats(stats)
                 try:
+                    final_stats = self.process_packet_ins(self.controller.packet_ins)
                     self.flow_stats_parser(stats)
                 except:
                     # TODO Here maybe different print string
@@ -198,3 +199,7 @@ class DNNModule(threading.Thread):
                         tmp_flow['port_dst'] = 0
                     merged_flows.append(tmp_flow)
         return merged_flows
+
+    def process_packet_ins(self, packet_ins):
+        final_stats = []
+        return final_stats
