@@ -108,9 +108,10 @@ class DNNModule(threading.Thread):
     def print_flow_stats(self, stats):
         if stats == {}:
             return False
+        is_stats = False
         for sw_id in stats:
-            # if stats[sw_id] == {}:
-            #     return False
+            if stats[sw_id] != {}:
+                is_stats = True
             print 'Switch ' + str(sw_id) + ':'
             for port in stats[sw_id]:
                 # if len(stats[sw_id][port]) == 0:
@@ -121,7 +122,7 @@ class DNNModule(threading.Thread):
                     print '************************************************************'
                 print '************************************************************'
             print '************************************************************'
-        return True
+        return is_stats
 
     def print_flows(self, flows):
         for idx in range(0, len(flows)):
@@ -191,9 +192,17 @@ class DNNModule(threading.Thread):
                     if flows[f]['proto'] == in_proto.IPPROTO_TCP or flows[f]['proto'] == in_proto.IPPROTO_UDP:
                         if (flows[f]['port_src'] == unique_flows[u]['port_src']
                                 and flows[f]['port_dst'] == unique_flows[u]['port_dst']):
-                            break
+                            try:
+                                if flows[f]['dpid'] != unique_flows[u]['dpid']:
+                                    break
+                            except:
+                                break
                     else:
-                        break
+                        try:
+                            if flows[f]['dpid'] != unique_flows[u]['dpid']:
+                                break
+                        except:
+                            break
                 if u == len(unique_flows) - 1:
                     unique_flows.append(flows[f])
                     break
@@ -246,11 +255,12 @@ class DNNModule(threading.Thread):
         packet_ins_flows = []
         packet_ins = self.controller.packet_ins
         print '[DNN module] Processing', len(packet_ins), 'packet_ins...'
-        for pkt in packet_ins:
+        for dpid, pkt in packet_ins:
             if pkt.get_protocol(ipv4.ipv4) is not None:
                 ipv4_proto = pkt.get_protocol(ipv4.ipv4)
                 pkt.serialize()
-                flow = {'ipv4_src': ipv4_proto.src,
+                flow = {'dpid': dpid,
+                        'ipv4_src': ipv4_proto.src,
                         'ipv4_dst': ipv4_proto.dst,
                         'proto': ipv4_proto.proto,
                         'byte_count': len(pkt.data),
@@ -271,18 +281,22 @@ class DNNModule(threading.Thread):
             elif pkt.get_protocol(arp.arp) is not None:
                 arp_proto = pkt.get_protocol(arp.arp)
                 pkt.serialize()
-                flow = {'ipv4_src': arp_proto.src_ip,
+                flow = {'dpid': dpid,
+                        'ipv4_src': arp_proto.src_ip,
                         'ipv4_dst': arp_proto.dst_ip,
                         'proto': self.ARP_PROTO,
                         'port_src': 0,
                         'port_dst': 0,
                         'byte_count': len(pkt.data) - 18,
-                        # TODO This one is temporary to mathc the real size of ARP packet. Investigate...
+                        # TODO This one is temporary to match the real size of ARP packet. Investigate...
                         'packet_count': 1}
                 packet_ins_flows.append(flow)
 
+        print 'Packet_ins flows before unique:'
+        self.print_flows(packet_ins_flows)
+
         packet_ins_flows = self.unique_flows(packet_ins_flows)
-        print 'Packet_ins flows:'
+        print 'Unique packet_ins flows:'
         self.print_flows(packet_ins_flows)
 
         for flow in flows:

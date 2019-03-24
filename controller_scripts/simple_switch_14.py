@@ -156,7 +156,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
                 # Save the first packet of the new flow
-                self.packet_ins.append(pkt)
+                self.packet_ins.append((dpid, pkt))
 
                 # Add match to TABLE_HOST_COUNT for counting connections to hosts
                 match = parser.OFPMatch(
@@ -224,7 +224,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                     priority = 20
             elif arp_proto is not None:
                 # Save the first packet of the new flow
-                self.packet_ins.append(pkt)
+                self.packet_ins.append((dpid, pkt))
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_type=ether_types.ETH_TYPE_ARP,
