@@ -21,4 +21,5 @@ class DpTopo(Topo):
         self.addLink(h2, s2)
         self.addLink(s1, s2)
 
+
 topos = {'dptopo': (lambda: DpTopo())}

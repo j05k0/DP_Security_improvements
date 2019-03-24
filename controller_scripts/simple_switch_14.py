@@ -45,6 +45,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
         self.stats = {}
+        self.packet_ins = []
 
         # Initialize and start DNN module
         self.dnn_module = DNNModule(self, queue)
@@ -88,6 +89,8 @@ class SimpleSwitch14(app_manager.RyuApp):
                                 instructions=inst)
         datapath.send_msg(mod)
         self.logger.info('[' + str(datapath.id) + ']: Flow successfully installed')
+        print '[', str(datapath.id), ']: Flow successfully installed'
+        print mod, '\n'
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -109,6 +112,8 @@ class SimpleSwitch14(app_manager.RyuApp):
             # ignore lldp packet
             return
 
+        # TODO IPv6 traffic should be switched off on hosts and switches
+        # https://github.com/cchliu/SDN-Defense/blob/master/topo.py
         # Ignoring IPv6 traffic
         if ipv6_proto is not None:
             return
@@ -119,11 +124,19 @@ class SimpleSwitch14(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        self.logger.info("packet in %s %s %s %s\n", dpid, src, dst, in_port)
+        print '*****************************************************************'
+        self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        if ipv4_proto is not None:
+            self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
         self.logger.info(pkt)
         self.logger.info("")
-        self.logger.info(ipv4_proto)
-        self.logger.info("")
+        #self.logger.info(ipv4_proto)
+
+        print "packet in ", dpid, src, dst, in_port
+        print pkt
+        if ipv4_proto is not None:
+            print ipv4_proto.src, ipv4_proto.dst
+            print ipv4_proto
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -131,15 +144,21 @@ class SimpleSwitch14(app_manager.RyuApp):
         # determine to which port should FW send the traffic
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
+            print 'Forwarding packet to', self.mac_to_port[dpid][dst], 'port on forwarder', dpid
         else:
             out_port = ofproto.OFPP_FLOOD
+            print 'Setting flooding flag on forwarder', dpid
+        print '*****************************************************************'
 
         actions = [parser.OFPActionOutput(out_port)]
 
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
-                # Add match to table 0 for counting connections to hosts
+                # Save the first packet of the new flow
+                self.packet_ins.append((dpid, pkt))
+
+                # Add match to TABLE_HOST_COUNT for counting connections to hosts
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_type=ether_types.ETH_TYPE_IP,
@@ -150,7 +169,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                 self.add_flow(datapath, priority, match, inst, self.TABLE_HOST_COUNT)
 
                 if ipv4_proto.proto is in_proto.IPPROTO_TCP:
-                    # Add match to table 1 for counting connections to services
+                    # Add match to TABLE_SERVICE_COUNT for counting connections to services
                     match = parser.OFPMatch(
                         in_port=in_port,
                         eth_type=ether_types.ETH_TYPE_IP,
@@ -169,10 +188,11 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ip_proto=ipv4_proto.proto,
                         ipv4_src=ipv4_proto.src,
                         ipv4_dst=ipv4_proto.dst,
+                        tcp_src=tcp_proto.src_port,
                         tcp_dst=tcp_proto.dst_port)
                     priority = 30
                 elif ipv4_proto.proto is in_proto.IPPROTO_UDP:
-                    # Add match to table 1 for counting connections to services
+                    # Add match to TABLE_SERVICE_COUNT for counting connections to services
                     match = parser.OFPMatch(
                         in_port=in_port,
                         eth_type=ether_types.ETH_TYPE_IP,
@@ -191,6 +211,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ip_proto=ipv4_proto.proto,
                         ipv4_src=ipv4_proto.src,
                         ipv4_dst=ipv4_proto.dst,
+                        udp_src=udp_proto.src_port,
                         udp_dst=udp_proto.dst_port)
                     priority = 30
                 else:
@@ -202,10 +223,11 @@ class SimpleSwitch14(app_manager.RyuApp):
                         ipv4_dst=ipv4_proto.dst)
                     priority = 20
             elif arp_proto is not None:
+                # Save the first packet of the new flow
+                self.packet_ins.append((dpid, pkt))
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_type=ether_types.ETH_TYPE_ARP,
-                    arp_op=arp_proto.opcode,
                     arp_spa=arp_proto.src_ip,
                     arp_tpa=arp_proto.dst_ip)
                 priority = 10
