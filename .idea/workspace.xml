@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller_scripts/dnn_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/dnn_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" afterDir="false" />
-    </list>
+    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,49 +118,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-              <item name="controller_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-              <item name="datasets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-              <item name="jupyter_notebooks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-              <item name="mininet_topo_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -289,12 +243,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553387588847</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="All first packets (packet_ins) are present in calculated flows&#10;DNN module is able to calculate the same number of packets as wireshark shows">
+      <created>1553437126993</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1553437126993</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="993" y="25" width="927" height="1055" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.368306" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -326,7 +286,8 @@
     <MESSAGE value="Added matching against source port into flow tables" />
     <MESSAGE value="Processing first packets in progress" />
     <MESSAGE value="Almost all first packets are included in final flows&#10;Added source L4 ports into flow_stats_parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost all first packets are included in final flows&#10;Added source L4 ports into flow_stats_parser" />
+    <MESSAGE value="All first packets (packet_ins) are present in calculated flows&#10;DNN module is able to calculate the same number of packets as wireshark shows" />
+    <option name="LAST_COMMIT_MESSAGE" value="All first packets (packet_ins) are present in calculated flows&#10;DNN module is able to calculate the same number of packets as wireshark shows" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/anaconda2/lib/python2.7/site-packages/sklearn/model_selection/_search.py">
