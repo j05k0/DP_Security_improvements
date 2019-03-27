@@ -169,11 +169,16 @@ class DNNModule(threading.Thread):
                             elif flow['proto'] == in_proto.IPPROTO_UDP:
                                 flow['port_src'] = stat.match['udp_src']
                                 flow['port_dst'] = stat.match['udp_dst']
+                            else:
+                                flow['port_src'] = 0
+                                flow['port_dst'] = 0
                         elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
                             # TODO Here maybe different representation for ARP protocol
                             flow['proto'] = self.ARP_PROTO
                             flow['ipv4_src'] = stat.match['arp_spa']
                             flow['ipv4_dst'] = stat.match['arp_tpa']
+                            flow['port_src'] = 0
+                            flow['port_dst'] = 0
                         else:
                             print 'Unhandled eth_type: ', stat.match['eth_type']
                         flow['packet_count'] = stat.packet_count
@@ -209,16 +214,18 @@ class DNNModule(threading.Thread):
         return unique_flows
 
     def extended_stats(self, flows):
+        #TODO Here maybe more stats
         for f in range(0, len(flows)):
-            flows[f]['host_count'] = 0
-            flows[f]['service_count'] = 0
+            flows[f]['srv_dst_count'] = 0
+            flows[f]['dst_count'] = 0
             for ft in range(0, len(flows)):
                 if flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']:
-                    flows[f]['host_count'] += 1
+                    flows[f]['dst_count'] += 1
                 if flows[f]['proto'] == flows[ft]['proto']:
                     try:
-                        if flows[f]['port_dst'] == flows[ft]['port_dst']:
-                            flows[f]['service_count'] += 1
+                        if (flows[f]['port_dst'] == flows[ft]['port_dst']
+                                and flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']):
+                            flows[f]['srv_dst_count'] += 1
                     except:
                         flows[f]['service_count'] += 1
         return flows
@@ -240,14 +247,16 @@ class DNNModule(threading.Thread):
                                 'bytes_dst': flows[ft]['byte_count'],
                                 'packets_src': flows[f]['packet_count'],
                                 'packets_dst': flows[ft]['packet_count'],
-                                'host_count': flows[f]['host_count'],
-                                'service_count': flows[f]['service_count']}
-                    if tmp_flow['proto'] == in_proto.IPPROTO_TCP or tmp_flow['proto'] == in_proto.IPPROTO_UDP:
-                        tmp_flow['port_src'] = flows[ft]['port_dst']
-                        tmp_flow['port_dst'] = flows[f]['port_dst']
-                    else:
-                        tmp_flow['port_src'] = 0
-                        tmp_flow['port_dst'] = 0
+                                'dst_count': flows[f]['dst_count'],
+                                'srv_dst_count': flows[f]['srv_dst_count']}
+                    # if tmp_flow['proto'] == in_proto.IPPROTO_TCP or tmp_flow['proto'] == in_proto.IPPROTO_UDP:
+                    #     tmp_flow['port_src'] = flows[ft]['port_dst']
+                    #     tmp_flow['port_dst'] = flows[f]['port_dst']
+                    # else:
+                    #     tmp_flow['port_src'] = 0
+                    #     tmp_flow['port_dst'] = 0
+                    tmp_flow['port_src'] = flows[ft]['port_dst']
+                    tmp_flow['port_dst'] = flows[f]['port_dst']
                     merged_flows.append(tmp_flow)
         return merged_flows
 
@@ -258,6 +267,8 @@ class DNNModule(threading.Thread):
         for dpid, pkt in packet_ins:
             if pkt.get_protocol(ipv4.ipv4) is not None:
                 ipv4_proto = pkt.get_protocol(ipv4.ipv4)
+
+                # Serialization is for getting the size of the packet
                 pkt.serialize()
                 flow = {'dpid': dpid,
                         'ipv4_src': ipv4_proto.src,
@@ -280,6 +291,8 @@ class DNNModule(threading.Thread):
 
             elif pkt.get_protocol(arp.arp) is not None:
                 arp_proto = pkt.get_protocol(arp.arp)
+
+                # Serialization is for getting the size of the packet
                 pkt.serialize()
                 flow = {'dpid': dpid,
                         'ipv4_src': arp_proto.src_ip,
@@ -299,6 +312,8 @@ class DNNModule(threading.Thread):
         print 'Unique packet_ins flows:'
         self.print_flows(packet_ins_flows)
 
+        print '[DNN module] After unifying we have', len(packet_ins_flows), 'packet_ins'
+
         for flow in flows:
             for pif in packet_ins_flows:
                 if (flow['ipv4_src'] == pif['ipv4_src']
@@ -306,6 +321,8 @@ class DNNModule(threading.Thread):
                         and flow['proto'] == pif['proto']
                         and flow['port_src'] == pif['port_src']
                         and flow['port_dst'] == pif['port_dst']):
+
+                    #Found matching flow from statistics of forwarders
                     flow['bytes_src'] += pif['byte_count']
                     flow['packets_src'] += pif['packet_count']
                 elif (flow['ipv4_src'] == pif['ipv4_dst']
@@ -313,6 +330,8 @@ class DNNModule(threading.Thread):
                         and flow['proto'] == pif['proto']
                         and flow['port_src'] == pif['port_dst']
                         and flow['port_dst'] == pif['port_src']):
+
+                    # Found matching opposite flow from statistics of forwarders
                     flow['bytes_dst'] += pif['byte_count']
                     flow['packets_dst'] += pif['packet_count']
         return flows
