@@ -1,6 +1,13 @@
 import threading
 import time
 from ryu.lib.packet import ether_types, in_proto, ipv4, arp, tcp, udp
+import keras
+import tensorflow as tf
+from keras.models import load_model
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.externals import joblib
 
 
 class DNNModule(threading.Thread):
@@ -11,7 +18,15 @@ class DNNModule(threading.Thread):
         self.forwarders = {}
         self.controller = controller
         self.queue = queue
-        print '[DNN module] DNN module initialized'
+        try:
+            self.model = load_model('../models/DNN_model_all_binary.h5')
+            self.scaler = joblib.load('../models/DNN_model_all_binary_scaler.sav')
+            self.model._make_predict_function()
+            self.graph = tf.get_default_graph()
+            print '[DNN module] DNN module initialized'
+        except Exception as e:
+            print '[DNN module] DNN module failed to initialize'
+            print e
 
     def run(self):
         # TODO possible change to networkx and digraph
@@ -32,14 +47,18 @@ class DNNModule(threading.Thread):
                             self.controller.clearStats()
                             if self.print_flow_stats(stats):
                                 try:
-                                    self.flow_stats_parser(stats)
-                                except:
-                                    # TODO Here maybe different print string
-                                    print '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration'
-
+                                    parsed_flows = self.flow_stats_parser(stats)
+                                    try:
+                                        scaled_samples = self.preprocess_flows(parsed_flows)
+                                        self.evaluate_samples(scaled_samples, parsed_flows)
+                                    except Exception as e:
+                                        print '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.'
+                                        print e
+                                except Exception as e:
+                                    print '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration.'
+                                    print e
                             else:
                                 print '[DNN module] No flow stats available'
-
                         else:
                             print '[DNN module] Wrong number of flow stats replies received'
                             print '[DNN module] Record count is ', record_count
@@ -149,6 +168,8 @@ class DNNModule(threading.Thread):
         parsed_flows = self.process_packet_ins(parsed_flows)
         print 'Final flows:'
         self.print_flows(parsed_flows)
+
+        return parsed_flows
 
     def parse_flows(self, stats):
         parsed_flows = []
@@ -335,3 +356,89 @@ class DNNModule(threading.Thread):
                     flow['bytes_dst'] += pif['byte_count']
                     flow['packets_dst'] += pif['packet_count']
         return flows
+
+    def preprocess_flows(self, flows):
+        names = ['packets_src', 'packets_dst', 'bytes_src', 'bytes_dst', 'srv_dst_count', 'dst_count']
+        proto_names = ['proto_arp', 'proto_igmp', 'proto_ospf', 'proto_other', 'proto_tcp', 'proto_udp']
+        samples = pd.DataFrame(columns=names)
+        protos = pd.DataFrame(columns=proto_names)
+        for flow in flows:
+            samples.loc[len(samples)] = [flow['packets_src'],
+                               flow['packets_dst'],
+                               flow['bytes_src'],
+                               flow['bytes_dst'],
+                               flow['srv_dst_count'],
+                               flow['dst_count']]
+            row = [0, 0, 0, 0, 0, 0]
+            if flow['proto'] == self.ARP_PROTO:
+                row[0] = 1
+            elif flow['proto'] == in_proto.IPPROTO_IGMP:
+                row[1] = 1
+            elif flow['proto'] == in_proto.IPPROTO_OSPF:
+                row[2] = 1
+            elif flow['proto'] == in_proto.IPPROTO_TCP:
+                row[4] = 1
+            elif flow['proto'] == in_proto.IPPROTO_UDP:
+                row[5] = 1
+            else:
+                row[3] = 1
+            protos.loc[len(protos)] = row
+        samples = pd.concat([samples, protos], axis=1)
+        print samples
+        return self.scaler.transform(samples)
+
+    def evaluate_samples(self, samples, flows):
+        with self.graph.as_default():
+            predictions = self.model.predict_classes(samples)
+            probabs = self.model.predict_proba(samples)
+        print 'Predictions:', predictions
+        print 'Probabilities:', probabs
+        print '[DNN module] Evaluation of the flows is as follows:'
+        idx = 0
+        for flow in flows:
+            print flow
+            if predictions[idx]:
+                print 'Attack flow'
+            else:
+                print 'Normal flow'
+            print ('Probability is %.2f %%' % (probabs[idx][0]*100))
+            print ''
+            idx += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
