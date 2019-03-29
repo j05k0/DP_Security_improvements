@@ -89,8 +89,8 @@ class SimpleSwitch14(app_manager.RyuApp):
                                 instructions=inst)
         datapath.send_msg(mod)
         self.logger.info('[' + str(datapath.id) + ']: Flow successfully installed')
-        print '[', str(datapath.id), ']: Flow successfully installed'
-        print mod, '\n'
+        # print '[', str(datapath.id), ']: Flow successfully installed'
+        # print mod, '\n'
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -124,7 +124,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        print '*****************************************************************'
+        # print '*****************************************************************'
         self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
         if ipv4_proto is not None:
             self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
@@ -132,11 +132,11 @@ class SimpleSwitch14(app_manager.RyuApp):
         self.logger.info("")
         #self.logger.info(ipv4_proto)
 
-        print "packet in ", dpid, src, dst, in_port
-        print pkt
-        if ipv4_proto is not None:
-            print ipv4_proto.src, ipv4_proto.dst
-            print ipv4_proto
+        # print "packet in ", dpid, src, dst, in_port
+        # print pkt
+        # if ipv4_proto is not None:
+            # print ipv4_proto.src, ipv4_proto.dst
+            # print ipv4_proto
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -144,11 +144,14 @@ class SimpleSwitch14(app_manager.RyuApp):
         # determine to which port should FW send the traffic
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
-            print 'Forwarding packet to', self.mac_to_port[dpid][dst], 'port on forwarder', dpid
+            self.logger.info('Forwarding packet to %s port on forwarder %s', self.mac_to_port[dpid][dst], dpid)
+            # print 'Forwarding packet to', self.mac_to_port[dpid][dst], 'port on forwarder', dpid
         else:
             out_port = ofproto.OFPP_FLOOD
-            print 'Setting flooding flag on forwarder', dpid
-        print '*****************************************************************'
+            self.logger.info('Setting flooding flag on forwarder %s', dpid)
+            # print 'Setting flooding flag on forwarder', dpid
+        self.logger.info('*****************************************************************')
+        # print '*****************************************************************'
 
         actions = [parser.OFPActionOutput(out_port)]
 
@@ -251,7 +254,8 @@ class SimpleSwitch14(app_manager.RyuApp):
         self.logger.info("--------------------------------------------------------------")
 
     def send_port_stats_request(self, datapath):
-        print '[' + str(datapath.id) + ']: Requesting port stats...'
+        self.logger.info('[' + str(datapath.id) + ']: Requesting port stats...')
+        # print '[' + str(datapath.id) + ']: Requesting port stats...'
         ofp = datapath.ofproto
         ofp_parser = datapath.ofproto_parser
 
@@ -268,7 +272,8 @@ class SimpleSwitch14(app_manager.RyuApp):
         queue.put((ev.msg.datapath, ports))
 
     def send_flow_stats_request(self, datapath, in_port):
-        print '[' + str(datapath.id) + ']: Requesting flow stats...'
+        self.logger.info('[' + str(datapath.id) + ']: Requesting flow stats...')
+        # print '[' + str(datapath.id) + ']: Requesting flow stats...'
         ofp = datapath.ofproto
         ofp_parser = datapath.ofproto_parser
 
@@ -287,13 +292,14 @@ class SimpleSwitch14(app_manager.RyuApp):
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
         dpid = ev.msg.datapath.id
-        print '[' + str(dpid) + ']: Received flow stats:'
+        self.logger.info('[' + str(dpid) + ']: Received flow stats:')
+        # print '[' + str(dpid) + ']: Received flow stats:'
         # flows = []
         self.stats.setdefault(dpid, {})
         in_port = 0
         for stat in ev.msg.body:
-            # self.logger.info(stat)
-            # self.logger.info('***************************************************************')
+            self.logger.info(stat)
+            self.logger.info('***************************************************************')
             in_port = stat.match['in_port']
             if in_port not in self.stats[dpid]:
                 self.stats[dpid][in_port] = [stat]
@@ -316,8 +322,27 @@ class SimpleSwitch14(app_manager.RyuApp):
         queue.put((ev.msg.datapath, in_port))
         # self.logger.debug('FlowStats: %s', flows)
 
-    def getStats(self):
+    def get_stats(self):
         return self.stats
 
-    def clearStats(self):
+    def clear_stats(self):
         self.stats = {}
+
+    def clear_counters(self, datapath):
+        stats = self.stats
+        for dpid in stats:
+            if dpid == datapath.id:
+                for in_port in stats[dpid]:
+                    for idx in range(0, len(stats[dpid][in_port])):
+                        stat = stats[dpid][in_port][idx]
+                        parser = datapath.ofproto_parser
+                        ofproto = datapath.ofproto
+                        mod = parser.OFPFlowMod(datapath=datapath,
+                                                table_id=stat.table_id,
+                                                command=ofproto.OFPFC_MODIFY_STRICT,
+                                                priority=stat.priority,
+                                                flags=ofproto.OFPFF_RESET_COUNTS,
+                                                match=stat.match,
+                                                instructions=stat.instructions)
+                        datapath.send_msg(mod)
+                self.logger.info('[' + str(datapath.id) + ']: Counters reset done')

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/jozef.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/jozef.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/DNN_model_all_binary.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/DNN_model_all_binary_scaler.sav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/dnn_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/dnn_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jupyter_notebooks/DP_DNN_UNSW_NB15_categorical.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter_notebooks/DP_DNN_UNSW_NB15_categorical.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/c0_console.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/c0_console.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/showFlowTables.sh" beforeDir="false" afterPath="$PROJECT_DIR$/showFlowTables.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +20,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_14.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="146" column="57" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="57" />
+            <state relative-caret-position="424">
+              <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
               <folding>
                 <element signature="e#614#625#0" expanded="true" />
+                <element signature="e#1897#3180#0" />
+                <element signature="e#3860#10935#0" />
+                <element signature="e#10994#11317#0" />
+                <element signature="e#11438#11655#0" />
+                <element signature="e#11723#12572#0" />
               </folding>
             </state>
           </provider>
@@ -33,52 +37,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="408" lean-forward="true" selection-start-line="408" selection-end-line="408" />
+            <state relative-caret-position="403">
+              <caret line="57" column="111" lean-forward="true" selection-start-line="57" selection-start-column="111" selection-end-line="57" selection-end-column="111" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <element signature="e#3075#3408#0" />
-                <element signature="e#3451#4318#0" />
-                <element signature="e#4367#4448#0" />
-                <element signature="e#4485#4543#0" />
-                <element signature="e#4592#5368#0" />
-                <element signature="e#5412#5554#0" />
-                <element signature="e#6263#8259#0" />
-                <element signature="e#8304#9542#0" />
-                <element signature="e#9589#10298#0" />
-                <element signature="e#10342#12036#0" />
-                <element signature="e#12087#15564#0" />
+                <element signature="e#13491#14729#0" />
+                <element signature="e#14776#15486#0" />
+                <element signature="e#15530#17072#0" />
+                <element signature="e#17444#21683#0" />
+                <element signature="e#20996#22395#0" />
+                <element signature="e#22453#24116#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/pandas/core/generic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-241">
-              <caret line="4584" column="8" selection-start-line="4584" selection-start-column="8" selection-end-line="4584" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-              <folding>
-                <element signature="e#18#53#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -110,6 +79,9 @@
       <find>No flow stats available</find>
       <find>self.packet_ins.append</find>
       <find>dst_count</find>
+      <find>wrong number of port</find>
+      <find>update_forwarders</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,8 +104,8 @@
         <option value="$PROJECT_DIR$/topo_loop.py" />
         <option value="$PROJECT_DIR$/simple_switch_14_shortest_path.py" />
         <option value="$PROJECT_DIR$/mininet_topo_scripts/topo1.py" />
-        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" />
         <option value="$PROJECT_DIR$/mininet_topo_scripts/packet_generator.py" />
+        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_14.py" />
         <option value="$PROJECT_DIR$/controller_scripts/dnn_module.py" />
       </list>
     </option>
@@ -195,7 +167,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -270,12 +242,12 @@
       <option name="project" value="LOCAL" />
       <updated>1553725780765</updated>
     </task>
-    <task id="LOCAL-00004" summary="Mininet - created custom topo&#10;tcpreplay integration in progress&#10;Also bunch of other files are commited...">
-      <created>1552600834513</created>
+    <task id="LOCAL-00004" summary="Added scaling and evaluation on trained model">
+      <created>1553816672628</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1552600834514</updated>
+      <updated>1553816672628</updated>
     </task>
     <task id="LOCAL-00005" summary="Mininet - created topo with 3 switches in a row&#10;Able to split pcap into primary and secondary traffic&#10;Able to run tcpreplay with 2 interfaces&#10;Found some bugs in controller">
       <created>1553003458238</created>
@@ -319,18 +291,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553437126993</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1613" height="1025" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18360655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21132076" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32924107" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.44816414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -349,7 +321,8 @@
     <MESSAGE value="rebased" />
     <MESSAGE value="Fixed naming in dnn_module&#10;Prepared for testing with many flows" />
     <MESSAGE value="Added new files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new files" />
+    <MESSAGE value="Added scaling and evaluation on trained model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added scaling and evaluation on trained model" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/packet_generator.py" />
@@ -357,26 +330,6 @@
     <entry file="file://$PROJECT_DIR$/jupyter_notebooks/DP_DNN_UNSW_NB15_categorical.ipynb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-135915" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_14.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="146" column="57" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="57" />
-          <folding>
-            <element signature="e#614#625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#18#53#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo1.py">
@@ -388,28 +341,55 @@
     </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/pandas/core/generic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-241">
+        <state relative-caret-position="15">
           <caret line="4584" column="8" selection-start-line="4584" selection-start-column="8" selection-end-line="4584" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/ryu/base/app_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2986">
+          <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#18#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_14.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding>
+            <element signature="e#614#625#0" expanded="true" />
+            <element signature="e#1897#3180#0" />
+            <element signature="e#3860#10935#0" />
+            <element signature="e#10994#11317#0" />
+            <element signature="e#11438#11655#0" />
+            <element signature="e#11723#12572#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="408" lean-forward="true" selection-start-line="408" selection-end-line="408" />
+        <state relative-caret-position="403">
+          <caret line="57" column="111" lean-forward="true" selection-start-line="57" selection-start-column="111" selection-end-line="57" selection-end-column="111" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#3075#3408#0" />
-            <element signature="e#3451#4318#0" />
-            <element signature="e#4367#4448#0" />
-            <element signature="e#4485#4543#0" />
-            <element signature="e#4592#5368#0" />
-            <element signature="e#5412#5554#0" />
-            <element signature="e#6263#8259#0" />
-            <element signature="e#8304#9542#0" />
-            <element signature="e#9589#10298#0" />
-            <element signature="e#10342#12036#0" />
-            <element signature="e#12087#15564#0" />
+            <element signature="e#13491#14729#0" />
+            <element signature="e#14776#15486#0" />
+            <element signature="e#15530#17072#0" />
+            <element signature="e#17444#21683#0" />
+            <element signature="e#20996#22395#0" />
+            <element signature="e#22453#24116#0" />
           </folding>
         </state>
       </provider>
