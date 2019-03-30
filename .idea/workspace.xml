@@ -33,15 +33,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="474" column="53" lean-forward="true" selection-start-line="474" selection-start-column="53" selection-end-line="474" selection-end-column="53" />
+            <state relative-caret-position="386">
+              <caret line="225" column="49" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <element signature="e#13491#14729#0" />
-                <element signature="e#14776#15486#0" />
-                <element signature="e#15530#17072#0" />
-                <element signature="e#17444#21683#0" />
                 <element signature="e#20996#22395#0" />
+                <element signature="e#22453#24116#0" />
               </folding>
             </state>
           </provider>
@@ -251,12 +248,12 @@
       <option name="project" value="LOCAL" />
       <updated>1553902938360</updated>
     </task>
-    <task id="LOCAL-00006" summary="Tried to create shortest path controller in Ryu&#10;still in progress">
-      <created>1553025730396</created>
+    <task id="LOCAL-00006" summary="Fixed adding into file">
+      <created>1553904034261</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1553025730397</updated>
+      <updated>1553904034261</updated>
     </task>
     <task id="LOCAL-00007" summary="Added matching against source port into flow tables">
       <created>1553098990819</created>
@@ -286,7 +283,7 @@
       <option name="project" value="LOCAL" />
       <updated>1553437126993</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -318,7 +315,8 @@
     <MESSAGE value="Added new files" />
     <MESSAGE value="Added scaling and evaluation on trained model" />
     <MESSAGE value="Clearing byte and packet counters after processing by DNN module&#10;Added removing dead connections (connections with 0 byte and packet counters)&#10;Added checking for empty flow stats&#10;Added checking for empty packet_ins array&#10;Added exception handling&#10;Replaced prints with self.logger.info&#10;Added saving into file - file name is hard-coded" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clearing byte and packet counters after processing by DNN module&#10;Added removing dead connections (connections with 0 byte and packet counters)&#10;Added checking for empty flow stats&#10;Added checking for empty packet_ins array&#10;Added exception handling&#10;Replaced prints with self.logger.info&#10;Added saving into file - file name is hard-coded" />
+    <MESSAGE value="Fixed adding into file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed adding into file" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/packet_generator.py" />
@@ -376,15 +374,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="474" column="53" lean-forward="true" selection-start-line="474" selection-start-column="53" selection-end-line="474" selection-end-column="53" />
+        <state relative-caret-position="386">
+          <caret line="225" column="49" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#13491#14729#0" />
-            <element signature="e#14776#15486#0" />
-            <element signature="e#15530#17072#0" />
-            <element signature="e#17444#21683#0" />
             <element signature="e#20996#22395#0" />
+            <element signature="e#22453#24116#0" />
           </folding>
         </state>
       </provider>

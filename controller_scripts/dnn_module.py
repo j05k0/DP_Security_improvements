@@ -209,11 +209,6 @@ class DNNModule(threading.Thread):
         # print 'Unique flows:'
         self.print_flows(parsed_flows)
 
-        parsed_flows = self.extended_stats(parsed_flows)
-        self.controller.logger.info('Extended flows:')
-        # print 'Extended flows:'
-        self.print_flows(parsed_flows)
-
         parsed_flows = self.merge_flows(parsed_flows)
         self.controller.logger.info('Merged flows:')
         # print 'Merged flows:'
@@ -226,6 +221,11 @@ class DNNModule(threading.Thread):
 
         parsed_flows = self.remove_dead_flows(parsed_flows)
         self.controller.logger.info('Removed dead connections:')
+        self.print_flows(parsed_flows)
+
+        parsed_flows = self.extended_stats(parsed_flows)
+        self.controller.logger.info('Extended flows:')
+        # print 'Extended flows:'
         self.print_flows(parsed_flows)
 
         return parsed_flows
@@ -264,6 +264,9 @@ class DNNModule(threading.Thread):
                             # print 'Unhandled eth_type: ', stat.match['eth_type']
                         flow['packet_count'] = stat.packet_count
                         flow['byte_count'] = stat.byte_count
+                        # Adding extended stats
+                        flow['srv_dst_count'] = 0
+                        flow['dst_count'] = 0
                         parsed_flows.append(flow)
                         id += 1
         return parsed_flows
@@ -297,18 +300,13 @@ class DNNModule(threading.Thread):
     def extended_stats(self, flows):
         # TODO Here maybe more stats
         for f in range(0, len(flows)):
-            flows[f]['srv_dst_count'] = 0
-            flows[f]['dst_count'] = 0
             for ft in range(0, len(flows)):
                 if flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']:
                     flows[f]['dst_count'] += 1
                 if flows[f]['proto'] == flows[ft]['proto']:
-                    try:
-                        if (flows[f]['port_dst'] == flows[ft]['port_dst']
-                                and flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']):
-                            flows[f]['srv_dst_count'] += 1
-                    except:
-                        flows[f]['service_count'] += 1
+                    if (flows[f]['port_dst'] == flows[ft]['port_dst']
+                            and flows[f]['ipv4_dst'] == flows[ft]['ipv4_dst']):
+                        flows[f]['srv_dst_count'] += 1
         return flows
 
     def merge_flows(self, flows):
@@ -317,22 +315,16 @@ class DNNModule(threading.Thread):
             for ft in range(f + 1, len(flows)):
                 if (flows[f]['ipv4_src'] == flows[ft]['ipv4_dst']
                         and flows[f]['ipv4_dst'] == flows[ft]['ipv4_src']
-                        and flows[f]['proto'] == flows[ft]['proto']):
+                        and flows[f]['proto'] == flows[ft]['proto']
+                        and flows[f]['port_src'] == flows[ft]['port_dst']
+                        and flows[f]['port_dst'] == flows[ft]['port_src']):
                     # Destination port of the opposite flow is the src port of current flow
-                    # print flows[f]
-                    # print flows[ft]
                     tmp_flow = {'ipv4_src': flows[f]['ipv4_src'], 'ipv4_dst': flows[f]['ipv4_dst'],
                                 'proto': flows[f]['proto'], 'bytes_src': flows[f]['byte_count'],
                                 'bytes_dst': flows[ft]['byte_count'], 'packets_src': flows[f]['packet_count'],
                                 'packets_dst': flows[ft]['packet_count'], 'dst_count': flows[f]['dst_count'],
                                 'srv_dst_count': flows[f]['srv_dst_count'], 'port_src': flows[ft]['port_dst'],
                                 'port_dst': flows[f]['port_dst']}
-                    # if tmp_flow['proto'] == in_proto.IPPROTO_TCP or tmp_flow['proto'] == in_proto.IPPROTO_UDP:
-                    #     tmp_flow['port_src'] = flows[ft]['port_dst']
-                    #     tmp_flow['port_dst'] = flows[f]['port_dst']
-                    # else:
-                    #     tmp_flow['port_src'] = 0
-                    #     tmp_flow['port_dst'] = 0
                     merged_flows.append(tmp_flow)
         return merged_flows
 
