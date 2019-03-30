@@ -12,6 +12,7 @@ from sklearn.externals import joblib
 
 class DNNModule(threading.Thread):
     ARP_PROTO = -1
+    FLOWS_DUMP_FILE = '../results/flows_dump.txt'
 
     def __init__(self, controller, queue):
         super(DNNModule, self).__init__()
@@ -33,6 +34,11 @@ class DNNModule(threading.Thread):
 
     def run(self):
         # TODO possible change to networkx and digraph
+        # Open dump file and add the first line - column names
+        with open(self.FLOWS_DUMP_FILE, 'w') as f:
+            f.write(
+                'ipv4_src,port_src,ipv4_dst,port_dst,proto,bytes_src,bytes_dst,packets_src,packets_dst,srv_dst_count,'
+                'dst_count,category,probability\n')
         while 1:
             if self.get_forwarders():
                 while 1:
@@ -463,10 +469,8 @@ class DNNModule(threading.Thread):
         # print 'Probabilities:', probabs
         # print '[DNN module] Evaluation of the flows is as follows:'
         idx = 0
-        with open('../results/flows_dump.txt', 'w') as f:
-            f.write(
-                'ipv4_src,port_src,ipv4_dst,port_dst,proto,bytes_src,bytes_dst,packets_src,packets_dst,srv_dst_count,'
-                'dst_count,category,probability\n')
+        # Save calculated predictions and classification into dump file
+        with open(self.FLOWS_DUMP_FILE, 'a') as f:
             for flow in flows:
                 f.write(str(flow['ipv4_src']) + ',' +
                         str(flow['port_src']) + ',' +
