@@ -12,7 +12,7 @@ from sklearn.externals import joblib
 
 class DNNModule(threading.Thread):
     ARP_PROTO = -1
-    FLOWS_DUMP_FILE = '../results/flows_dump.txt'
+    FLOWS_DUMP_FILE = '../results/flows_dump_part1700-1702.txt'
 
     def __init__(self, controller, queue):
         super(DNNModule, self).__init__()
@@ -173,21 +173,21 @@ class DNNModule(threading.Thread):
         for sw_id in stats:
             if stats[sw_id] != {}:
                 is_stats = True
-            self.controller.logger.info('Switch ' + str(sw_id) + ':')
+            #self.controller.logger.info('Switch ' + str(sw_id) + ':')
             # print 'Switch ' + str(sw_id) + ':'
-            for port in stats[sw_id]:
+            #for port in stats[sw_id]:
                 # if len(stats[sw_id][port]) == 0:
                 #     return False
-                self.controller.logger.info('Input port ' + str(port) + ':')
+                #self.controller.logger.info('Input port ' + str(port) + ':')
                 # print 'Input port ' + str(port) + ':'
-                for idx in range(0, len(stats[sw_id][port])):
-                    self.controller.logger.info(stats[sw_id][port][idx])
-                    self.controller.logger.info('************************************************************')
+                #for idx in range(0, len(stats[sw_id][port])):
+                    #self.controller.logger.info(stats[sw_id][port][idx])
+                    #self.controller.logger.info('************************************************************')
                     # print stats[sw_id][port][idx]
                     # print '************************************************************'
-                self.controller.logger.info('************************************************************')
+                #self.controller.logger.info('************************************************************')
                 # print '************************************************************'
-            self.controller.logger.info('************************************************************')
+            #self.controller.logger.info('************************************************************')
             # print '************************************************************'
         return is_stats
 
@@ -202,31 +202,31 @@ class DNNModule(threading.Thread):
         parsed_flows = self.parse_flows(stats)
         self.controller.logger.info('Parsed flows:')
         # print 'Parsed flows:'
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         parsed_flows = self.unique_flows(parsed_flows)
         self.controller.logger.info('Unique flows:')
         # print 'Unique flows:'
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         parsed_flows = self.merge_flows(parsed_flows)
         self.controller.logger.info('Merged flows:')
         # print 'Merged flows:'
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         parsed_flows = self.process_packet_ins(parsed_flows)
         self.controller.logger.info('Added packet_ins:')
         # print 'Final flows:'
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         parsed_flows = self.remove_dead_flows(parsed_flows)
         self.controller.logger.info('Removed dead connections:')
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         parsed_flows = self.extended_stats(parsed_flows)
         self.controller.logger.info('Extended flows:')
         # print 'Extended flows:'
-        self.print_flows(parsed_flows)
+        #self.print_flows(parsed_flows)
 
         return parsed_flows
 
@@ -377,12 +377,12 @@ class DNNModule(threading.Thread):
 
             self.controller.logger.info('Packet_ins flows before unique:')
             # print 'Packet_ins flows before unique:'
-            self.print_flows(packet_ins_flows)
+            #self.print_flows(packet_ins_flows)
 
             packet_ins_flows = self.unique_flows(packet_ins_flows)
             self.controller.logger.info('Unique packet_ins flows:')
             # print 'Unique packet_ins flows:'
-            self.print_flows(packet_ins_flows)
+            #self.print_flows(packet_ins_flows)
 
             self.controller.logger.info('[DNN module] After unifying we have %s packet_ins.', len(packet_ins_flows))
             # print '[DNN module] After unifying we have', len(packet_ins_flows), 'packet_ins.'
@@ -446,7 +446,7 @@ class DNNModule(threading.Thread):
                 row[3] = 1
             protos.loc[len(protos)] = row
         samples = pd.concat([samples, protos], axis=1)
-        self.controller.logger.info(str(samples))
+        #self.controller.logger.info(str(samples))
         # print samples
         return self.scaler.transform(samples)
 
@@ -456,7 +456,7 @@ class DNNModule(threading.Thread):
             probabs = self.model.predict_proba(samples)
         self.controller.logger.info('Predictions: %s', str(predictions))
         self.controller.logger.info('Probabilities: %s', str(probabs))
-        self.controller.logger.info('[DNN module] Evaluation of the flows is as follows:')
+        self.controller.logger.info('[DNN module] Evaluation of the flows is going to be saved into %s', str(self.FLOWS_DUMP_FILE))
         # print 'Predictions:', predictions
         # print 'Probabilities:', probabs
         # print '[DNN module] Evaluation of the flows is as follows:'
@@ -481,3 +481,4 @@ class DNNModule(threading.Thread):
                     f.write('Normal,')
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
                 idx += 1
+            self.controller.logger.info('[DNN module] Evaluation of the flows is successfully saved')

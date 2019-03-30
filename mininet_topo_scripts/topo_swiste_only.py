@@ -16,8 +16,8 @@ def topo():
     c0 = net.addController('c0', controller=RemoteController, ip='127.0.0.1', port=6653)
 
     print 'Creating links...'
-    net.addLink(s1, s2)
-    net.addLink(s2, s3)
+    net.addLink(s1, s2, bw=100)
+    net.addLink(s2, s3, bw=100)
 
     print 'Starting network...'
     net.build()
