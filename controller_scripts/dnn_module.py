@@ -58,6 +58,7 @@ class DNNModule(threading.Thread):
                                 record_count += 1
                         if self.wait_for_items_in_queue(record_count):
                             stats = self.controller.get_stats()
+                            self.controller.clear_stats()
                             if self.print_flow_stats(stats):
                                 try:
                                     parsed_flows = self.flow_stats_parser(stats)
@@ -105,12 +106,10 @@ class DNNModule(threading.Thread):
                             self.logger('Switch ' + str(sw_id) + ':')
                             # print 'Switch ' + str(sw_id) + ':'
                             for dst in self.controller.mac_to_port[sw_id]:
-                                self.logger(dst + ' ' + self.controller.mac_to_port[sw_id][dst])
+                                self.logger(dst + ' ' + str(self.controller.mac_to_port[sw_id][dst]))
                                 # print dst, self.controller.mac_to_port[sw_id][dst]
                     for fw in self.forwarders:
                         self.controller.clear_counters(fw)
-                    self.controller.clear_stats()
-                    self.controller.packet_ins = []
                     self.logger('[DNN module] Iteration done.')
                     self.logger(' ************************************************************')
                     # print '[DNN module] Iteration done.'
@@ -125,7 +124,7 @@ class DNNModule(threading.Thread):
             time.sleep(self.REFRESH_RATE)
 
     def logger(self, to_print):
-        self.logger(self.current_timestamp() + ' ' + str(to_print))
+        self.controller.logger.info(self.current_timestamp() + ' ' + str(to_print))
 
     def current_timestamp(self):
         return datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y %H:%M:%S')
@@ -193,6 +192,7 @@ class DNNModule(threading.Thread):
         for sw_id in stats:
             if stats[sw_id] != {}:
                 is_stats = True
+                break
             #self.logger('Switch ' + str(sw_id) + ':')
             # print 'Switch ' + str(sw_id) + ':'
             #for port in stats[sw_id]:
@@ -352,9 +352,9 @@ class DNNModule(threading.Thread):
 
     def process_packet_ins(self, flows):
         packet_ins_flows = []
-        packet_ins = self.controller.packet_ins
+        packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
         if len(packet_ins) > 0:
-            self.logger('[DNN module] Processing %s packet_ins...' + str(len(packet_ins)))
+            self.logger('[DNN module] Processing ' + str(len(packet_ins)) + ' packet_ins...')
             # print '[DNN module] Processing', len(packet_ins), 'packet_ins...'
             for dpid, pkt in packet_ins:
                 if pkt.get_protocol(ipv4.ipv4) is not None:
@@ -406,7 +406,7 @@ class DNNModule(threading.Thread):
             # print 'Unique packet_ins flows:'
             #self.print_flows(packet_ins_flows)
 
-            self.logger('[DNN module] After unifying we have %s packet_ins.' + str(len(packet_ins_flows)))
+            self.logger('[DNN module] After unifying we have ' + str(len(packet_ins_flows)) + ' packet_ins.')
             # print '[DNN module] After unifying we have', len(packet_ins_flows), 'packet_ins.'
 
             for flow in flows:
