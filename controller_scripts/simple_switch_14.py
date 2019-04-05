@@ -14,9 +14,7 @@
 # limitations under the License.
 
 
-import time
 import Queue
-
 from ryu.base import app_manager
 from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
@@ -25,9 +23,11 @@ from ryu.lib.packet import ether_types
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import packet, ipv6, ipv4, arp, in_proto, tcp, udp
 from ryu.ofproto import ofproto_v1_4
+from ryu import cfg
 from dnn_module import DNNModule
 
 queue = Queue.Queue()
+
 
 class SimpleSwitch14(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_4.OFP_VERSION]
@@ -37,18 +37,32 @@ class SimpleSwitch14(app_manager.RyuApp):
     TABLE_SERVICE_COUNT = 1
     TABLE_SWITCHING = 10
 
-    # Refresh rate defines how often is called DNN module (seconds)
-    REFRESH_RATE = 5
-    FW_REFRESH_RATE = 1  # TODO maybe this time will cause a bug if there are multiple forwarders (ask Rudo)
-
     def __init__(self, *args, **kwargs):
         super(SimpleSwitch14, self).__init__(*args, **kwargs)
         self.mac_to_port = {}
         self.stats = {}
         self.packet_ins = []
 
+        # Get the input params from .conf file
+        CONF = cfg.CONF
+        CONF.register_opts([
+            cfg.IntOpt('REFRESH_RATE', default=10),
+            cfg.IntOpt('FW_REFRESH_RATE', default=1),
+            cfg.IntOpt('TIMEOUT', default=30),
+            cfg.StrOpt('FLOWS_DUMP_FILE', default='../results/flows_default.dump'),
+            cfg.StrOpt('DNN_MODEL', default='../models/DNN_model_all_binary.h5'),
+            cfg.StrOpt('DNN_SCALER', default='../models/DNN_model_all_binary_scaler.sav')
+        ])
+        params = []
+        params.append(CONF.REFRESH_RATE)
+        params.append(CONF.FW_REFRESH_RATE)
+        params.append(CONF.TIMEOUT)
+        params.append(CONF.FLOWS_DUMP_FILE)
+        params.append(CONF.DNN_MODEL)
+        params.append(CONF.DNN_SCALER)
+
         # Initialize and start DNN module
-        self.dnn_module = DNNModule(self, queue)
+        self.dnn_module = DNNModule(self, queue, params)
         self.dnn_module.start()
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
