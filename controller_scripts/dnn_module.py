@@ -48,7 +48,7 @@ class DNNModule(threading.Thread):
         while 1:
             if self.get_forwarders():
                 while 1:
-                    # print '[DNN module] Starting new iteration...'
+                    print '[DNN module] Starting new iteration...'
                     self.logger('[DNN module] Starting new iteration...')
                     record_count = 0
                     if self.update_forwarders():
@@ -57,7 +57,13 @@ class DNNModule(threading.Thread):
                                 self.controller.send_flow_stats_request(fw, port)
                                 record_count += 1
                         if self.wait_for_items_in_queue(record_count):
+                            # Get actual stats from forwarders
                             stats = self.controller.get_stats()
+                            # TODO This could be done with delta - you must save the old flows for comparision
+                            # Clear counters on all forwarders
+                            for fw in self.forwarders:
+                                self.controller.clear_counters(fw)
+                            # Clear stats in controller
                             self.controller.clear_stats()
                             if self.print_flow_stats(stats):
                                 try:
@@ -68,6 +74,7 @@ class DNNModule(threading.Thread):
                                             self.evaluate_samples(scaled_samples, parsed_flows)
                                         else:
                                             self.logger('[DNN module] No flow stats available')
+                                            print '[DNN module] No flow stats available'
                                     except Exception as e:
                                         self.logger(
                                             '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.')
@@ -82,7 +89,7 @@ class DNNModule(threading.Thread):
                                     # print e
                             else:
                                 self.logger('[DNN module] No flow stats available')
-                                # print '[DNN module] No flow stats available'
+                                print '[DNN module] No flow stats available'
                         elif self.queue.qsize() != record_count:
                             self.logger('[DNN module] Wrong number of flow stats replies received')
                             self.logger('[DNN module] Record count is ' + str(record_count))
@@ -108,12 +115,10 @@ class DNNModule(threading.Thread):
                             for dst in self.controller.mac_to_port[sw_id]:
                                 self.logger(dst + ' ' + str(self.controller.mac_to_port[sw_id][dst]))
                                 # print dst, self.controller.mac_to_port[sw_id][dst]
-                    for fw in self.forwarders:
-                        self.controller.clear_counters(fw)
                     self.logger('[DNN module] Iteration done.')
                     self.logger(' ************************************************************')
-                    # print '[DNN module] Iteration done.'
-                    # print '************************************************************'
+                    print '[DNN module] Iteration done.'
+                    print '************************************************************'
                     time.sleep(self.REFRESH_RATE)
 
             else:
@@ -156,12 +161,15 @@ class DNNModule(threading.Thread):
             self.controller.send_port_stats_request(fw)
             record_count += 1
         if self.wait_for_items_in_queue(record_count):
-            while not self.queue.empty():
-                datapath, ports = self.queue.get()
-                self.forwarders[datapath] = ports
-            self.logger('[DNN module] Forwarders: ' + str(self.forwarders))
-            # print '[DNN module] Forwarders: ', self.forwarders
-            return True
+            try:
+                while not self.queue.empty():
+                    datapath, ports = self.queue.get()
+                    self.forwarders[datapath] = ports
+                self.logger('[DNN module] Forwarders: ' + str(self.forwarders))
+                # print '[DNN module] Forwarders: ', self.forwarders
+                return True
+            except Exception as e:
+                self.logger(e)
         elif self.queue.qsize() != record_count:
             self.logger('[DNN module] Wrong number of port stats replies received')
             self.logger('[DNN module] Record count is ' + str(record_count))
@@ -220,31 +228,31 @@ class DNNModule(threading.Thread):
 
     def flow_stats_parser(self, stats):
         parsed_flows = self.parse_flows(stats)
-        self.logger('Parsed flows:')
+        # self.logger('Parsed flows:')
         # print 'Parsed flows:'
         #self.print_flows(parsed_flows)
 
         parsed_flows = self.unique_flows(parsed_flows)
-        self.logger('Unique flows:')
+        # self.logger('Unique flows:')
         # print 'Unique flows:'
         #self.print_flows(parsed_flows)
 
         parsed_flows = self.merge_flows(parsed_flows)
-        self.logger('Merged flows:')
+        # self.logger('Merged flows:')
         # print 'Merged flows:'
         #self.print_flows(parsed_flows)
 
         parsed_flows = self.process_packet_ins(parsed_flows)
-        self.logger('Added packet_ins:')
+        # self.logger('Added packet_ins:')
         # print 'Final flows:'
         #self.print_flows(parsed_flows)
 
         parsed_flows = self.remove_dead_flows(parsed_flows)
-        self.logger('Removed dead connections:')
+        # self.logger('Removed dead connections:')
         #self.print_flows(parsed_flows)
 
         parsed_flows = self.extended_stats(parsed_flows)
-        self.logger('Extended flows:')
+        # self.logger('Extended flows:')
         # print 'Extended flows:'
         #self.print_flows(parsed_flows)
 
@@ -305,14 +313,14 @@ class DNNModule(threading.Thread):
                                 if flows[f]['dpid'] != unique_flows[u]['dpid']:
                                     break
                             except Exception as e:
-                                self.logger(e)
+                                # self.logger(e)
                                 break
                     else:
                         try:
                             if flows[f]['dpid'] != unique_flows[u]['dpid']:
                                 break
                         except Exception as e:
-                            self.logger(e)
+                            # self.logger(e)
                             break
                 if u == len(unique_flows) - 1:
                     unique_flows.append(flows[f])
@@ -476,8 +484,8 @@ class DNNModule(threading.Thread):
         with self.graph.as_default():
             predictions = self.model.predict_classes(samples)
             probabs = self.model.predict_proba(samples)
-        self.logger('Predictions: ' + str(predictions))
-        self.logger('Probabilities: ' + str(probabs))
+        # self.logger('Predictions: ' + str(predictions))
+        # self.logger('Probabilities: ' + str(probabs))
         self.logger('[DNN module] Evaluation of the flows is going to be saved into ' + str(self.FLOWS_DUMP_FILE))
         # print 'Predictions:', predictions
         # print 'Probabilities:', probabs
