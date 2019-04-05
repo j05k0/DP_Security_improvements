@@ -304,13 +304,15 @@ class DNNModule(threading.Thread):
                             try:
                                 if flows[f]['dpid'] != unique_flows[u]['dpid']:
                                     break
-                            except:
+                            except Exception as e:
+                                self.logger(e)
                                 break
                     else:
                         try:
                             if flows[f]['dpid'] != unique_flows[u]['dpid']:
                                 break
-                        except:
+                        except Exception as e:
+                            self.logger(e)
                             break
                 if u == len(unique_flows) - 1:
                     unique_flows.append(flows[f])
