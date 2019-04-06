@@ -31,10 +31,10 @@ class DNNModule(threading.Thread):
             self.model._make_predict_function()
             self.graph = tf.get_default_graph()
             self.logger('[DNN module] DNN module initialized')
-            # print '[DNN module] DNN module initialized'
+            print '[DNN module] DNN module initialized'
         except Exception as e:
             self.logger('[DNN module] DNN module failed to initialize')
-            # print '[DNN module] DNN module failed to initialize'
+            print '[DNN module] DNN module failed to initialize'
             self.logger(e)
             # print e
         # Open dump file and add the first line - column names
@@ -405,12 +405,12 @@ class DNNModule(threading.Thread):
                             'packet_count': 1}
                     packet_ins_flows.append(flow)
 
-            self.logger('Packet_ins flows before unique:')
+            # self.logger('Packet_ins flows before unique:')
             # print 'Packet_ins flows before unique:'
             #self.print_flows(packet_ins_flows)
 
             packet_ins_flows = self.unique_flows(packet_ins_flows)
-            self.logger('Unique packet_ins flows:')
+            # self.logger('Unique packet_ins flows:')
             # print 'Unique packet_ins flows:'
             #self.print_flows(packet_ins_flows)
 
