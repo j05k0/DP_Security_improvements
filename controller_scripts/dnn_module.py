@@ -11,6 +11,8 @@ import traceback
 
 class DNNModule(threading.Thread):
     ARP_PROTO = -1
+    METER_ID_WARNING = 1
+    METER_ID_BEST_EFFORT = 2
 
     def __init__(self, controller, queue, params):
         super(DNNModule, self).__init__()
@@ -28,10 +30,12 @@ class DNNModule(threading.Thread):
             self.logger('FLOWS_DUMP_FILE is ' + str(self.FLOWS_DUMP_FILE))
             self.DNN_MODEL = params[4]
             self.DNN_SCALER = params[5]
-            self.NORMAL = params[6]
-            self.WARNING = params[7]
-            self.BEST_EFFORT = params[8]
-            self.ATTACK = params[9]
+
+            # Loading values to intervals
+            self.NORMAL = [float(params[6][0]), float(params[6][1])]
+            self.WARNING = [float(params[7][0]), float(params[7][1])]
+            self.BEST_EFFORT = [float(params[8][0]), float(params[8][1])]
+            self.ATTACK = [float(params[9][0]), float(params[9][1])]
         except Exception as e:
             self.logger(e)
             traceback.print_exc()
@@ -80,21 +84,33 @@ class DNNModule(threading.Thread):
                         if self.wait_for_items_in_queue(record_count):
                             # Get actual stats from forwarders
                             stats = self.controller.get_stats()
+
                             # TODO This could be done with delta - you must save the old flows for comparision
                             # Clear counters on all forwarders
                             for fw in self.forwarders:
                                 self.controller.clear_counters(fw)
-                            # Clear stats in controller
-                            self.controller.clear_stats()
+
+                            # Save actual packet_ins and clear packet_ins list
+                            packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
                             if self.print_flow_stats(stats):
                                 try:
-                                    parsed_flows = self.flow_stats_parser(stats)
+                                    parsed_flows = self.flow_stats_parser(stats, packet_ins)
                                     try:
                                         if len(parsed_flows) > 0:
                                             scaled_samples = self.preprocess_flows(parsed_flows)
                                             warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
                                             self.logger('Warnings are ' + str(warnings))
                                             self.logger('Attacks are ' + str(attacks))
+                                            try:
+                                                self.apply_warnings(warnings)
+                                            except Exception as e:
+                                                self.logger('[DNN module] Exception during applying warnings')
+                                                self.logger(e)
+                                            try:
+                                                self.apply_attacks(attacks)
+                                            except Exception as e:
+                                                self.logger('[DNN module] Exception during applying attacks')
+                                                self.logger(e)
                                         else:
                                             self.logger('[DNN module] No flow stats available')
                                             self.printer('[DNN module] No flow stats available')
@@ -129,6 +145,8 @@ class DNNModule(threading.Thread):
                             '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.')
                         # print '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.'
 
+                    # Clear stats in controller
+                    self.controller.clear_stats()
                     self.clear_queue()
                     if self.controller.mac_to_port != {}:
                         self.logger('[DNN module] Actual MAC to port table:')
@@ -164,6 +182,8 @@ class DNNModule(threading.Thread):
     def get_forwarders(self):
         self.logger('[DNN module] Waiting for forwarders...')
         # print '[DNN module] Waiting for forwarders...'
+
+        # FW_REFRESH_RATE is small number to get forwarders quickly
         while self.queue.empty():
             time.sleep(self.FW_REFRESH_RATE)
         try:
@@ -253,7 +273,7 @@ class DNNModule(threading.Thread):
             # print flows[idx]
             # print '************************************************************'
 
-    def flow_stats_parser(self, stats):
+    def flow_stats_parser(self, stats, packet_ins):
         parsed_flows = self.parse_flows(stats)
         # self.logger('Parsed flows:')
         # print 'Parsed flows:'
@@ -269,7 +289,7 @@ class DNNModule(threading.Thread):
         # print 'Merged flows:'
         #self.print_flows(parsed_flows)
 
-        parsed_flows = self.process_packet_ins(parsed_flows)
+        parsed_flows = self.process_packet_ins(parsed_flows, packet_ins)
         # self.logger('Added packet_ins:')
         # print 'Final flows:'
         #self.print_flows(parsed_flows)
@@ -385,9 +405,8 @@ class DNNModule(threading.Thread):
                     merged_flows.append(tmp_flow)
         return merged_flows
 
-    def process_packet_ins(self, flows):
+    def process_packet_ins(self, flows, packet_ins):
         packet_ins_flows = []
-        packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
         if len(packet_ins) > 0:
             self.logger('[DNN module] Processing ' + str(len(packet_ins)) + ' packet_ins...')
             # print '[DNN module] Processing', len(packet_ins), 'packet_ins...'
@@ -505,13 +524,15 @@ class DNNModule(threading.Thread):
                 row[4] = 1
             protos.loc[len(protos)] = row
         samples = pd.concat([samples, protos], axis=1)
-        self.logger('\n' + str(samples))
+        # self.logger('\n' + str(samples))
         # print samples
         return self.scaler.transform(samples)
 
     def evaluate_samples(self, samples, flows):
         warnings = []
         attacks = []
+
+        # Predict classes and probabilities on scaled samples using trained DNN model
         with self.graph.as_default():
             preds = self.model.predict_classes(samples)
             probabs = self.model.predict_proba(samples)
@@ -522,9 +543,11 @@ class DNNModule(threading.Thread):
         # print 'Probabilities:', probabs
         # print '[DNN module] Evaluation of the flows is as follows:'
         idx = 0
+
         # Save calculated preds and classification into dump file
         with open(self.FLOWS_DUMP_FILE, 'a') as f:
             for flow in flows:
+                # Write info about flow into file
                 f.write(str(flow['ipv4_src']) + ',' +
                         str(flow['port_src']) + ',' +
                         str(flow['ipv4_dst']) + ',' +
@@ -536,17 +559,47 @@ class DNNModule(threading.Thread):
                         str(flow['packets_dst']) + ',' +
                         str(flow['srv_dst_count']) + ',' +
                         str(flow['dst_count']) + ',')
-                #TODO change this values to interval values loaded from params.conf
-                if 0 <= probabs[idx] < 0.5:
+
+                # Evaluate flows based on specified intervals of probabilities for NORMAL, WARNING, BEST_EFFORT and
+                # ATTACK traffic and add prediction and category to the file
+                if self.NORMAL[0] <= probabs[idx] < self.NORMAL[1]:
                     f.write(str(preds[idx][0]) + ',Normal,')
-                elif 0.5 <= probabs[idx] < 0.75:
+                elif self.WARNING[0] <= probabs[idx] < self.WARNING[1]:
                     f.write(str(preds[idx][0]) + ',Warning,')
-                    warnings.append((flow, probabs[idx]))
-                elif probabs[idx] >= 0.75:
+                    warnings.append((flow, self.METER_ID_WARNING))
+                elif self.BEST_EFFORT[0] <= probabs[idx] < self.BEST_EFFORT[1]:
+                    f.write(str(preds[idx][0]) + ',Best_effort,')
+                    warnings.append((flow, self.METER_ID_BEST_EFFORT))
+                elif self.ATTACK[0] <= probabs[idx] <= self.ATTACK[1]:
                     f.write(str(preds[idx][0]) + ',Attack,')
-                    attacks.append((flow, probabs[idx]))
+                    attacks.append(flow)
+
+                # Save computed probabilities also to the file
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
                 idx += 1
+
             self.logger('[DNN module] Evaluation of the flows is successfully saved')
             self.logger('[DNN module] Number of saved flows is ' + str(idx))
         return warnings, attacks
+
+    def apply_warnings(self, warnings):
+        self.logger('Applying warnings')
+        for warning, meter_id in warnings:
+            self.logger('Warning: ' + str(warning))
+            self.logger('Meter ID: ' + str(meter_id))
+            params = {'ipv4_src': warning['ipv4_src'],
+                      'port_src': warning['port_src'],
+                      'ipv4_dst': warning['ipv4_dst'],
+                      'port_dst': warning['port_dst']}
+            if warning['proto'] == self.ARP_PROTO:
+                params['eth_type'] = ether_types.ETH_TYPE_ARP
+            else:
+                params['eth_type'] = ether_types.ETH_TYPE_IP
+                params['proto'] = warning['proto']
+            self.logger('Params: ' + str(params))
+            # Apply meter on every forwarder
+            for fw in self.forwarders:
+                self.controller.apply_meter(fw, params, meter_id)
+
+    def apply_attacks(self, attacks):
+        pass

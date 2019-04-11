@@ -95,7 +95,7 @@ class SimpleSwitch14(app_manager.RyuApp):
 
         # Install meter table's entries
         # 1 Mbit/s rate for WARNING class
-        bands = [parser.OFPMeterBandDrop(type_=ofproto.OFPMBT_DROP, len_=0, rate=1000, burst_size=10)]
+        bands = [parser.OFPMeterBandDrop(rate=1000, burst_size=10)]
         msg = parser.OFPMeterMod(datapath=datapath,
                                  command=ofproto.OFPMC_ADD,
                                  flags=ofproto.OFPMF_KBPS,
@@ -104,7 +104,7 @@ class SimpleSwitch14(app_manager.RyuApp):
         datapath.send_msg(msg)
 
         # 100 kbit/s rate for BEST_EFFORT class
-        bands = [parser.OFPMeterBandDrop(type_=ofproto.OFPMBT_DROP, len_=0, rate=100, burst_size=10)]
+        bands = [parser.OFPMeterBandDrop(rate=100, burst_size=10)]
         msg = parser.OFPMeterMod(datapath=datapath,
                                  command=ofproto.OFPMC_ADD,
                                  flags=ofproto.OFPMF_KBPS,
@@ -387,6 +387,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                                         ofproto = datapath.ofproto
                                         stat.instructions.append(parser.OFPInstructionMeter(meter_id,
                                                                                             ofproto.OFPIT_METER))
+                                        self.logger.info(stat.instructions)
                                         mod = parser.OFPFlowMod(datapath=datapath,
                                                                 table_id=stat.table_id,
                                                                 command=ofproto.OFPFC_MODIFY_STRICT,
