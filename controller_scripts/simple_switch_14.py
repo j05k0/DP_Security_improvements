@@ -54,11 +54,11 @@ class SimpleSwitch14(app_manager.RyuApp):
             cfg.StrOpt('DNN_SCALER', default='../models/DNN_model_all_binary_scaler.sav'),
             cfg.ListOpt('NORMAL', default=[0, 60]),
             cfg.ListOpt('WARNING', default=[60, 85]),
-            cfg.ListOpt('BESTEFFORT', default=[85, 95]),
+            cfg.ListOpt('BEST_EFFORT', default=[85, 95]),
             cfg.ListOpt('ATTACK', default=[95, 100])
         ])
         params = [CONF.REFRESH_RATE, CONF.FW_REFRESH_RATE, CONF.TIMEOUT, CONF.FLOWS_DUMP_FILE, CONF.DNN_MODEL,
-                  CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BESTEFFORT, CONF.ATTACK]
+                  CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BEST_EFFORT, CONF.ATTACK]
 
         # Initialize and start DNN module
         self.dnn_module = DNNModule(self, queue, params)
@@ -94,7 +94,23 @@ class SimpleSwitch14(app_manager.RyuApp):
         self.add_flow(datapath, 0, match, inst, self.TABLE_SWITCHING)
 
         # Install meter table's entries
-        bands = [parser.OFP]
+        # 1 Mbit/s rate for WARNING class
+        bands = [parser.OFPMeterBandDrop(type_=ofproto.OFPMBT_DROP, len_=0, rate=1000, burst_size=10)]
+        msg = parser.OFPMeterMod(datapath=datapath,
+                                 command=ofproto.OFPMC_ADD,
+                                 flags=ofproto.OFPMF_KBPS,
+                                 meter_id=1,
+                                 bands=bands)
+        datapath.send_msg(msg)
+
+        # 100 kbit/s rate for BEST_EFFORT class
+        bands = [parser.OFPMeterBandDrop(type_=ofproto.OFPMBT_DROP, len_=0, rate=100, burst_size=10)]
+        msg = parser.OFPMeterMod(datapath=datapath,
+                                 command=ofproto.OFPMC_ADD,
+                                 flags=ofproto.OFPMF_KBPS,
+                                 meter_id=2,
+                                 bands=bands)
+        datapath.send_msg(msg)
 
     def add_flow(self, datapath, priority, match, inst, table_id):
         parser = datapath.ofproto_parser
@@ -141,18 +157,18 @@ class SimpleSwitch14(app_manager.RyuApp):
         self.mac_to_port.setdefault(dpid, {})
 
         # print '*****************************************************************'
-        #self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        # self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
         # if ipv4_proto is not None:
         #     self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
         # self.logger.info(pkt)
         # self.logger.info("")
-        #self.logger.info(ipv4_proto)
+        # self.logger.info(ipv4_proto)
 
         # print "packet in ", dpid, src, dst, in_port
         # print pkt
         # if ipv4_proto is not None:
-            # print ipv4_proto.src, ipv4_proto.dst
-            # print ipv4_proto
+        # print ipv4_proto.src, ipv4_proto.dst
+        # print ipv4_proto
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -199,6 +215,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                                                            ofproto.OFPIT_GOTO_TABLE)]
                     self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
 
+                    # Prepare match for TABLE_SWITCHING
                     # self.logger.info(tcp_proto)
                     # self.logger.info("")
                     match = parser.OFPMatch(
@@ -222,6 +239,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                                                            ofproto.OFPIT_GOTO_TABLE)]
                     self.add_flow(datapath, priority, match, inst, self.TABLE_SERVICE_COUNT)
 
+                    # Prepare match for TABLE_SWITCHING
                     # self.logger.info(udp_proto)
                     # self.logger.info("")
                     match = parser.OFPMatch(
@@ -234,6 +252,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                         udp_dst=udp_proto.dst_port)
                     priority = 30
                 else:
+                    # Prepare match for TABLE_SWITCHING
                     match = parser.OFPMatch(
                         in_port=in_port,
                         eth_type=ether_types.ETH_TYPE_IP,
@@ -244,6 +263,7 @@ class SimpleSwitch14(app_manager.RyuApp):
             elif arp_proto is not None:
                 # Save the first packet of the new flow
                 self.packet_ins.append((dpid, pkt))
+                # Prepare match for TABLE_SWITCHING
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_type=ether_types.ETH_TYPE_ARP,
@@ -251,6 +271,7 @@ class SimpleSwitch14(app_manager.RyuApp):
                     arp_tpa=arp_proto.dst_ip)
                 priority = 10
             else:
+                # Prepare match for TABLE_SWITCHING
                 match = parser.OFPMatch(
                     in_port=in_port,
                     eth_dst=dst)
@@ -345,6 +366,96 @@ class SimpleSwitch14(app_manager.RyuApp):
 
     def clear_stats(self):
         self.stats = {}
+
+    def apply_meter(self, datapath, params, meter_id):
+        stats = self.stats
+        for dpid in stats:
+            if dpid == datapath.id:
+                for in_port in stats[dpid]:
+                    for idx in range(len(stats[dpid][in_port])):
+                        stat = stats[dpid][in_port][idx]
+                        if (stat.table_id == self.TABLE_SWITCHING
+                                and stat.match['eth_type'] == params['eth_type']):
+                            if (stat.match['eth_type'] == ether_types.ETH_TYPE_IP
+                                    and stat.match['ip_proto'] == params['proto']):
+                                if stat.match['ip_proto'] == in_proto.IPPROTO_TCP:
+                                    if (stat.match['ipv4_src'] == params['ipv4_src']
+                                            and stat.match['ipv4_dst'] == params['ipv4_dst']
+                                            and stat.match['tcp_src'] == params['port_src']
+                                            and stat.match['tcp_dst'] == params['port_dst']):
+                                        parser = datapath.ofproto_parser
+                                        ofproto = datapath.ofproto
+                                        stat.instructions.append(parser.OFPInstructionMeter(meter_id,
+                                                                                            ofproto.OFPIT_METER))
+                                        mod = parser.OFPFlowMod(datapath=datapath,
+                                                                table_id=stat.table_id,
+                                                                command=ofproto.OFPFC_MODIFY_STRICT,
+                                                                priority=stat.priority,
+                                                                match=stat.match,
+                                                                instructions=stat.instructions)
+                                        datapath.send_msg(mod)
+                                        return
+                                elif stat.match['ip_proto'] == in_proto.IPPROTO_UDP:
+                                    if (stat.match['ipv4_src'] == params['ipv4_src']
+                                            and stat.match['ipv4_dst'] == params['ipv4_dst']
+                                            and stat.match['udp_src'] == params['port_src']
+                                            and stat.match['udp_dst'] == params['port_dst']):
+                                        parser = datapath.ofproto_parser
+                                        ofproto = datapath.ofproto
+                                        stat.instructions.append(parser.OFPInstructionMeter(meter_id,
+                                                                                            ofproto.OFPIT_METER))
+                                        mod = parser.OFPFlowMod(datapath=datapath,
+                                                                table_id=stat.table_id,
+                                                                command=ofproto.OFPFC_MODIFY_STRICT,
+                                                                priority=stat.priority,
+                                                                match=stat.match,
+                                                                instructions=stat.instructions)
+                                        datapath.send_msg(mod)
+                                        return
+                                else:
+                                    if (stat.match['ipv4_src'] == params['ipv4_src']
+                                            and stat.match['ipv4_dst'] == params['ipv4_dst']):
+                                        parser = datapath.ofproto_parser
+                                        ofproto = datapath.ofproto
+                                        stat.instructions.append(parser.OFPInstructionMeter(meter_id,
+                                                                                            ofproto.OFPIT_METER))
+                                        mod = parser.OFPFlowMod(datapath=datapath,
+                                                                table_id=stat.table_id,
+                                                                command=ofproto.OFPFC_MODIFY_STRICT,
+                                                                priority=stat.priority,
+                                                                match=stat.match,
+                                                                instructions=stat.instructions)
+                                        datapath.send_msg(mod)
+                                        return
+                            elif (stat.match['eth_type'] == ether_types.ETH_TYPE_ARP
+                                  and stat.match['arp_spa'] == params['ipv4_src']
+                                  and stat.match['arp_tpa'] == params['ipv4_dst']):
+                                parser = datapath.ofproto_parser
+                                ofproto = datapath.ofproto
+                                stat.instructions.append(parser.OFPInstructionMeter(meter_id,
+                                                                                    ofproto.OFPIT_METER))
+                                mod = parser.OFPFlowMod(datapath=datapath,
+                                                        table_id=stat.table_id,
+                                                        command=ofproto.OFPFC_MODIFY_STRICT,
+                                                        priority=stat.priority,
+                                                        match=stat.match,
+                                                        instructions=stat.instructions)
+                                datapath.send_msg(mod)
+                                return
+                            else:
+                                if stat.match['eth_dst'] == params['eth_dst']:
+                                    parser = datapath.ofproto_parser
+                                    ofproto = datapath.ofproto
+                                    stat.instructions.append(parser.OFPInstructionMeter(meter_id,
+                                                                                        ofproto.OFPIT_METER))
+                                    mod = parser.OFPFlowMod(datapath=datapath,
+                                                            table_id=stat.table_id,
+                                                            command=ofproto.OFPFC_MODIFY_STRICT,
+                                                            priority=stat.priority,
+                                                            match=stat.match,
+                                                            instructions=stat.instructions)
+                                    datapath.send_msg(mod)
+                                    return
 
     def clear_counters(self, datapath):
         stats = self.stats

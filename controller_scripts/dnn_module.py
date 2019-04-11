@@ -30,10 +30,11 @@ class DNNModule(threading.Thread):
             self.DNN_SCALER = params[5]
             self.NORMAL = params[6]
             self.WARNING = params[7]
-            self.BESTEFFORT = params[8]
+            self.BEST_EFFORT = params[8]
             self.ATTACK = params[9]
         except Exception as e:
             self.logger(e)
+            traceback.print_exc()
         try:
             self.model = load_model(self.DNN_MODEL)
             self.logger('DNN_MODEL is ' + str(self.DNN_MODEL))
@@ -41,11 +42,8 @@ class DNNModule(threading.Thread):
             self.logger('DNN_SCALER is ' + str(self.DNN_SCALER))
             self.logger('Intervals are:')
             self.logger('Normal is ' + str(self.NORMAL))
-            print type(self.NORMAL)
-            start, end = self.NORMAL
-            self.logger('<' + str(start) + ',' + str(end) + ')')
             self.logger('Warning is ' + str(self.WARNING))
-            self.logger('BestEffort is ' + str(self.BESTEFFORT))
+            self.logger('Best Effort is ' + str(self.BEST_EFFORT))
             self.logger('Attack is ' + str(self.ATTACK))
             self.model._make_predict_function()
             self.graph = tf.get_default_graph()
@@ -94,7 +92,9 @@ class DNNModule(threading.Thread):
                                     try:
                                         if len(parsed_flows) > 0:
                                             scaled_samples = self.preprocess_flows(parsed_flows)
-                                            self.evaluate_samples(scaled_samples, parsed_flows)
+                                            warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
+                                            self.logger('Warnings are ' + str(warnings))
+                                            self.logger('Attacks are ' + str(attacks))
                                         else:
                                             self.logger('[DNN module] No flow stats available')
                                             self.printer('[DNN module] No flow stats available')
@@ -510,7 +510,8 @@ class DNNModule(threading.Thread):
         return self.scaler.transform(samples)
 
     def evaluate_samples(self, samples, flows):
-        warnings = attacks = []
+        warnings = []
+        attacks = []
         with self.graph.as_default():
             preds = self.model.predict_classes(samples)
             probabs = self.model.predict_proba(samples)
@@ -535,13 +536,14 @@ class DNNModule(threading.Thread):
                         str(flow['packets_dst']) + ',' +
                         str(flow['srv_dst_count']) + ',' +
                         str(flow['dst_count']) + ',')
+                #TODO change this values to interval values loaded from params.conf
                 if 0 <= probabs[idx] < 0.5:
-                    f.write(str(preds[idx]) + ',Normal,')
+                    f.write(str(preds[idx][0]) + ',Normal,')
                 elif 0.5 <= probabs[idx] < 0.75:
-                    f.write(str(preds[idx]) + ',Warning,')
+                    f.write(str(preds[idx][0]) + ',Warning,')
                     warnings.append((flow, probabs[idx]))
                 elif probabs[idx] >= 0.75:
-                    f.write(str(preds[idx]) + ',Attack,')
+                    f.write(str(preds[idx][0]) + ',Attack,')
                     attacks.append((flow, probabs[idx]))
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
                 idx += 1
