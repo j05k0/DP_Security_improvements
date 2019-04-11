@@ -6,6 +6,7 @@ import tensorflow as tf
 from keras.models import load_model
 from ryu.lib.packet import ether_types, in_proto, ipv4, arp, tcp, udp
 from sklearn.externals import joblib
+import traceback
 
 
 class DNNModule(threading.Thread):
@@ -18,37 +19,59 @@ class DNNModule(threading.Thread):
         self.queue = queue
         try:
             self.REFRESH_RATE = params[0]
+            self.logger('REFRESH_RATE is ' + str(self.REFRESH_RATE))
             self.FW_REFRESH_RATE = params[1]
+            self.logger('FW_REFRESH_RATE is ' + str(self.FW_REFRESH_RATE))
             self.TIMEOUT = params[2]
+            self.logger('TIMEOUT is ' + str(self.TIMEOUT))
             self.FLOWS_DUMP_FILE = params[3]
+            self.logger('FLOWS_DUMP_FILE is ' + str(self.FLOWS_DUMP_FILE))
             self.DNN_MODEL = params[4]
             self.DNN_SCALER = params[5]
+            self.NORMAL = params[6]
+            self.WARNING = params[7]
+            self.BESTEFFORT = params[8]
+            self.ATTACK = params[9]
         except Exception as e:
             self.logger(e)
         try:
             self.model = load_model(self.DNN_MODEL)
+            self.logger('DNN_MODEL is ' + str(self.DNN_MODEL))
             self.scaler = joblib.load(self.DNN_SCALER)
+            self.logger('DNN_SCALER is ' + str(self.DNN_SCALER))
+            self.logger('Intervals are:')
+            self.logger('Normal is ' + str(self.NORMAL))
+            print type(self.NORMAL)
+            start, end = self.NORMAL
+            self.logger('<' + str(start) + ',' + str(end) + ')')
+            self.logger('Warning is ' + str(self.WARNING))
+            self.logger('BestEffort is ' + str(self.BESTEFFORT))
+            self.logger('Attack is ' + str(self.ATTACK))
             self.model._make_predict_function()
             self.graph = tf.get_default_graph()
             self.logger('[DNN module] DNN module initialized')
-            print '[DNN module] DNN module initialized'
+            self.printer('[DNN module] DNN module initialized')
+
         except Exception as e:
             self.logger('[DNN module] DNN module failed to initialize')
-            print '[DNN module] DNN module failed to initialize'
+            self.printer('[DNN module] DNN module failed to initialize')
             self.logger(e)
+            traceback.print_exc()
             # print e
         # Open dump file and add the first line - column names
         with open(self.FLOWS_DUMP_FILE, 'w') as f:
             f.write(
                 'ipv4_src,port_src,ipv4_dst,port_dst,proto,bytes_src,bytes_dst,packets_src,packets_dst,srv_dst_count,'
-                'dst_count,category,probability\n')
+                'dst_count,prediction,category,probability\n')
+        # Set pandas to display all columns in prints/logs
+        pd.set_option('display.max_columns', None)
 
     def run(self):
         # TODO possible change to networkx and digraph
         while 1:
             if self.get_forwarders():
                 while 1:
-                    print '[DNN module] Starting new iteration...'
+                    self.printer('[DNN module] Starting new iteration...')
                     self.logger('[DNN module] Starting new iteration...')
                     record_count = 0
                     if self.update_forwarders():
@@ -74,11 +97,12 @@ class DNNModule(threading.Thread):
                                             self.evaluate_samples(scaled_samples, parsed_flows)
                                         else:
                                             self.logger('[DNN module] No flow stats available')
-                                            print '[DNN module] No flow stats available'
+                                            self.printer('[DNN module] No flow stats available')
                                     except Exception as e:
                                         self.logger(
                                             '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.')
                                         self.logger(e)
+                                        traceback.print_exc()
                                         # print '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.'
                                         # print e
                                 except Exception as e:
@@ -89,7 +113,7 @@ class DNNModule(threading.Thread):
                                     # print e
                             else:
                                 self.logger('[DNN module] No flow stats available')
-                                print '[DNN module] No flow stats available'
+                                self.printer('[DNN module] No flow stats available')
                         elif self.queue.qsize() != record_count:
                             self.logger('[DNN module] Wrong number of flow stats replies received')
                             self.logger('[DNN module] Record count is ' + str(record_count))
@@ -117,8 +141,8 @@ class DNNModule(threading.Thread):
                                 # print dst, self.controller.mac_to_port[sw_id][dst]
                     self.logger('[DNN module] Iteration done.')
                     self.logger(' ************************************************************')
-                    print '[DNN module] Iteration done.'
-                    print '************************************************************'
+                    self.printer('[DNN module] Iteration done.')
+                    self.printer('************************************************************')
                     time.sleep(self.REFRESH_RATE)
 
             else:
@@ -130,6 +154,9 @@ class DNNModule(threading.Thread):
 
     def logger(self, to_print):
         self.controller.logger.info(self.current_timestamp() + ' ' + str(to_print))
+
+    def printer(self, to_print):
+        print (self.current_timestamp() + ' ' + str(to_print))
 
     def current_timestamp(self):
         return datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y %H:%M:%S')
@@ -451,7 +478,7 @@ class DNNModule(threading.Thread):
 
     def preprocess_flows(self, flows):
         names = ['packets_src', 'packets_dst', 'bytes_src', 'bytes_dst', 'srv_dst_count', 'dst_count']
-        proto_names = ['proto_arp', 'proto_igmp', 'proto_ospf', 'proto_other', 'proto_tcp', 'proto_udp']
+        proto_names = ['proto_arp', 'proto_icmp', 'proto_igmp', 'proto_ospf', 'proto_other', 'proto_tcp', 'proto_udp']
         samples = pd.DataFrame(columns=names)
         protos = pd.DataFrame(columns=proto_names)
         for flow in flows:
@@ -461,37 +488,40 @@ class DNNModule(threading.Thread):
                                          flow['bytes_dst'],
                                          flow['srv_dst_count'],
                                          flow['dst_count']]
-            row = [0, 0, 0, 0, 0, 0]
+            row = [0] * len(proto_names)
             if flow['proto'] == self.ARP_PROTO:
                 row[0] = 1
-            elif flow['proto'] == in_proto.IPPROTO_IGMP:
+            elif flow['proto'] == in_proto.IPPROTO_ICMP:
                 row[1] = 1
-            elif flow['proto'] == in_proto.IPPROTO_OSPF:
+            elif flow['proto'] == in_proto.IPPROTO_IGMP:
                 row[2] = 1
-            elif flow['proto'] == in_proto.IPPROTO_TCP:
-                row[4] = 1
-            elif flow['proto'] == in_proto.IPPROTO_UDP:
-                row[5] = 1
-            else:
+            elif flow['proto'] == in_proto.IPPROTO_OSPF:
                 row[3] = 1
+            elif flow['proto'] == in_proto.IPPROTO_TCP:
+                row[5] = 1
+            elif flow['proto'] == in_proto.IPPROTO_UDP:
+                row[6] = 1
+            else:
+                row[4] = 1
             protos.loc[len(protos)] = row
         samples = pd.concat([samples, protos], axis=1)
-        #self.logger(str(samples))
+        self.logger('\n' + str(samples))
         # print samples
         return self.scaler.transform(samples)
 
     def evaluate_samples(self, samples, flows):
+        warnings = attacks = []
         with self.graph.as_default():
-            predictions = self.model.predict_classes(samples)
+            preds = self.model.predict_classes(samples)
             probabs = self.model.predict_proba(samples)
-        # self.logger('Predictions: ' + str(predictions))
+        # self.logger('Predictions: ' + str(preds))
         # self.logger('Probabilities: ' + str(probabs))
         self.logger('[DNN module] Evaluation of the flows is going to be saved into ' + str(self.FLOWS_DUMP_FILE))
-        # print 'Predictions:', predictions
+        # print 'Predictions:', preds
         # print 'Probabilities:', probabs
         # print '[DNN module] Evaluation of the flows is as follows:'
         idx = 0
-        # Save calculated predictions and classification into dump file
+        # Save calculated preds and classification into dump file
         with open(self.FLOWS_DUMP_FILE, 'a') as f:
             for flow in flows:
                 f.write(str(flow['ipv4_src']) + ',' +
@@ -505,10 +535,16 @@ class DNNModule(threading.Thread):
                         str(flow['packets_dst']) + ',' +
                         str(flow['srv_dst_count']) + ',' +
                         str(flow['dst_count']) + ',')
-                if predictions[idx]:
-                    f.write('Attack,')
-                else:
-                    f.write('Normal,')
+                if 0 <= probabs[idx] < 0.5:
+                    f.write(str(preds[idx]) + ',Normal,')
+                elif 0.5 <= probabs[idx] < 0.75:
+                    f.write(str(preds[idx]) + ',Warning,')
+                    warnings.append((flow, probabs[idx]))
+                elif probabs[idx] >= 0.75:
+                    f.write(str(preds[idx]) + ',Attack,')
+                    attacks.append((flow, probabs[idx]))
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
                 idx += 1
             self.logger('[DNN module] Evaluation of the flows is successfully saved')
+            self.logger('[DNN module] Number of saved flows is ' + str(idx))
+        return warnings, attacks

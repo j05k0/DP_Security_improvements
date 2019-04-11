@@ -51,15 +51,14 @@ class SimpleSwitch14(app_manager.RyuApp):
             cfg.IntOpt('TIMEOUT', default=30),
             cfg.StrOpt('FLOWS_DUMP_FILE', default='../results/flows_default.dump'),
             cfg.StrOpt('DNN_MODEL', default='../models/DNN_model_all_binary.h5'),
-            cfg.StrOpt('DNN_SCALER', default='../models/DNN_model_all_binary_scaler.sav')
+            cfg.StrOpt('DNN_SCALER', default='../models/DNN_model_all_binary_scaler.sav'),
+            cfg.ListOpt('NORMAL', default=[0, 60]),
+            cfg.ListOpt('WARNING', default=[60, 85]),
+            cfg.ListOpt('BESTEFFORT', default=[85, 95]),
+            cfg.ListOpt('ATTACK', default=[95, 100])
         ])
-        params = []
-        params.append(CONF.REFRESH_RATE)
-        params.append(CONF.FW_REFRESH_RATE)
-        params.append(CONF.TIMEOUT)
-        params.append(CONF.FLOWS_DUMP_FILE)
-        params.append(CONF.DNN_MODEL)
-        params.append(CONF.DNN_SCALER)
+        params = [CONF.REFRESH_RATE, CONF.FW_REFRESH_RATE, CONF.TIMEOUT, CONF.FLOWS_DUMP_FILE, CONF.DNN_MODEL,
+                  CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BESTEFFORT, CONF.ATTACK]
 
         # Initialize and start DNN module
         self.dnn_module = DNNModule(self, queue, params)
@@ -93,6 +92,9 @@ class SimpleSwitch14(app_manager.RyuApp):
                                           ofproto.OFPCML_NO_BUFFER)]
         inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
         self.add_flow(datapath, 0, match, inst, self.TABLE_SWITCHING)
+
+        # Install meter table's entries
+        bands = [parser.OFP]
 
     def add_flow(self, datapath, priority, match, inst, table_id):
         parser = datapath.ofproto_parser
