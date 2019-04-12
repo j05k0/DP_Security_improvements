@@ -181,7 +181,7 @@ class DNNModule(threading.Thread):
 
     def get_forwarders(self):
         self.logger('[DNN module] Waiting for forwarders...')
-        # print '[DNN module] Waiting for forwarders...'
+        self.printer('[DNN module] Waiting for forwarders...')
 
         # FW_REFRESH_RATE is small number to get forwarders quickly
         while self.queue.empty():
