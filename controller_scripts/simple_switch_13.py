@@ -158,19 +158,13 @@ class SimpleSwitch13(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        # print '*****************************************************************'
+        # self.logger.info('*****************************************************************')
         # self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
         # if ipv4_proto is not None:
         #     self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
         # self.logger.info(pkt)
         # self.logger.info("")
         # self.logger.info(ipv4_proto)
-
-        # print "packet in ", dpid, src, dst, in_port
-        # print pkt
-        # if ipv4_proto is not None:
-        # print ipv4_proto.src, ipv4_proto.dst
-        # print ipv4_proto
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -179,13 +173,10 @@ class SimpleSwitch13(app_manager.RyuApp):
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
             # self.logger.info('Forwarding packet to %s port on forwarder %s', self.mac_to_port[dpid][dst], dpid)
-            # print 'Forwarding packet to', self.mac_to_port[dpid][dst], 'port on forwarder', dpid
         else:
             out_port = ofproto.OFPP_FLOOD
             # self.logger.info('Setting flooding flag on forwarder %s', dpid)
-            # print 'Setting flooding flag on forwarder', dpid
         # self.logger.info('*****************************************************************')
-        # print '*****************************************************************'
 
         actions = [parser.OFPActionOutput(out_port)]
 

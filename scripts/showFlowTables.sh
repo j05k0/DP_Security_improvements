@@ -5,6 +5,6 @@
 for arg 
 do 
 	echo '***' $arg '------------------------------------------------------------------------'
-	sudo ovs-ofctl dump-flows $arg -O OpenFlow14
+	sudo ovs-ofctl dump-flows $arg -O OpenFlow13
 done
 

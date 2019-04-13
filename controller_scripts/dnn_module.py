@@ -99,8 +99,8 @@ class DNNModule(threading.Thread):
                                         if len(parsed_flows) > 0:
                                             scaled_samples = self.preprocess_flows(parsed_flows)
                                             warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
-                                            self.logger('Warnings are ' + str(warnings))
-                                            self.logger('Attacks are ' + str(attacks))
+                                            self.logger('Warnings are ' + str(len(warnings)))
+                                            self.logger('Attacks are ' + str(len(attacks)))
                                             try:
                                                 self.apply_warnings(warnings)
                                             except Exception as e:
@@ -525,7 +525,7 @@ class DNNModule(threading.Thread):
             protos.loc[len(protos)] = row
         samples = pd.concat([samples, protos], axis=1)
         # self.logger('\n' + str(samples))
-        # print samples
+        # self.printer(str(samples))
         return self.scaler.transform(samples)
 
     def evaluate_samples(self, samples, flows):

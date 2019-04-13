@@ -12,4 +12,9 @@ iperf -s -u -p 5566 -i 1
 IPERF UDP CLIENT:
 iperf -c 10.0.0.1 -u -t 5 -p 5566
 
+SimpleHTTPServer
+python -m SimpleHTTPServer 80
+
+HTTP client
+wget -O - 10.0.0.1
 
