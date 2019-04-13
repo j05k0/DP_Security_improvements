@@ -574,7 +574,7 @@ class DNNModule(threading.Thread):
                     f.write(str(preds[idx][0]) + ',Attack,')
                     attacks.append(flow)
 
-                # Save computed probabilities also to the file
+                # Save computed probabilities to the file
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
                 idx += 1
 
@@ -584,6 +584,8 @@ class DNNModule(threading.Thread):
 
     def apply_warnings(self, warnings):
         self.logger('Applying warnings')
+
+        # Iterate over all warnings and build params structure
         for warning, meter_id in warnings:
             self.logger('Warning: ' + str(warning))
             self.logger('Meter ID: ' + str(meter_id))
@@ -597,6 +599,7 @@ class DNNModule(threading.Thread):
                 params['eth_type'] = ether_types.ETH_TYPE_IP
                 params['proto'] = warning['proto']
             self.logger('Params: ' + str(params))
+
             # Apply meter on every forwarder
             for fw in self.forwarders:
                 self.controller.apply_meter(fw, params, meter_id)
