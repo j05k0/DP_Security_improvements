@@ -1,13 +1,13 @@
 #!/usr/bin/python
 from mininet.log import setLogLevel
 from mininet.net import Mininet
-from mininet.node import RemoteController, UserSwitch
-from mininet.link import Link
+from mininet.node import RemoteController, UserSwitch, OVSKernelSwitch
+from mininet.link import TCLink
 from mininet.cli import CLI
 
 
 def topo():
-    net = Mininet(controller=RemoteController, link=Link, switch=UserSwitch)
+    net = Mininet(controller=RemoteController, link=TCLink, switch=OVSKernelSwitch)
 
     print 'Creating nodes...'
     h1 = net.addHost('h1', mac='00:00:00:00:00:01', ip='10.0.0.1/24')
@@ -32,8 +32,8 @@ def topo():
     s2.start([c0])
     s3.start([c0])
 
-    print 'Verifying connectivity...'
-    loss = net.pingAll()
+    #print 'Verifying connectivity...'
+    #loss = net.pingAll()
 
     # if loss == 0:
         # h1, h2 = net.getNodeByName('h1', 'h2')

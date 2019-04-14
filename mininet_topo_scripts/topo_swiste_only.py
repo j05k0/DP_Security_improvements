@@ -1,13 +1,13 @@
 #!/usr/bin/python
 from mininet.log import setLogLevel
 from mininet.net import Mininet
-from mininet.node import RemoteController, UserSwitch
+from mininet.node import RemoteController, UserSwitch, OVSKernelSwitch
 from mininet.link import TCLink
 from mininet.cli import CLI
 
 
 def topo():
-    net = Mininet(controller=RemoteController, link=TCLink, switch=UserSwitch)
+    net = Mininet(controller=RemoteController, link=TCLink, switch=OVSKernelSwitch)
 
     s1 = net.addSwitch('s1')
     s2 = net.addSwitch('s2')
