@@ -81,17 +81,18 @@ class DNNModule(threading.Thread):
                             for port in self.forwarders[fw]:
                                 self.controller.send_flow_stats_request(fw, port)
                                 record_count += 1
+                        # Save actual packet_ins and clear packet_ins list
+                        packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
+
                         if self.wait_for_items_in_queue(record_count):
                             # Get actual stats from forwarders
                             stats = self.controller.get_stats()
 
                             # TODO This could be done with delta - you must save the old flows for comparision
                             # Clear counters on all forwarders
-                            for fw in self.forwarders:
-                                self.controller.clear_counters(fw)
+                            # for fw in self.forwarders:
+                            #     self.controller.clear_counters(fw)
 
-                            # Save actual packet_ins and clear packet_ins list
-                            packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
                             if self.print_flow_stats(stats):
                                 try:
                                     parsed_flows = self.flow_stats_parser(stats, packet_ins)
@@ -180,6 +181,7 @@ class DNNModule(threading.Thread):
         return datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y %H:%M:%S')
 
     def get_forwarders(self):
+        return True
         self.logger('[DNN module] Waiting for forwarders...')
         self.printer('[DNN module] Waiting for forwarders...')
 
@@ -207,32 +209,36 @@ class DNNModule(threading.Thread):
             # print '[DNN module] Datapath: ', fw
             self.controller.send_port_stats_request(fw)
             record_count += 1
-        if self.wait_for_items_in_queue(record_count):
-            try:
-                while not self.queue.empty():
-                    datapath, ports = self.queue.get()
-                    self.forwarders[datapath] = ports
-                self.logger('[DNN module] Forwarders: ' + str(self.forwarders))
-                # print '[DNN module] Forwarders: ', self.forwarders
-                return True
-            except Exception as e:
-                self.logger(e)
-        elif self.queue.qsize() != record_count:
-            self.logger('[DNN module] Wrong number of port stats replies received')
-            self.logger('[DNN module] Record count is ' + str(record_count))
-            self.logger('[DNN module] Size of the queue is ' + str(self.queue.qsize()))
-            # print '[DNN module] Wrong number of port stats replies received'
-            # print '[DNN module] Record count is ', record_count
-            # print '[DNN module] Size of the queue is ', self.queue.qsize()
+        if record_count != 0:
+            if self.wait_for_items_in_queue(record_count):
+                try:
+                    while not self.queue.empty():
+                        datapath, ports = self.queue.get()
+                        self.forwarders[datapath] = ports
+                    self.logger('[DNN module] Forwarders: ' + str(self.forwarders))
+                    # print '[DNN module] Forwarders: ', self.forwarders
+                    return True
+                except Exception as e:
+                    self.logger(e)
+            elif self.queue.qsize() != record_count:
+                self.logger('[DNN module] Wrong number of port stats replies received')
+                self.logger('[DNN module] Record count is ' + str(record_count))
+                self.logger('[DNN module] Size of the queue is ' + str(self.queue.qsize()))
+                # print '[DNN module] Wrong number of port stats replies received'
+                # print '[DNN module] Record count is ', record_count
+                # print '[DNN module] Size of the queue is ', self.queue.qsize()
+            return False
         else:
-            self.logger('[DNN module] Waiting for replies from forwarders timed out')
-        return False
+            self.logger('[DNN module] No forwarders are online')
+            return False
 
     def wait_for_items_in_queue(self, record_count):
         start = time.time()
         while self.queue.qsize() != record_count:
             time.sleep(self.FW_REFRESH_RATE)
             if time.time() - start > self.TIMEOUT:
+                self.logger('[DNN module] Waiting for replies from forwarders timed out')
+                self.printer('[DNN module] Waiting for replies from forwarders timed out')
                 return False
         return True
 

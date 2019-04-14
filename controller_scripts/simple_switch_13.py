@@ -70,7 +70,12 @@ class SimpleSwitch13(app_manager.RyuApp):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
 
-        queue.put(datapath)
+        # Somehow the forwarders change their ID during operation this is hack to workaround this
+        for fw in self.dnn_module.forwarders:
+            if fw.id == datapath.id:
+                self.dnn_module.forwarders.pop(fw)
+                break
+        self.dnn_module.forwarders[datapath] = []
 
         # install table-miss flow entry
         #
@@ -323,10 +328,10 @@ class SimpleSwitch13(app_manager.RyuApp):
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):
-        dpid = ev.msg.datapath.id
+        datapath = ev.msg.datapath
+        dpid = datapath.id
+        ofproto = datapath.ofproto
         self.logger.info('[' + str(dpid) + ']: Received flow stats')
-        # print '[' + str(dpid) + ']: Received flow stats:'
-        # flows = []
         self.stats.setdefault(dpid, {})
         in_port = 0
         for stat in ev.msg.body:
@@ -337,22 +342,17 @@ class SimpleSwitch13(app_manager.RyuApp):
                 self.stats[dpid][in_port] = [stat]
             else:
                 self.stats[dpid][in_port].append(stat)
-            # print stat.stats
-            # flows.append('table_id=%s '
-            #              'duration_sec=%d duration_nsec=%d '
-            #              'priority=%d '
-            #              'idle_timeout=%d hard_timeout=%d flags=0x%04x '
-            #              'importance=%d cookie=%d packet_count=%d '
-            #              'byte_count=%d match=%s instructions=%s' %
-            #              (stat.table_id,
-            #               stat.duration_sec, stat.duration_nsec,
-            #               stat.priority,
-            #               stat.idle_timeout, stat.hard_timeout,
-            #               stat.flags, stat.importance,
-            #               stat.cookie, stat.packet_count, stat.byte_count,
-            #               stat.match, stat.instructions))
-        queue.put((ev.msg.datapath, in_port))
-        # self.logger.debug('FlowStats: %s', flows)
+            self.clear_counters(datapath, stat)
+
+        # Checking whether there are not multiple packets for one reply (e.g. too large reply is sent in multiple packets)
+        if ev.msg.flags == ofproto.OFPMPF_REPLY_MORE:
+            self.logger.info('More flow stats replies are expected from port ' + str(in_port))
+        else:
+            if in_port == 0:
+                self.logger.info('No flow stats received')
+            else:
+                self.logger.info('Number of received stats ' + str(len(self.stats[dpid][in_port])) + ' from port ' + str(in_port))
+            queue.put((ev.msg.datapath, in_port))
 
     def send_meter_stats_request(self, datapath):
         protocol = datapath.ofproto
@@ -473,21 +473,15 @@ class SimpleSwitch13(app_manager.RyuApp):
                                     datapath.send_msg(mod)
                                     return
 
-    def clear_counters(self, datapath):
-        stats = self.stats
-        for dpid in stats:
-            if dpid == datapath.id:
-                for in_port in stats[dpid]:
-                    for idx in range(0, len(stats[dpid][in_port])):
-                        stat = stats[dpid][in_port][idx]
-                        parser = datapath.ofproto_parser
-                        ofproto = datapath.ofproto
-                        mod = parser.OFPFlowMod(datapath=datapath,
-                                                table_id=stat.table_id,
-                                                command=ofproto.OFPFC_MODIFY_STRICT,
-                                                priority=stat.priority,
-                                                flags=ofproto.OFPFF_RESET_COUNTS,
-                                                match=stat.match,
-                                                instructions=stat.instructions)
-                        datapath.send_msg(mod)
-                self.logger.info('[' + str(datapath.id) + ']: Counters reset done')
+    def clear_counters(self, datapath, stat):
+        parser = datapath.ofproto_parser
+        ofproto = datapath.ofproto
+        mod = parser.OFPFlowMod(datapath=datapath,
+                                table_id=stat.table_id,
+                                command=ofproto.OFPFC_MODIFY_STRICT,
+                                priority=stat.priority,
+                                flags=ofproto.OFPFF_RESET_COUNTS,
+                                match=stat.match,
+                                instructions=stat.instructions)
+        datapath.send_msg(mod)
+        # self.logger.info('[' + str(datapath.id) + ']: Counters reset done')
