@@ -86,11 +86,6 @@ class DNNModule(threading.Thread):
                     # Get actual stats from forwarders
                     stats = self.controller.get_stats()
 
-                    # TODO This could be done with delta - you must save the old flows for comparision
-                    # Clear counters on all forwarders
-                    # for fw in self.forwarders:
-                    #     self.controller.clear_counters(fw)
-
                     if self.print_flow_stats(stats):
                         try:
                             parsed_flows = self.flow_stats_parser(stats, packet_ins)

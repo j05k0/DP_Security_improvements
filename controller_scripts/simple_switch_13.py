@@ -342,6 +342,8 @@ class SimpleSwitch13(app_manager.RyuApp):
                 self.stats[dpid][in_port] = [stat]
             else:
                 self.stats[dpid][in_port].append(stat)
+
+            # TODO This could be done with delta - you must save the old flows for comparision
             self.clear_counters(datapath, stat)
 
         # Checking whether there are not multiple packets for one reply (e.g. too large reply is sent in multiple packets)
