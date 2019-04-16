@@ -71,104 +71,95 @@ class DNNModule(threading.Thread):
     def run(self):
         # TODO possible change to networkx and digraph
         while 1:
-            if self.get_forwarders():
-                while 1:
-                    self.printer('[DNN module] Starting new iteration...')
-                    self.logger('[DNN module] Starting new iteration...')
-                    record_count = 0
-                    if self.update_forwarders():
-                        for fw in self.forwarders:
-                            for port in self.forwarders[fw]:
-                                self.controller.send_flow_stats_request(fw, port)
-                                record_count += 1
-                        # Save actual packet_ins and clear packet_ins list
-                        packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
+            self.printer('[DNN module] Starting new iteration...')
+            self.logger('[DNN module] Starting new iteration...')
+            record_count = 0
+            if self.update_forwarders():
+                for fw in self.forwarders:
+                    for port in self.forwarders[fw]:
+                        self.controller.send_flow_stats_request(fw, port)
+                        record_count += 1
+                # Save actual packet_ins and clear packet_ins list
+                packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
 
-                        if self.wait_for_items_in_queue(record_count):
-                            # Get actual stats from forwarders
-                            stats = self.controller.get_stats()
+                if self.wait_for_items_in_queue(record_count):
+                    # Get actual stats from forwarders
+                    stats = self.controller.get_stats()
 
-                            # TODO This could be done with delta - you must save the old flows for comparision
-                            # Clear counters on all forwarders
-                            # for fw in self.forwarders:
-                            #     self.controller.clear_counters(fw)
+                    # TODO This could be done with delta - you must save the old flows for comparision
+                    # Clear counters on all forwarders
+                    # for fw in self.forwarders:
+                    #     self.controller.clear_counters(fw)
 
-                            if self.print_flow_stats(stats):
-                                try:
-                                    parsed_flows = self.flow_stats_parser(stats, packet_ins)
+                    if self.print_flow_stats(stats):
+                        try:
+                            parsed_flows = self.flow_stats_parser(stats, packet_ins)
+                            try:
+                                if len(parsed_flows) > 0:
+                                    scaled_samples = self.preprocess_flows(parsed_flows)
+                                    warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
+                                    self.logger('Warnings are ' + str(len(warnings)))
+                                    self.logger('Attacks are ' + str(len(attacks)))
                                     try:
-                                        if len(parsed_flows) > 0:
-                                            scaled_samples = self.preprocess_flows(parsed_flows)
-                                            warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
-                                            self.logger('Warnings are ' + str(len(warnings)))
-                                            self.logger('Attacks are ' + str(len(attacks)))
-                                            try:
-                                                self.apply_warnings(warnings)
-                                            except Exception as e:
-                                                self.logger('[DNN module] Exception during applying warnings')
-                                                self.logger(e)
-                                            try:
-                                                self.apply_attacks(attacks)
-                                            except Exception as e:
-                                                self.logger('[DNN module] Exception during applying attacks')
-                                                self.logger(e)
-                                        else:
-                                            self.logger('[DNN module] No flow stats available')
-                                            self.printer('[DNN module] No flow stats available')
+                                        self.apply_warnings(warnings)
                                     except Exception as e:
-                                        self.logger(
-                                            '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.')
+                                        self.logger('[DNN module] Exception during applying warnings')
                                         self.logger(e)
-                                        traceback.print_exc()
-                                        # print '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.'
-                                        # print e
-                                except Exception as e:
-                                    self.logger(
-                                        '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration.')
-                                    self.logger(e)
-                                    # print '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration.'
-                                    # print e
-                            else:
-                                self.logger('[DNN module] No flow stats available')
-                                self.printer('[DNN module] No flow stats available')
-                        elif self.queue.qsize() != record_count:
-                            self.logger('[DNN module] Wrong number of flow stats replies received')
-                            self.logger('[DNN module] Record count is ' + str(record_count))
-                            self.logger('[DNN module] Size of the queue is ' + str(self.queue.qsize()))
-                            # print '[DNN module] Wrong number of flow stats replies received'
-                            # print '[DNN module] Record count is ', record_count
-                            # print '[DNN module] Size of the queue is ', self.queue.qsize()
-                        else:
+                                    try:
+                                        self.apply_attacks(attacks)
+                                    except Exception as e:
+                                        self.logger('[DNN module] Exception during applying attacks')
+                                        self.logger(e)
+                                else:
+                                    self.logger('[DNN module] No flow stats available')
+                                    self.printer('[DNN module] No flow stats available')
+                            except Exception as e:
+                                self.logger(
+                                    '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.')
+                                self.logger(e)
+                                traceback.print_exc()
+                                # print '[DNN module] Exception during evaluation process. Operation will continue in the next iteration.'
+                                # print e
+                        except Exception as e:
                             self.logger(
-                                '[DNN module] Waiting for replies from forwarders timed out')
+                                '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration.')
+                            self.logger(e)
+                            # print '[DNN module] Exception during parsing flow stats. Operation will continue in the next iteration.'
+                            # print e
                     else:
-                        self.logger(
-                            '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.')
-                        # print '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.'
-
-                    # Clear stats in controller
-                    self.controller.clear_stats()
-                    self.clear_queue()
-                    if self.controller.mac_to_port != {}:
-                        self.logger('[DNN module] Actual MAC to port table:')
-                        # print '[DNN module] Actual MAC to port table:'
-                        for sw_id in self.controller.mac_to_port:
-                            self.logger('Switch ' + str(sw_id) + ':')
-                            # print 'Switch ' + str(sw_id) + ':'
-                            for dst in self.controller.mac_to_port[sw_id]:
-                                self.logger(dst + ' ' + str(self.controller.mac_to_port[sw_id][dst]))
-                                # print dst, self.controller.mac_to_port[sw_id][dst]
-                    self.logger('[DNN module] Iteration done.')
-                    self.logger(' ************************************************************')
-                    self.printer('[DNN module] Iteration done.')
-                    self.printer('************************************************************')
-                    time.sleep(self.REFRESH_RATE)
-
+                        self.logger('[DNN module] No flow stats available')
+                        self.printer('[DNN module] No flow stats available')
+                elif self.queue.qsize() != record_count:
+                    self.logger('[DNN module] Wrong number of flow stats replies received')
+                    self.logger('[DNN module] Record count is ' + str(record_count))
+                    self.logger('[DNN module] Size of the queue is ' + str(self.queue.qsize()))
+                    # print '[DNN module] Wrong number of flow stats replies received'
+                    # print '[DNN module] Record count is ', record_count
+                    # print '[DNN module] Size of the queue is ', self.queue.qsize()
+                else:
+                    self.logger(
+                        '[DNN module] Waiting for replies from forwarders timed out')
             else:
                 self.logger(
-                    '[DNN module] An error occured during getting forwarders. Skipping requesting of flow stats.')
-                # print '[DNN module] An error occured during getting forwarders. Skipping requesting of flow stats.'
+                    '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.')
+                # print '[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.'
 
+            # Clear stats in controller
+            self.controller.clear_stats()
+            self.clear_queue()
+            if self.controller.mac_to_port != {}:
+                self.logger('[DNN module] Actual MAC to port table:')
+                # print '[DNN module] Actual MAC to port table:'
+                for sw_id in self.controller.mac_to_port:
+                    self.logger('Switch ' + str(sw_id) + ':')
+                    # print 'Switch ' + str(sw_id) + ':'
+                    for dst in self.controller.mac_to_port[sw_id]:
+                        self.logger(dst + ' ' + str(self.controller.mac_to_port[sw_id][dst]))
+                        # print dst, self.controller.mac_to_port[sw_id][dst]
+            self.logger('[DNN module] Iteration done.')
+            self.logger(' ************************************************************')
+            self.printer('[DNN module] Iteration done.')
+            self.printer('************************************************************')
             time.sleep(self.REFRESH_RATE)
 
     def logger(self, to_print):
@@ -179,24 +170,6 @@ class DNNModule(threading.Thread):
 
     def current_timestamp(self):
         return datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y %H:%M:%S')
-
-    def get_forwarders(self):
-        return True
-        self.logger('[DNN module] Waiting for forwarders...')
-        self.printer('[DNN module] Waiting for forwarders...')
-
-        # FW_REFRESH_RATE is small number to get forwarders quickly
-        while self.queue.empty():
-            time.sleep(self.FW_REFRESH_RATE)
-        try:
-            self.logger('[DNN module] Getting datapaths of the forwarders...')
-            # print '[DNN module] Getting datapaths of the forwarders...'
-            while not self.queue.empty():
-                self.forwarders[self.queue.get()] = []
-            return True
-        except Exception as e:
-            self.logger(e)
-            return False
 
     def update_forwarders(self):
         self.logger('[DNN module] Updating the status of the forwarders...')
@@ -230,6 +203,7 @@ class DNNModule(threading.Thread):
             return False
         else:
             self.logger('[DNN module] No forwarders are online')
+            self.printer('[DNN module] No forwarders are online')
             return False
 
     def wait_for_items_in_queue(self, record_count):
@@ -589,6 +563,7 @@ class DNNModule(threading.Thread):
         return warnings, attacks
 
     def apply_warnings(self, warnings):
+        return
         self.logger('Applying warnings')
 
         # Iterate over all warnings and build params structure
