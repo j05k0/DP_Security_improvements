@@ -5,6 +5,7 @@ import pandas as pd
 import tensorflow as tf
 from keras.models import load_model
 from ryu.lib.packet import ether_types, in_proto, ipv4, arp, tcp, udp
+from ryu.ofproto import ofproto_v1_3
 from sklearn.externals import joblib
 import traceback
 
@@ -76,8 +77,8 @@ class DNNModule(threading.Thread):
             record_count = 0
             if self.update_forwarders():
                 for fw in self.forwarders:
-                    for port in self.forwarders[fw]:
-                        self.controller.send_flow_stats_request(fw, port)
+                    for in_port in self.forwarders[fw]:
+                        self.controller.send_flow_stats_request(fw, in_port)
                         record_count += 1
                 # Save actual packet_ins and clear packet_ins list
                 packet_ins, self.controller.packet_ins = self.controller.packet_ins, []
@@ -86,7 +87,7 @@ class DNNModule(threading.Thread):
                     # Get actual stats from forwarders
                     stats = self.controller.get_stats()
 
-                    if self.print_flow_stats(stats):
+                    if self.is_flow_stats(stats):
                         try:
                             parsed_flows = self.flow_stats_parser(stats, packet_ins)
                             try:
@@ -96,12 +97,18 @@ class DNNModule(threading.Thread):
                                     self.logger('Warnings are ' + str(len(warnings)))
                                     self.logger('Attacks are ' + str(len(attacks)))
                                     try:
-                                        self.apply_warnings(warnings)
+                                        if len(warnings) > 0:
+                                            self.apply_warnings(warnings)
+                                        else:
+                                            self.logger('There are no warnings to apply restrictions.')
                                     except Exception as e:
                                         self.logger('[DNN module] Exception during applying warnings')
                                         self.logger(e)
                                     try:
-                                        self.apply_attacks(attacks)
+                                        if len(attacks) > 0:
+                                            self.apply_attacks(attacks)
+                                        else:
+                                            self.logger('There are no attacks to apply restrictions')
                                     except Exception as e:
                                         self.logger('[DNN module] Exception during applying attacks')
                                         self.logger(e)
@@ -215,7 +222,7 @@ class DNNModule(threading.Thread):
         while not self.queue.empty():
             self.queue.get()
 
-    def print_flow_stats(self, stats):
+    def is_flow_stats(self, stats):
         if stats == {}:
             return False
         is_stats = False
@@ -223,30 +230,12 @@ class DNNModule(threading.Thread):
             if stats[sw_id] != {}:
                 is_stats = True
                 break
-            #self.logger('Switch ' + str(sw_id) + ':')
-            # print 'Switch ' + str(sw_id) + ':'
-            #for port in stats[sw_id]:
-                # if len(stats[sw_id][port]) == 0:
-                #     return False
-                #self.logger('Input port ' + str(port) + ':')
-                # print 'Input port ' + str(port) + ':'
-                #for idx in range(0, len(stats[sw_id][port])):
-                    #self.logger(stats[sw_id][port][idx])
-                    #self.logger('************************************************************')
-                    # print stats[sw_id][port][idx]
-                    # print '************************************************************'
-                #self.logger('************************************************************')
-                # print '************************************************************'
-            #self.logger('************************************************************')
-            # print '************************************************************'
         return is_stats
 
     def print_flows(self, flows):
         for idx in range(0, len(flows)):
             self.logger(flows[idx])
             self.logger('************************************************************')
-            # print flows[idx]
-            # print '************************************************************'
 
     def flow_stats_parser(self, stats, packet_ins):
         parsed_flows = self.parse_flows(stats)
@@ -287,38 +276,50 @@ class DNNModule(threading.Thread):
             for port in stats[sw_id]:
                 for idx in range(0, len(stats[sw_id][port])):
                     stat = stats[sw_id][port][idx]
-                    if stat.table_id == self.controller.TABLE_SWITCHING:
-                        flow = {'id': id}
-                        if stat.match['eth_type'] == ether_types.ETH_TYPE_IP:
-                            flow['proto'] = stat.match['ip_proto']
-                            flow['ipv4_src'] = stat.match['ipv4_src']
-                            flow['ipv4_dst'] = stat.match['ipv4_dst']
-                            if flow['proto'] == in_proto.IPPROTO_TCP:
-                                flow['port_src'] = stat.match['tcp_src']
-                                flow['port_dst'] = stat.match['tcp_dst']
-                            elif flow['proto'] == in_proto.IPPROTO_UDP:
-                                flow['port_src'] = stat.match['udp_src']
-                                flow['port_dst'] = stat.match['udp_dst']
-                            else:
+
+                    # Check whether there is not stat with instruction OFPIT_CLEAR_ACTIONS used for blocking users
+                    # We don't want to process stats like this
+                    valid = True
+                    for i in range(len(stat.instructions)):
+                        if stat.instructions[i].type == ofproto_v1_3.OFPIT_CLEAR_ACTIONS:
+                            valid = False
+
+                    if valid:
+                        # self.logger('Switch ' + str(sw_id))
+                        # self.logger('Port ' + str(port))
+                        # self.logger(str(stat))
+                        if stat.table_id == self.controller.TABLE_SWITCHING:
+                            flow = {'id': id}
+                            if stat.match['eth_type'] == ether_types.ETH_TYPE_IP:
+                                flow['proto'] = stat.match['ip_proto']
+                                flow['ipv4_src'] = stat.match['ipv4_src']
+                                flow['ipv4_dst'] = stat.match['ipv4_dst']
+                                if flow['proto'] == in_proto.IPPROTO_TCP:
+                                    flow['port_src'] = stat.match['tcp_src']
+                                    flow['port_dst'] = stat.match['tcp_dst']
+                                elif flow['proto'] == in_proto.IPPROTO_UDP:
+                                    flow['port_src'] = stat.match['udp_src']
+                                    flow['port_dst'] = stat.match['udp_dst']
+                                else:
+                                    flow['port_src'] = 0
+                                    flow['port_dst'] = 0
+                            elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
+                                # TODO Here maybe different representation for ARP protocol
+                                flow['proto'] = self.ARP_PROTO
+                                flow['ipv4_src'] = stat.match['arp_spa']
+                                flow['ipv4_dst'] = stat.match['arp_tpa']
                                 flow['port_src'] = 0
                                 flow['port_dst'] = 0
-                        elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
-                            # TODO Here maybe different representation for ARP protocol
-                            flow['proto'] = self.ARP_PROTO
-                            flow['ipv4_src'] = stat.match['arp_spa']
-                            flow['ipv4_dst'] = stat.match['arp_tpa']
-                            flow['port_src'] = 0
-                            flow['port_dst'] = 0
-                        else:
-                            self.logger('Unhandled eth_type: ' + str(stat.match['eth_type']))
-                            # print 'Unhandled eth_type: ', stat.match['eth_type']
-                        flow['packet_count'] = stat.packet_count
-                        flow['byte_count'] = stat.byte_count
-                        # Adding extended stats
-                        flow['srv_dst_count'] = 0
-                        flow['dst_count'] = 0
-                        parsed_flows.append(flow)
-                        id += 1
+                            else:
+                                self.logger('Unhandled eth_type: ' + str(stat.match['eth_type']))
+                                # print 'Unhandled eth_type: ', stat.match['eth_type']
+                            flow['packet_count'] = stat.packet_count
+                            flow['byte_count'] = stat.byte_count
+                            # Adding extended stats
+                            flow['srv_dst_count'] = 0
+                            flow['dst_count'] = 0
+                            parsed_flows.append(flow)
+                            id += 1
         return parsed_flows
 
     def unique_flows(self, flows):
@@ -558,22 +559,21 @@ class DNNModule(threading.Thread):
         return warnings, attacks
 
     def apply_warnings(self, warnings):
-        return
-        self.logger('Applying warnings')
+        self.logger('Applying restrictions against warnings')
 
         # Iterate over all warnings and build params structure
-        for warning, meter_id in warnings:
-            self.logger('Warning: ' + str(warning))
+        for flow, meter_id in warnings:
+            self.logger('Warning: ' + str(flow))
             self.logger('Meter ID: ' + str(meter_id))
-            params = {'ipv4_src': warning['ipv4_src'],
-                      'port_src': warning['port_src'],
-                      'ipv4_dst': warning['ipv4_dst'],
-                      'port_dst': warning['port_dst']}
-            if warning['proto'] == self.ARP_PROTO:
+            params = {'ipv4_src': flow['ipv4_src'],
+                      'port_src': flow['port_src'],
+                      'ipv4_dst': flow['ipv4_dst'],
+                      'port_dst': flow['port_dst']}
+            if flow['proto'] == self.ARP_PROTO:
                 params['eth_type'] = ether_types.ETH_TYPE_ARP
             else:
                 params['eth_type'] = ether_types.ETH_TYPE_IP
-                params['proto'] = warning['proto']
+                params['proto'] = flow['proto']
             self.logger('Params: ' + str(params))
 
             # Apply meter on every forwarder
@@ -581,4 +581,14 @@ class DNNModule(threading.Thread):
                 self.controller.apply_meter(fw, params, meter_id)
 
     def apply_attacks(self, attacks):
-        pass
+        self.logger('Applying restrictions against attacks')
+
+        # Iterate over all attacks and block source IPs
+        for flow in attacks:
+            self.logger('Attack: ' + str(flow))
+
+            # Apply blocking on all forwarders
+            for fw in self.forwarders:
+                # And all in_ports
+                for in_port in self.forwarders[fw]:
+                    self.controller.block_host(fw, in_port, flow['ipv4_src'])

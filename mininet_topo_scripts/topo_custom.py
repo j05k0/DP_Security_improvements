@@ -12,6 +12,7 @@ def topo():
     print 'Creating nodes...'
     h1 = net.addHost('h1', mac='00:00:00:00:00:01', ip='10.0.0.1/24')
     h2 = net.addHost('h2', mac='00:00:00:00:00:02', ip='10.0.0.2/24')
+    h3 = net.addHost('h3', mac='00:00:00:00:00:03', ip='10.0.0.3/24')
 
     s1 = net.addSwitch('s1')
     s2 = net.addSwitch('s2')
@@ -21,9 +22,10 @@ def topo():
 
     print 'Creating links...'
     net.addLink(h1, s1)
+    net.addLink(h2, s2)
+    net.addLink(h3, s3)
     net.addLink(s1, s2)
     net.addLink(s2, s3)
-    net.addLink(s3, h2)
 
     print 'Starting network...'
     net.build()

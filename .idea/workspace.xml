@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="Function get_forwarders is no longer needed - removed&#10;functionality has been moved to update_forwarders">
+    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="code corrections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/dnn_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/dnn_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/params.conf" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/params.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/bulk_tcpreplay.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/bulk_tcpreplay.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py" beforeDir="false" afterPath="$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run_env.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,69 +16,88 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap1508-1517_w10_double.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2090">
-              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="171" column="89" selection-start-line="171" selection-start-column="89" selection-end-line="171" selection-end-column="89" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="344" column="23" selection-start-line="344" selection-start-column="23" selection-end-line="344" selection-end-column="23" />
-              <folding>
-                <element signature="e#614#626#0" expanded="true" />
-                <element signature="e#17055#24047#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7155">
-              <caret line="482" column="17" selection-start-line="482" selection-end-line="482" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap1508-1517_w10.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="108" column="28" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="405">
+                  <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#18#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="561" column="51" selection-start-line="561" selection-start-column="51" selection-end-line="561" selection-end-column="51" />
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3_parser.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="281">
+                  <caret line="6054" column="25" selection-start-line="6054" selection-start-column="22" selection-end-line="6054" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="345">
+                  <caret line="95" column="41" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#614#626#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="281">
+                  <caret line="208" column="19" selection-start-line="208" selection-end-line="208" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0.log">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2311">
+                  <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -88,13 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>' [</find>
-      <find>REFRESH_RATE</find>
-      <find>self.controller.logger.info</find>
-      <find>self.current_timestamp() +</find>
-      <find>current_timestamp</find>
-      <find>logger</find>
-      <find>except</find>
       <find>Processing</find>
       <find>Wrong</find>
       <find>47629</find>
@@ -116,8 +129,15 @@
       <find>processing Packet_ins</find>
       <find>packet_in</find>
       <find>MeterStats</find>
-      <find>Warnings</find>
       <find>[DNN module] Starting new iteration...</find>
+      <find>pingall</find>
+      <find>xterm</find>
+      <find>Warnings</find>
+      <find>OFPP_ANY</find>
+      <find>OFPInstructionGotoTable</find>
+      <find>OFPActionOutput</find>
+      <find>get</find>
+      <find>OFPIT_CLEAR_ACTIONS</find>
     </findStrings>
     <replaceStrings>
       <replace>self.controller.logger.info(self.current_timestamp() + '</replace>
@@ -165,10 +185,10 @@
         <option value="$PROJECT_DIR$/mininet_topo_scripts/mininet_run.sh" />
         <option value="$PROJECT_DIR$/controller_scripts/controller_run.sh" />
         <option value="$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py" />
-        <option value="$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py" />
         <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13_meter.py" />
-        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" />
         <option value="$PROJECT_DIR$/controller_scripts/params.conf" />
+        <option value="$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py" />
+        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" />
         <option value="$PROJECT_DIR$/controller_scripts/dnn_module.py" />
       </list>
     </option>
@@ -185,7 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -223,6 +242,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -466,7 +486,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555284357442</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Function get_forwarders is no longer needed - removed&#10;functionality has been moved to update_forwarders">
+      <created>1555431791769</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1555431791769</updated>
+    </task>
+    <task id="LOCAL-00024" summary="code corrections">
+      <created>1555432248180</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1555432248180</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -482,11 +516,11 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18087432" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18030973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.328125" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32721382" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.44816414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.40172786" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -529,14 +563,11 @@
     <MESSAGE value="Ofsoftswitch13 master branch running&#10;iperf is working&#10;mininet should be changed to custom script" />
     <MESSAGE value="Topo updated, iperf still not working" />
     <MESSAGE value="OVS started to accept meter tables...&#10;Tests for IIT.SRC performed" />
-    <option name="LAST_COMMIT_MESSAGE" value="OVS started to accept meter tables...&#10;Tests for IIT.SRC performed" />
+    <MESSAGE value="Function get_forwarders is no longer needed - removed&#10;functionality has been moved to update_forwarders" />
+    <MESSAGE value="code corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="code corrections" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/ryu/lib/hub.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1226" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/ryu/ryu/app/simple_switch_14 _custom_event_queue.py" />
     <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_14.py" />
     <entry file="file://$USER_HOME$/ryu_manager.log">
@@ -584,13 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2821">
-          <caret line="280" column="240" selection-start-line="280" selection-start-column="240" selection-end-line="280" selection-end-column="240" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/results/topo1.dump">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="779">
@@ -602,13 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="105" column="58" selection-start-line="105" selection-start-column="58" selection-end-line="105" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -636,16 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
-          <folding>
-            <element signature="e#18#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-536">
@@ -659,13 +666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -807,17 +807,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap1508-1517_w10_double.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7155">
-          <caret line="482" column="17" selection-start-line="482" selection-end-line="482" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+        <state relative-caret-position="930">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -828,28 +821,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap1508-1517_w10_double.log">
+    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2090">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        <state relative-caret-position="150">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/lib/python2.7/dist-packages/mininet-2.3.0d4-py2.7.egg!/mininet/net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="517" column="50" lean-forward="true" selection-start-line="517" selection-start-column="50" selection-end-line="517" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding>
+            <element signature="e#18#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="344" column="23" selection-start-line="344" selection-start-column="23" selection-end-line="344" selection-end-column="23" />
+        <state relative-caret-position="345">
+          <caret line="95" column="41" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="41" />
           <folding>
             <element signature="e#614#626#0" expanded="true" />
-            <element signature="e#17055#24047#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2311">
+          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="6054" column="25" selection-start-line="6054" selection-start-column="22" selection-end-line="6054" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="208" column="19" selection-start-line="208" selection-end-line="208" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="171" column="89" selection-start-line="171" selection-start-column="89" selection-end-line="171" selection-end-column="89" />
+        <state relative-caret-position="306">
+          <caret line="561" column="51" selection-start-line="561" selection-start-column="51" selection-end-line="561" selection-end-column="51" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
