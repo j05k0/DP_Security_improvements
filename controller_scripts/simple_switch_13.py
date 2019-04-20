@@ -343,6 +343,7 @@ class SimpleSwitch13(app_manager.RyuApp):
             else:
                 self.stats[dpid][in_port].append(stat)
 
+            # Clear counters for the particular stat in the forwarder
             # TODO This could be done with delta - you must save the old flows for comparision
             self.clear_counters(datapath, stat)
 

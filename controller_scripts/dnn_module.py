@@ -74,8 +74,8 @@ class DNNModule(threading.Thread):
         while 1:
             self.printer('[DNN module] Starting new iteration...')
             self.logger('[DNN module] Starting new iteration...')
-            record_count = 0
             if self.update_forwarders():
+                record_count = 0
                 for fw in self.forwarders:
                     for in_port in self.forwarders[fw]:
                         self.controller.send_flow_stats_request(fw, in_port)
@@ -195,6 +195,7 @@ class DNNModule(threading.Thread):
                     return True
                 except Exception as e:
                     self.logger(e)
+                    return False
             elif self.queue.qsize() != record_count:
                 self.logger('[DNN module] Wrong number of port stats replies received')
                 self.logger('[DNN module] Record count is ' + str(record_count))
