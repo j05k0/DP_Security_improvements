@@ -37,6 +37,9 @@ class DNNModule(threading.Thread):
             self.WARNING = [float(params[7][0]), float(params[7][1])]
             self.BEST_EFFORT = [float(params[8][0]), float(params[8][1])]
             self.ATTACK = [float(params[9][0]), float(params[9][1])]
+
+            # Enable/disable prevention
+            self.PREVENTION = params[10]
         except Exception as e:
             self.logger(e)
             traceback.print_exc()
@@ -96,22 +99,26 @@ class DNNModule(threading.Thread):
                                     warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
                                     self.logger('Warnings are ' + str(len(warnings)))
                                     self.logger('Attacks are ' + str(len(attacks)))
-                                    try:
-                                        if len(warnings) > 0:
-                                            self.apply_warnings(warnings)
-                                        else:
-                                            self.logger('There are no warnings to apply restrictions.')
-                                    except Exception as e:
-                                        self.logger('[DNN module] Exception during applying warnings')
-                                        self.logger(e)
-                                    try:
-                                        if len(attacks) > 0:
-                                            self.apply_attacks(attacks)
-                                        else:
-                                            self.logger('There are no attacks to apply restrictions')
-                                    except Exception as e:
-                                        self.logger('[DNN module] Exception during applying attacks')
-                                        self.logger(e)
+                                    if self.PREVENTION:
+                                        self.logger('[DNN module] Prevention mode is enabled')
+                                        try:
+                                            if len(warnings) > 0:
+                                                self.apply_warnings(warnings)
+                                            else:
+                                                self.logger('There are no warnings to apply restrictions against warnings')
+                                        except Exception as e:
+                                            self.logger('[DNN module] Exception during applying warnings')
+                                            self.logger(e)
+                                        try:
+                                            if len(attacks) > 0:
+                                                self.apply_attacks(attacks)
+                                            else:
+                                                self.logger('There are no attacks to apply restrictions')
+                                        except Exception as e:
+                                            self.logger('[DNN module] Exception during applying restrictions against attacks')
+                                            self.logger(e)
+                                    else:
+                                        self.logger('[DNN module] Prevention mode is disabled')
                                 else:
                                     self.logger('[DNN module] No flow stats available')
                                     self.printer('[DNN module] No flow stats available')

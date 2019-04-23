@@ -15,6 +15,9 @@
 
 
 import Queue
+import datetime
+import time
+
 from ryu.base import app_manager
 from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
@@ -46,6 +49,7 @@ class SimpleSwitch13(app_manager.RyuApp):
         # Get the input params from .conf file
         CONF = cfg.CONF
         CONF.register_opts([
+            cfg.BoolOpt('ENABLED', default=True),
             cfg.IntOpt('REFRESH_RATE', default=10),
             cfg.IntOpt('FW_REFRESH_RATE', default=1),
             cfg.IntOpt('TIMEOUT', default=30),
@@ -55,14 +59,20 @@ class SimpleSwitch13(app_manager.RyuApp):
             cfg.ListOpt('NORMAL', default=[0, 0.6]),
             cfg.ListOpt('WARNING', default=[0.6, 0.85]),
             cfg.ListOpt('BEST_EFFORT', default=[0.85, 0.95]),
-            cfg.ListOpt('ATTACK', default=[0.95, 1])
+            cfg.ListOpt('ATTACK', default=[0.95, 1]),
+            cfg.BoolOpt('PREVENTION', default=True)
         ])
         params = [CONF.REFRESH_RATE, CONF.FW_REFRESH_RATE, CONF.TIMEOUT, CONF.FLOWS_DUMP_FILE, CONF.DNN_MODEL,
-                  CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BEST_EFFORT, CONF.ATTACK]
+                  CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BEST_EFFORT, CONF.ATTACK, CONF.PREVENTION]
 
-        # Initialize and start DNN module
-        self.dnn_module = DNNModule(self, queue, params)
-        self.dnn_module.start()
+        self.DNN_MODULE_ENABLED = CONF.ENABLED
+        if self.DNN_MODULE_ENABLED:
+            # Initialize and start DNN module
+            self.logger.info('DNN module is enabled')
+            self.dnn_module = DNNModule(self, queue, params)
+            self.dnn_module.start()
+        else:
+            self.logger.info('DNN module is disabled')
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
     def switch_features_handler(self, ev):
@@ -70,12 +80,13 @@ class SimpleSwitch13(app_manager.RyuApp):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
 
-        # Somehow the forwarders change their ID during operation this is hack to workaround this
-        for fw in self.dnn_module.forwarders:
-            if fw.id == datapath.id:
-                self.dnn_module.forwarders.pop(fw)
-                break
-        self.dnn_module.forwarders[datapath] = []
+        if self.DNN_MODULE_ENABLED:
+            # Somehow the forwarders change their ID during operation this is hack to workaround this
+            for fw in self.dnn_module.forwarders:
+                if fw.id == datapath.id:
+                    self.dnn_module.forwarders.pop(fw)
+                    break
+            self.dnn_module.forwarders[datapath] = []
 
         # install table-miss flow entry
         #
@@ -164,7 +175,7 @@ class SimpleSwitch13(app_manager.RyuApp):
         self.mac_to_port.setdefault(dpid, {})
 
         # self.logger.info('*****************************************************************')
-        # self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
+        # self.logger.info(self.current_timestamp() + " packet in %s %s %s %s", dpid, src, dst, in_port)
         # if ipv4_proto is not None:
         #     self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
         # self.logger.info(pkt)
@@ -418,7 +429,7 @@ class SimpleSwitch13(app_manager.RyuApp):
                                             ofproto = datapath.ofproto
                                             stat.instructions.append(parser.OFPInstructionMeter(meter_id,
                                                                                                 ofproto.OFPIT_METER))
-                                            self.logger.info('[' + dpid + ']: Applying meter: ' + stat.instructions)
+                                            # self.logger.info('[' + str(dpid) + ']: Applying meter: ' + stat.instructions)
                                             mod = parser.OFPFlowMod(datapath=datapath,
                                                                     table_id=stat.table_id,
                                                                     command=ofproto.OFPFC_MODIFY_STRICT,
@@ -506,3 +517,6 @@ class SimpleSwitch13(app_manager.RyuApp):
                                 priority=priority,
                                 instructions=inst)
         datapath.send_msg(mod)
+
+    def current_timestamp(self):
+        return datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y %H:%M:%S')
