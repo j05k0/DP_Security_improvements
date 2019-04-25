@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="">
+    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/dnn_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/dnn_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/params.conf" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/params.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/bulk_tcpprep.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/bulk_tcpprep.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/bulk_tcprewrite.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/bulk_tcprewrite.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,19 +17,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
+        <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w5.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-691">
-              <caret line="419" column="29" lean-forward="true" selection-start-line="419" selection-start-column="29" selection-end-line="419" selection-end-column="29" />
+            <state relative-caret-position="311">
+              <caret line="434" column="40" lean-forward="true" selection-start-line="434" selection-start-column="40" selection-end-line="434" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -51,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2475">
-              <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
+            <state relative-caret-position="351">
+              <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
               <folding>
                 <element signature="e#614#626#0" expanded="true" />
               </folding>
@@ -60,11 +49,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+            <state relative-caret-position="60">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -72,11 +70,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="82" column="55" lean-forward="true" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+            <state relative-caret-position="591">
+              <caret line="579" column="36" lean-forward="true" selection-start-line="579" selection-start-column="36" selection-end-line="579" selection-end-column="36" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -98,7 +105,6 @@
       <find>OFPFC_ADD</find>
       <find>OFPMBT_DROP</find>
       <find>OFPMeterBandDrop</find>
-      <find>OFPMF_KBPS</find>
       <find>OFPIT_METER</find>
       <find>port_dst</find>
       <find>queue</find>
@@ -122,6 +128,7 @@
       <find>OFPIT_CLEAR_ACTIONS</find>
       <find>dnn_module</find>
       <find>MeterStats</find>
+      <find>OFPMF_KBPS</find>
     </findStrings>
     <replaceStrings>
       <replace>self.controller.logger.info(self.current_timestamp() + '</replace>
@@ -174,9 +181,9 @@
         <option value="$PROJECT_DIR$/scripts/bulk_tcprewrite.sh" />
         <option value="$PROJECT_DIR$/controller_scripts/dnn_module.py" />
         <option value="$PROJECT_DIR$/controller_scripts/controller_run.sh" />
-        <option value="$PROJECT_DIR$/scripts/bulk_tcpreplay.sh" />
         <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" />
         <option value="$PROJECT_DIR$/controller_scripts/params.conf" />
+        <option value="$PROJECT_DIR$/scripts/bulk_tcpreplay.sh" />
       </list>
     </option>
   </component>
@@ -192,7 +199,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,6 +236,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,8 +304,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.firstNN" />
       <item itemvalue="Python.ryu-manager" />
+      <item itemvalue="Python.firstNN" />
     </list>
     <recent_temporary>
       <list>
@@ -502,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555722448502</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module">
+      <created>1556052275701</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1556052275701</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -515,10 +529,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17978142" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20491803" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -543,7 +557,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rebased" />
     <MESSAGE value="Fixed naming in dnn_module&#10;Prepared for testing with many flows" />
     <MESSAGE value="Added new files" />
     <MESSAGE value="Added scaling and evaluation on trained model" />
@@ -568,16 +581,10 @@
     <MESSAGE value="Function get_forwarders is no longer needed - removed&#10;functionality has been moved to update_forwarders" />
     <MESSAGE value="Added restrictions against attacks&#10;Restrictions against warnings modified&#10;Added check for blocking flow - we don't want to process blocking flow stat" />
     <MESSAGE value="code corrections" />
-    <option name="LAST_COMMIT_MESSAGE" value="code corrections" />
+    <MESSAGE value="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/ryu/lib/packet/openflow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0-1.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -723,13 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3045">
-          <caret line="208" column="19" selection-start-line="208" selection-end-line="208" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="844">
@@ -776,11 +776,6 @@
         <state relative-caret-position="15">
           <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0_topspeed.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1455" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap1508_topspeed.log">
@@ -831,49 +826,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w10.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10499" />
+        <state relative-caret-position="-9585" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w5.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2475">
-          <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
-          <folding>
-            <element signature="e#614#626#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="82" column="55" lean-forward="true" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="15">
+          <caret line="419" column="29" selection-start-line="419" selection-start-column="29" selection-end-line="419" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -887,10 +848,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w5.log">
+    <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-691">
-          <caret line="419" column="29" lean-forward="true" selection-start-line="419" selection-start-column="29" selection-end-line="419" selection-end-column="29" />
+        <state relative-caret-position="591">
+          <caret line="579" column="36" lean-forward="true" selection-start-line="579" selection-start-column="36" selection-end-line="579" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="434" column="40" lean-forward="true" selection-start-line="434" selection-start-column="40" selection-end-line="434" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+          <folding>
+            <element signature="e#614#626#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0_topspeed.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-780" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_topo_custom.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10800" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
         </state>
       </provider>
     </entry>

@@ -14,6 +14,7 @@ class DNNModule(threading.Thread):
     ARP_PROTO = -1
     METER_ID_WARNING = 1
     METER_ID_BEST_EFFORT = 2
+    METER_ID_ATTACK = 3
 
     def __init__(self, controller, queue, params):
         super(DNNModule, self).__init__()
@@ -96,26 +97,17 @@ class DNNModule(threading.Thread):
                             try:
                                 if len(parsed_flows) > 0:
                                     scaled_samples = self.preprocess_flows(parsed_flows)
-                                    warnings, attacks = self.evaluate_samples(scaled_samples, parsed_flows)
-                                    self.logger('Warnings are ' + str(len(warnings)))
-                                    self.logger('Attacks are ' + str(len(attacks)))
+                                    malicious = self.evaluate_samples(scaled_samples, parsed_flows)
+                                    self.logger('Malicious flows are ' + str(len(malicious)))
                                     if self.PREVENTION:
                                         self.logger('[DNN module] Prevention mode is enabled')
                                         try:
-                                            if len(warnings) > 0:
-                                                self.apply_warnings(warnings)
+                                            if len(malicious) > 0:
+                                                self.apply_prevention(malicious)
                                             else:
-                                                self.logger('There are no warnings to apply restrictions against warnings')
+                                                self.logger('There are no malicious flows to apply restrictions against')
                                         except Exception as e:
-                                            self.logger('[DNN module] Exception during applying warnings')
-                                            self.logger(e)
-                                        try:
-                                            if len(attacks) > 0:
-                                                self.apply_attacks(attacks)
-                                            else:
-                                                self.logger('There are no attacks to apply restrictions')
-                                        except Exception as e:
-                                            self.logger('[DNN module] Exception during applying restrictions against attacks')
+                                            self.logger('[DNN module] Exception during applying prevention')
                                             self.logger(e)
                                     else:
                                         self.logger('[DNN module] Prevention mode is disabled')
@@ -513,8 +505,7 @@ class DNNModule(threading.Thread):
         return self.scaler.transform(samples)
 
     def evaluate_samples(self, samples, flows):
-        warnings = []
-        attacks = []
+        malicious = []
 
         # Predict classes and probabilities on scaled samples using trained DNN model
         with self.graph.as_default():
@@ -550,13 +541,13 @@ class DNNModule(threading.Thread):
                     f.write(str(preds[idx][0]) + ',Normal,')
                 elif self.WARNING[0] <= probabs[idx] < self.WARNING[1]:
                     f.write(str(preds[idx][0]) + ',Warning,')
-                    warnings.append((flow, self.METER_ID_WARNING))
+                    malicious.append((flow, self.METER_ID_WARNING))
                 elif self.BEST_EFFORT[0] <= probabs[idx] < self.BEST_EFFORT[1]:
                     f.write(str(preds[idx][0]) + ',Best_effort,')
-                    warnings.append((flow, self.METER_ID_BEST_EFFORT))
+                    malicious.append((flow, self.METER_ID_BEST_EFFORT))
                 elif self.ATTACK[0] <= probabs[idx] <= self.ATTACK[1]:
                     f.write(str(preds[idx][0]) + ',Attack,')
-                    attacks.append(flow)
+                    malicious.append((flow, self.METER_ID_ATTACK))
 
                 # Save computed probabilities to the file
                 f.write('%.2f%%\n' % (probabs[idx][0] * 100))
@@ -564,14 +555,14 @@ class DNNModule(threading.Thread):
 
             self.logger('[DNN module] Evaluation of the flows is successfully saved')
             self.logger('[DNN module] Number of saved flows is ' + str(idx))
-        return warnings, attacks
+        return malicious
 
-    def apply_warnings(self, warnings):
-        self.logger('Applying restrictions against warnings')
+    def apply_prevention(self, warnings):
+        self.logger('Applying restrictions against malicious flows')
 
         # Iterate over all warnings and build params structure
         for flow, meter_id in warnings:
-            self.logger('Warning: ' + str(flow))
+            self.logger('Malicious: ' + str(flow))
             self.logger('Meter ID: ' + str(meter_id))
             params = {'ipv4_src': flow['ipv4_src'],
                       'port_src': flow['port_src'],
@@ -588,6 +579,7 @@ class DNNModule(threading.Thread):
             for fw in self.forwarders:
                 self.controller.apply_meter(fw, params, meter_id)
 
+    # Deprecated
     def apply_attacks(self, attacks):
         self.logger('Applying restrictions against attacks')
 

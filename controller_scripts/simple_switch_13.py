@@ -60,12 +60,26 @@ class SimpleSwitch13(app_manager.RyuApp):
             cfg.ListOpt('WARNING', default=[0.6, 0.85]),
             cfg.ListOpt('BEST_EFFORT', default=[0.85, 0.95]),
             cfg.ListOpt('ATTACK', default=[0.95, 1]),
+            cfg.ListOpt('METER_RATES', default=[1000, 100, 0]),
+            cfg.ListOpt('METER_BURST_SIZES', default=[10, 10, 0]),
+            cfg.ListOpt('METER_FLAGS', default=['KBPS', 'KBPS', 'KBPS']),
             cfg.BoolOpt('PREVENTION', default=True)
         ])
         params = [CONF.REFRESH_RATE, CONF.FW_REFRESH_RATE, CONF.TIMEOUT, CONF.FLOWS_DUMP_FILE, CONF.DNN_MODEL,
                   CONF.DNN_SCALER, CONF.NORMAL, CONF.WARNING, CONF.BEST_EFFORT, CONF.ATTACK, CONF.PREVENTION]
 
         self.DNN_MODULE_ENABLED = CONF.ENABLED
+        self.METER_RATES = []
+        self.METER_BURST_SIZES = []
+        self.METER_FLAGS = CONF.METER_FLAGS
+
+        # Converting meter rates and burst sizes loaded from params file into integers
+        for i in range(len(CONF.METER_RATES)):
+            self.METER_RATES.append(int(CONF.METER_RATES[i]))
+
+        for i in range(len(CONF.METER_BURST_SIZES)):
+            self.METER_BURST_SIZES.append(int(CONF.METER_BURST_SIZES[i]))
+
         if self.DNN_MODULE_ENABLED:
             # Initialize and start DNN module
             self.logger.info('DNN module is enabled')
@@ -109,22 +123,46 @@ class SimpleSwitch13(app_manager.RyuApp):
         inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS, actions)]
         self.add_flow(datapath, 0, match, inst, self.TABLE_SWITCHING)
 
+        flags = []
+        for i in range(len(self.METER_FLAGS)):
+            if self.METER_FLAGS[i] == 'KBPS':
+                flags.append(ofproto.OFPMF_KBPS)
+            elif self.METER_FLAGS[i] == 'PKTPS':
+                flags.append(ofproto.OFPMF_PKTPS)
+            else:
+                self.logger.info('Unknown meter flag used. Setting default value KBPS')
+                flags.append(ofproto.OFPMF_KBPS)
+
         # Install meter table's entries
-        # 1 Mbit/s rate for WARNING class
-        bands = [parser.OFPMeterBandDrop(rate=1000, burst_size=10)]
+        # Meter rate for WARNING class
+        # print self.METER_RATES
+
+        bands = [parser.OFPMeterBandDrop(rate=self.METER_RATES[0],
+                                         burst_size=self.METER_BURST_SIZES[0])]
         msg = parser.OFPMeterMod(datapath=datapath,
                                  command=ofproto.OFPMC_ADD,
-                                 flags=ofproto.OFPMF_KBPS,
+                                 flags=flags[0],
                                  meter_id=1,
                                  bands=bands)
         datapath.send_msg(msg)
 
-        # 100 kbit/s rate for BEST_EFFORT class
-        bands = [parser.OFPMeterBandDrop(rate=100, burst_size=10)]
+        # Meter for BEST_EFFORT class
+        bands = [parser.OFPMeterBandDrop(rate=self.METER_RATES[1],
+                                         burst_size=self.METER_BURST_SIZES[1])]
         msg = parser.OFPMeterMod(datapath=datapath,
                                  command=ofproto.OFPMC_ADD,
-                                 flags=ofproto.OFPMF_KBPS,
+                                 flags=flags[1],
                                  meter_id=2,
+                                 bands=bands)
+        datapath.send_msg(msg)
+
+        # Meter for ATTACK class
+        bands = [parser.OFPMeterBandDrop(rate=self.METER_RATES[2],
+                                         burst_size=self.METER_BURST_SIZES[2])]
+        msg = parser.OFPMeterMod(datapath=datapath,
+                                 command=ofproto.OFPMC_ADD,
+                                 flags=flags[2],
+                                 meter_id=3,
                                  bands=bands)
         datapath.send_msg(msg)
 
@@ -502,6 +540,7 @@ class SimpleSwitch13(app_manager.RyuApp):
                                     datapath.send_msg(mod)
                                     return
 
+    # Deprecated
     def block_host(self, datapath, in_port, ipv4_src):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
