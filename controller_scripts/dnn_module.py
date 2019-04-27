@@ -253,7 +253,7 @@ class DNNModule(threading.Thread):
         # print 'Merged flows:'
         #self.print_flows(parsed_flows)
 
-        parsed_flows = self.process_packet_ins(parsed_flows, packet_ins)
+        # parsed_flows = self.process_packet_ins(parsed_flows, packet_ins)
         # self.logger('Added packet_ins:')
         # print 'Final flows:'
         #self.print_flows(parsed_flows)

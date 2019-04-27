@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module">
+    <list default="true" id="09c6a586-4694-4c8a-91fa-7ed54fdf23c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller_scripts/controller_run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/controller_run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/dnn_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/dnn_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/params.conf" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/params.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/jupyter_notebooks/Flows_dump_evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,18 +19,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
+        <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="434" column="40" lean-forward="true" selection-start-line="434" selection-start-column="40" selection-end-line="434" selection-end-column="40" />
+            <state relative-caret-position="381">
+              <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
+              <folding>
+                <element signature="e#614#626#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py">
+        <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
               <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
               <folding>
                 <element signature="e#18#53#0" expanded="true" />
@@ -38,31 +52,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
-              <folding>
-                <element signature="e#614#626#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="45">
+              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -70,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="579" column="36" lean-forward="true" selection-start-line="579" selection-start-column="36" selection-end-line="579" selection-end-column="36" />
+            <state relative-caret-position="351">
+              <caret line="256" column="38" selection-start-line="256" selection-start-column="38" selection-end-line="256" selection-end-column="38" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -82,8 +75,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+            <state relative-caret-position="60">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w10.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4620">
+              <caret line="175" column="29" selection-start-line="175" selection-start-column="29" selection-end-line="175" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -99,12 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Wrong</find>
-      <find>47629</find>
-      <find>in_proto</find>
-      <find>OFPFC_ADD</find>
-      <find>OFPMBT_DROP</find>
-      <find>OFPMeterBandDrop</find>
       <find>OFPIT_METER</find>
       <find>port_dst</find>
       <find>queue</find>
@@ -129,6 +125,12 @@
       <find>dnn_module</find>
       <find>MeterStats</find>
       <find>OFPMF_KBPS</find>
+      <find>packet in</find>
+      <find>flooding</find>
+      <find>packet in 2</find>
+      <find>Exception</find>
+      <find>packet</find>
+      <find>Starting new iteration...</find>
     </findStrings>
     <replaceStrings>
       <replace>self.controller.logger.info(self.current_timestamp() + '</replace>
@@ -179,11 +181,11 @@
         <option value="$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py" />
         <option value="$PROJECT_DIR$/scripts/bulk_tcpprep.sh" />
         <option value="$PROJECT_DIR$/scripts/bulk_tcprewrite.sh" />
-        <option value="$PROJECT_DIR$/controller_scripts/dnn_module.py" />
         <option value="$PROJECT_DIR$/controller_scripts/controller_run.sh" />
-        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" />
-        <option value="$PROJECT_DIR$/controller_scripts/params.conf" />
         <option value="$PROJECT_DIR$/scripts/bulk_tcpreplay.sh" />
+        <option value="$PROJECT_DIR$/controller_scripts/params.conf" />
+        <option value="$PROJECT_DIR$/controller_scripts/dnn_module.py" />
+        <option value="$PROJECT_DIR$/controller_scripts/simple_switch_13.py" />
       </list>
     </option>
   </component>
@@ -226,6 +228,11 @@
               <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
               <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DP_Security_improvements" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DP_Security_improvements" type="b2602c69:ProjectViewProjectNode" />
@@ -516,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556052275701</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added third meter for traffic policing&#10;Added meter parameters">
+      <created>1556224034414</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1556224034414</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -557,7 +571,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed naming in dnn_module&#10;Prepared for testing with many flows" />
     <MESSAGE value="Added new files" />
     <MESSAGE value="Added scaling and evaluation on trained model" />
     <MESSAGE value="Clearing byte and packet counters after processing by DNN module&#10;Added removing dead connections (connections with 0 byte and packet counters)&#10;Added checking for empty flow stats&#10;Added checking for empty packet_ins array&#10;Added exception handling&#10;Replaced prints with self.logger.info&#10;Added saving into file - file name is hard-coded" />
@@ -582,16 +595,10 @@
     <MESSAGE value="Added restrictions against attacks&#10;Restrictions against warnings modified&#10;Added check for blocking flow - we don't want to process blocking flow stat" />
     <MESSAGE value="code corrections" />
     <MESSAGE value="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added enabling of DNN module&#10;Added enabling of prevention provided by DNN module" />
+    <MESSAGE value="Added third meter for traffic policing&#10;Added meter parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added third meter for traffic policing&#10;Added meter parameters" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0-1.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="532" lean-forward="true" selection-start-line="532" selection-end-line="532" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0-4.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4736">
@@ -740,16 +747,6 @@
     <entry file="file://$PROJECT_DIR$/scripts/merge_parts_pcaps.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
-          <folding>
-            <element signature="e#18#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2580">
@@ -826,11 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w10.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9585" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w5.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -838,9 +830,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py">
+    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_swiste_only.py" />
+    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="6435">
+          <caret line="434" column="40" selection-start-line="434" selection-start-column="40" selection-end-line="434" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet_topo_scripts/topo_custom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
           <caret line="9" column="82" selection-start-line="9" selection-start-column="82" selection-end-line="9" selection-end-column="82" />
           <folding>
             <element signature="e#18#53#0" expanded="true" />
@@ -848,61 +848,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/results/pcap0_topspeed_new.dump">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3826" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_topo_custom.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="103" column="51" lean-forward="true" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0_topspeed.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-735">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/dnn_module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="579" column="36" lean-forward="true" selection-start-line="579" selection-start-column="36" selection-end-line="579" selection-end-column="36" />
+        <state relative-caret-position="351">
+          <caret line="256" column="38" selection-start-line="256" selection-start-column="38" selection-end-line="256" selection-end-column="38" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/controller_run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/ryu/ryu/ofproto/ofproto_v1_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="434" column="40" lean-forward="true" selection-start-line="434" selection-start-column="40" selection-end-line="434" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller_scripts/simple_switch_13.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+        <state relative-caret-position="381">
+          <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
           <folding>
             <element signature="e#614#626#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_pcap0_topspeed.log">
+    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_22-01-2015_1_200000_pcap0_w10.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-780" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/logs/c0_topo_custom.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller_scripts/params.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/bulk_tcpreplay.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state relative-caret-position="-4620">
+          <caret line="175" column="29" selection-start-line="175" selection-start-column="29" selection-end-line="175" selection-end-column="29" />
         </state>
       </provider>
     </entry>

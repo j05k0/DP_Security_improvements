@@ -212,13 +212,17 @@ class SimpleSwitch13(app_manager.RyuApp):
         dpid = datapath.id
         self.mac_to_port.setdefault(dpid, {})
 
-        # self.logger.info('*****************************************************************')
-        # self.logger.info(self.current_timestamp() + " packet in %s %s %s %s", dpid, src, dst, in_port)
-        # if ipv4_proto is not None:
-        #     self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
-        # self.logger.info(pkt)
-        # self.logger.info("")
-        # self.logger.info(ipv4_proto)
+        # Save the first packet of the new flow
+        self.packet_ins.append((dpid, pkt))
+
+        # if dpid == 2:
+        #     self.logger.info('*****************************************************************')
+        #     self.logger.info(self.current_timestamp() + " packet in %s %s %s %s", dpid, src, dst, in_port)
+        #     if ipv4_proto is not None:
+        #         self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
+            # self.logger.info(pkt)
+            # self.logger.info("")
+            # self.logger.info(ipv4_proto)
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
@@ -226,10 +230,12 @@ class SimpleSwitch13(app_manager.RyuApp):
         # determine to which port should FW send the traffic
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
-            # self.logger.info('Forwarding packet to %s port on forwarder %s', self.mac_to_port[dpid][dst], dpid)
+            # if dpid == 2:
+            #     self.logger.info('Forwarding packet to %s port on forwarder %s', self.mac_to_port[dpid][dst], dpid)
         else:
             out_port = ofproto.OFPP_FLOOD
-            # self.logger.info('Setting flooding flag on forwarder %s', dpid)
+            # if dpid == 2:
+            #     self.logger.info('Setting flooding flag on forwarder %s', dpid)
         # self.logger.info('*****************************************************************')
 
         actions = [parser.OFPActionOutput(out_port)]
@@ -237,9 +243,6 @@ class SimpleSwitch13(app_manager.RyuApp):
         # install a flow to avoid packet_in next time
         if out_port != ofproto.OFPP_FLOOD:
             if ipv4_proto is not None:
-                # Save the first packet of the new flow
-                self.packet_ins.append((dpid, pkt))
-
                 # Add match to TABLE_HOST_COUNT for counting connections to hosts
                 match = parser.OFPMatch(
                     in_port=in_port,
@@ -308,8 +311,6 @@ class SimpleSwitch13(app_manager.RyuApp):
                         ipv4_dst=ipv4_proto.dst)
                     priority = 20
             elif arp_proto is not None:
-                # Save the first packet of the new flow
-                self.packet_ins.append((dpid, pkt))
                 # Prepare match for TABLE_SWITCHING
                 match = parser.OFPMatch(
                     in_port=in_port,
