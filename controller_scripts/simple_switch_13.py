@@ -56,9 +56,9 @@ class SimpleSwitch13(app_manager.RyuApp):
             cfg.StrOpt('FLOWS_DUMP_FILE', default='../results/flows_default.dump'),
             cfg.StrOpt('DNN_MODEL', default='../models/DNN_model_all_binary.h5'),
             cfg.StrOpt('DNN_SCALER', default='../models/DNN_model_all_binary_scaler.sav'),
-            cfg.ListOpt('NORMAL', default=[0, 0.6]),
-            cfg.ListOpt('WARNING', default=[0.6, 0.85]),
-            cfg.ListOpt('BEST_EFFORT', default=[0.85, 0.95]),
+            cfg.ListOpt('NORMAL', default=[0, 0.5]),
+            cfg.ListOpt('WARNING', default=[0.5, 0.8]),
+            cfg.ListOpt('BEST_EFFORT', default=[0.8, 0.95]),
             cfg.ListOpt('ATTACK', default=[0.95, 1]),
             cfg.ListOpt('METER_RATES', default=[1000, 100, 0]),
             cfg.ListOpt('METER_BURST_SIZES', default=[10, 10, 0]),
@@ -213,16 +213,19 @@ class SimpleSwitch13(app_manager.RyuApp):
         self.mac_to_port.setdefault(dpid, {})
 
         # Save the first packet of the new flow
-        self.packet_ins.append((dpid, pkt))
+        # HACK Save only packet_ins from FW2 to skip unifying of packet_ins which could take long in case of big PCAP replayed
+        if dpid == 2:
+            self.packet_ins.append((dpid, pkt))
 
-        # if dpid == 2:
-        #     self.logger.info('*****************************************************************')
-        #     self.logger.info(self.current_timestamp() + " packet in %s %s %s %s", dpid, src, dst, in_port)
-        #     if ipv4_proto is not None:
-        #         self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
-            # self.logger.info(pkt)
-            # self.logger.info("")
-            # self.logger.info(ipv4_proto)
+        if not self.DNN_MODULE_ENABLED:
+            if dpid == 2:
+                self.logger.info('*****************************************************************')
+                self.logger.info(self.current_timestamp() + " packet in %s %s %s %s", dpid, src, dst, in_port)
+                if ipv4_proto is not None:
+                    self.logger.info('%s %s\n', ipv4_proto.src, ipv4_proto.dst)
+                # self.logger.info(pkt)
+                # self.logger.info("")
+                # self.logger.info(ipv4_proto)
 
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port

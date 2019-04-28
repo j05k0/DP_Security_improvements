@@ -253,12 +253,14 @@ class DNNModule(threading.Thread):
         # print 'Merged flows:'
         #self.print_flows(parsed_flows)
 
-        # parsed_flows = self.process_packet_ins(parsed_flows, packet_ins)
+        parsed_flows = self.process_packet_ins(parsed_flows, packet_ins)
         # self.logger('Added packet_ins:')
         # print 'Final flows:'
         #self.print_flows(parsed_flows)
 
+        # self.logger('Before removing dead flows ' + str(len(parsed_flows)))
         parsed_flows = self.remove_dead_flows(parsed_flows)
+        # self.logger('After removing dead flows ' + str(len(parsed_flows)))
         # self.logger('Removed dead connections:')
         #self.print_flows(parsed_flows)
 
@@ -277,49 +279,41 @@ class DNNModule(threading.Thread):
                 for idx in range(0, len(stats[sw_id][port])):
                     stat = stats[sw_id][port][idx]
 
-                    # Check whether there is not stat with instruction OFPIT_CLEAR_ACTIONS used for blocking users
-                    # We don't want to process stats like this
-                    valid = True
-                    for i in range(len(stat.instructions)):
-                        if stat.instructions[i].type == ofproto_v1_3.OFPIT_CLEAR_ACTIONS:
-                            valid = False
-
-                    if valid:
-                        # self.logger('Switch ' + str(sw_id))
-                        # self.logger('Port ' + str(port))
-                        # self.logger(str(stat))
-                        if stat.table_id == self.controller.TABLE_SWITCHING:
-                            flow = {'id': id}
-                            if stat.match['eth_type'] == ether_types.ETH_TYPE_IP:
-                                flow['proto'] = stat.match['ip_proto']
-                                flow['ipv4_src'] = stat.match['ipv4_src']
-                                flow['ipv4_dst'] = stat.match['ipv4_dst']
-                                if flow['proto'] == in_proto.IPPROTO_TCP:
-                                    flow['port_src'] = stat.match['tcp_src']
-                                    flow['port_dst'] = stat.match['tcp_dst']
-                                elif flow['proto'] == in_proto.IPPROTO_UDP:
-                                    flow['port_src'] = stat.match['udp_src']
-                                    flow['port_dst'] = stat.match['udp_dst']
-                                else:
-                                    flow['port_src'] = 0
-                                    flow['port_dst'] = 0
-                            elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
-                                # TODO Here maybe different representation for ARP protocol
-                                flow['proto'] = self.ARP_PROTO
-                                flow['ipv4_src'] = stat.match['arp_spa']
-                                flow['ipv4_dst'] = stat.match['arp_tpa']
+                    # self.logger('Switch ' + str(sw_id))
+                    # self.logger('Port ' + str(port))
+                    # self.logger(str(stat))
+                    if stat.table_id == self.controller.TABLE_SWITCHING:
+                        flow = {'id': id}
+                        if stat.match['eth_type'] == ether_types.ETH_TYPE_IP:
+                            flow['proto'] = stat.match['ip_proto']
+                            flow['ipv4_src'] = stat.match['ipv4_src']
+                            flow['ipv4_dst'] = stat.match['ipv4_dst']
+                            if flow['proto'] == in_proto.IPPROTO_TCP:
+                                flow['port_src'] = stat.match['tcp_src']
+                                flow['port_dst'] = stat.match['tcp_dst']
+                            elif flow['proto'] == in_proto.IPPROTO_UDP:
+                                flow['port_src'] = stat.match['udp_src']
+                                flow['port_dst'] = stat.match['udp_dst']
+                            else:
                                 flow['port_src'] = 0
                                 flow['port_dst'] = 0
-                            else:
-                                self.logger('Unhandled eth_type: ' + str(stat.match['eth_type']))
-                                # print 'Unhandled eth_type: ', stat.match['eth_type']
-                            flow['packet_count'] = stat.packet_count
-                            flow['byte_count'] = stat.byte_count
-                            # Adding extended stats
-                            flow['srv_dst_count'] = 0
-                            flow['dst_count'] = 0
-                            parsed_flows.append(flow)
-                            id += 1
+                        elif stat.match['eth_type'] == ether_types.ETH_TYPE_ARP:
+                            # TODO Here maybe different representation for ARP protocol
+                            flow['proto'] = self.ARP_PROTO
+                            flow['ipv4_src'] = stat.match['arp_spa']
+                            flow['ipv4_dst'] = stat.match['arp_tpa']
+                            flow['port_src'] = 0
+                            flow['port_dst'] = 0
+                        else:
+                            self.logger('Unhandled eth_type: ' + str(stat.match['eth_type']))
+                            # print 'Unhandled eth_type: ', stat.match['eth_type']
+                        flow['packet_count'] = stat.packet_count
+                        flow['byte_count'] = stat.byte_count
+                        # Adding extended stats
+                        flow['srv_dst_count'] = 0
+                        flow['dst_count'] = 0
+                        parsed_flows.append(flow)
+                        id += 1
         return parsed_flows
 
     def unique_flows(self, flows):
@@ -379,6 +373,15 @@ class DNNModule(threading.Thread):
                                 'srv_dst_count': flows[f]['srv_dst_count'], 'port_src': flows[ft]['port_dst'],
                                 'port_dst': flows[f]['port_dst']}
                     merged_flows.append(tmp_flow)
+                    break
+                # if ft == len(flows) - 1:
+                #     tmp_flow = {'ipv4_src': flows[f]['ipv4_src'], 'ipv4_dst': flows[f]['ipv4_dst'],
+                #                 'proto': flows[f]['proto'], 'bytes_src': flows[f]['byte_count'],
+                #                 'bytes_dst': 0, 'packets_src': flows[f]['packet_count'],
+                #                 'packets_dst': 0, 'dst_count': flows[f]['dst_count'],
+                #                 'srv_dst_count': flows[f]['srv_dst_count'], 'port_src': flows[f]['port_src'],
+                #                 'port_dst': flows[f]['port_dst']}
+                #     merged_flows.append(tmp_flow)
         return merged_flows
 
     def process_packet_ins(self, flows, packet_ins):
@@ -431,12 +434,12 @@ class DNNModule(threading.Thread):
             # print 'Packet_ins flows before unique:'
             #self.print_flows(packet_ins_flows)
 
-            packet_ins_flows = self.unique_flows(packet_ins_flows)
+            # packet_ins_flows = self.unique_flows(packet_ins_flows)
             # self.logger('Unique packet_ins flows:')
             # print 'Unique packet_ins flows:'
             #self.print_flows(packet_ins_flows)
 
-            self.logger('[DNN module] After unifying we have ' + str(len(packet_ins_flows)) + ' packet_ins.')
+            # self.logger('[DNN module] After unifying we have ' + str(len(packet_ins_flows)) + ' packet_ins.')
             # print '[DNN module] After unifying we have', len(packet_ins_flows), 'packet_ins.'
 
             for flow in flows:
@@ -450,6 +453,7 @@ class DNNModule(threading.Thread):
                         # Found matching flow from statistics of forwarders
                         flow['bytes_src'] += pif['byte_count']
                         flow['packets_src'] += pif['packet_count']
+                        break
                     elif (flow['ipv4_src'] == pif['ipv4_dst']
                           and flow['ipv4_dst'] == pif['ipv4_src']
                           and flow['proto'] == pif['proto']
@@ -459,6 +463,7 @@ class DNNModule(threading.Thread):
                         # Found matching opposite flow from statistics of forwarders
                         flow['bytes_dst'] += pif['byte_count']
                         flow['packets_dst'] += pif['packet_count']
+                        break
         else:
             self.logger('[DNN module] No new packet_ins.')
         return flows
