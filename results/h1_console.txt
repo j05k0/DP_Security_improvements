@@ -1,9 +1,0 @@
-File Cache is enabled
-Actual: 14 packets (1586 bytes) sent in 2.38 seconds
-Rated: 664.2 Bps, 0.005 Mbps, 5.86 pps
-Statistics for network device: h1-eth0
-	Successful packets:        14
-	Failed packets:            0
-	Truncated packets:         0
-	Retried packets (ENOBUFS): 0
-	Retried packets (EAGAIN):  0
