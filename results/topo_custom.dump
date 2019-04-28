@@ -1,0 +1,7 @@
+ipv4_src,port_src,ipv4_dst,port_dst,proto,bytes_src,bytes_dst,packets_src,packets_dst,srv_dst_count,dst_count,prediction,category,probability
+10.0.0.1,5001,10.0.0.2,60553,17,1512,140616,1,93,1,2,1,Attack,100.00%
+10.0.0.1,0,10.0.0.2,0,-1,84,84,2,2,1,2,0,Normal,0.00%
+10.0.0.2,0,10.0.0.3,0,1,98,98,1,1,1,1,0,Normal,0.00%
+10.0.0.1,0,10.0.0.2,0,-1,84,84,2,2,1,1,0,Normal,0.00%
+10.0.0.2,0,10.0.0.3,0,1,98,98,1,1,1,2,0,Normal,0.00%
+10.0.0.2,0,10.0.0.3,0,-1,84,42,2,1,1,2,0,Normal,0.00%

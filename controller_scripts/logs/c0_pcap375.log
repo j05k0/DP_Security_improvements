@@ -1,0 +1,177 @@
+loading app simple_switch_14.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_14.py of SimpleSwitch14
+10-04-2019 15:05:01 REFRESH_RATE is 10
+10-04-2019 15:05:01 FW_REFRESH_RATE is 1
+10-04-2019 15:05:01 TIMEOUT is 30
+10-04-2019 15:05:01 FLOWS_DUMP_FILE is ../results/pcap375.dump
+2019-04-10 15:05:02.048887: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+10-04-2019 15:05:03 DNN_MODEL is ../models/DNN_model_all_binary_full.h5
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+10-04-2019 15:05:04 DNN_SCALER is ../models/DNN_model_all_binary_full_scaler.sav
+10-04-2019 15:05:04 [DNN module] DNN module initialized
+10-04-2019 15:05:04 [DNN module] Waiting for forwarders...
+instantiating app ryu.controller.ofp_handler of OFPHandler
+10-04-2019 15:05:05 [DNN module] Getting datapaths of the forwarders...
+10-04-2019 15:05:05 [DNN module] Starting new iteration...
+10-04-2019 15:05:05 [DNN module] Updating the status of the forwarders...
+10-04-2019 15:05:05 [DNN module] Getting active ports of the forwarders...
+10-04-2019 15:05:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03190>
+[2]: Requesting port stats...
+10-04-2019 15:05:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03050>
+[1]: Requesting port stats...
+10-04-2019 15:05:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb030d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+10-04-2019 15:05:06 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f470bb03190>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f470bb03050>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f470bb030d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+10-04-2019 15:05:07 [DNN module] No flow stats available
+10-04-2019 15:05:07 [DNN module] Iteration done.
+10-04-2019 15:05:07  ************************************************************
+10-04-2019 15:05:17 [DNN module] Starting new iteration...
+10-04-2019 15:05:17 [DNN module] Updating the status of the forwarders...
+10-04-2019 15:05:17 [DNN module] Getting active ports of the forwarders...
+10-04-2019 15:05:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03190>
+[2]: Requesting port stats...
+10-04-2019 15:05:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03050>
+[1]: Requesting port stats...
+10-04-2019 15:05:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb030d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+10-04-2019 15:05:18 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f470bb03190>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f470bb03050>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f470bb030d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[1]: Received flow stats
+[1]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+10-04-2019 15:05:19 [DNN module] Processing 332 packet_ins...
+10-04-2019 15:05:19 [DNN module] After unifying we have 332 packet_ins.
+10-04-2019 15:05:20 
+   packets_src packets_dst bytes_src bytes_dst srv_dst_count dst_count  \
+0           16          20      1114      1618             1         2   
+1           22          16      1778      2056             1         2   
+2           66         134      4526    164202             3         3   
+3          104         202      7136    258336             3         3   
+4            6           2       408       132             1         1   
+5           16           6     12152       404             1         2   
+6           26          14      2120      1924             1         1   
+7           14          12      1238       876             1         1   
+8            2           2       174       206             1         1   
+9           58          88      3998    113816             3         3   
+10           2           2       158       190             1         2   
+11          50          30     44066      2986             1         1   
+12           4           4       584       360             1         3   
+13           4           4       624       368             1         3   
+14          38          36      2764      4174             1         2   
+15          10           8      1092       824             1         3   
+16           4           8       746      1384             1         2   
+
+   proto_arp proto_icmp proto_igmp proto_ospf proto_other proto_tcp proto_udp  
+0          0          0          0          0           0         1         0  
+1          0          0          0          0           0         1         0  
+2          0          0          0          0           0         1         0  
+3          0          0          0          0           0         1         0  
+4          0          0          0          0           0         1         0  
+5          0          0          0          0           0         1         0  
+6          0          0          0          0           0         1         0  
+7          0          0          0          0           0         1         0  
+8          0          0          0          0           0         0         1  
+9          0          0          0          0           0         1         0  
+10         0          0          0          0           0         0         1  
+11         0          0          0          0           0         1         0  
+12         0          0          0          0           0         0         1  
+13         0          0          0          0           0         0         1  
+14         0          0          0          0           0         1         0  
+15         0          0          0          0           0         1         0  
+16         0          0          0          0           0         1         0  
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:497: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+10-04-2019 15:05:20 [DNN module] Evaluation of the flows is going to be saved into ../results/pcap375.dump
+10-04-2019 15:05:20 [DNN module] Evaluation of the flows is successfully saved
+10-04-2019 15:05:20 [DNN module] Number of saved flows is 17
+10-04-2019 15:05:20 [DNN module] Actual MAC to port table:
+10-04-2019 15:05:20 Switch 1:
+10-04-2019 15:05:20 00:00:00:00:00:02 1
+10-04-2019 15:05:20 Switch 2:
+10-04-2019 15:05:20 00:00:00:00:00:02 2
+10-04-2019 15:05:20 00:00:00:00:00:01 1
+10-04-2019 15:05:20 Switch 3:
+10-04-2019 15:05:20 00:00:00:00:00:01 1
+10-04-2019 15:05:20 [DNN module] Iteration done.
+10-04-2019 15:05:20  ************************************************************
+10-04-2019 15:05:30 [DNN module] Starting new iteration...
+10-04-2019 15:05:30 [DNN module] Updating the status of the forwarders...
+10-04-2019 15:05:30 [DNN module] Getting active ports of the forwarders...
+10-04-2019 15:05:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03190>
+[2]: Requesting port stats...
+10-04-2019 15:05:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb03050>
+[1]: Requesting port stats...
+10-04-2019 15:05:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f470bb030d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+10-04-2019 15:05:31 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f470bb03190>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f470bb03050>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f470bb030d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+10-04-2019 15:05:32 [DNN module] No new packet_ins.
+10-04-2019 15:05:32 [DNN module] No flow stats available
+10-04-2019 15:05:32 [DNN module] Actual MAC to port table:
+10-04-2019 15:05:32 Switch 1:
+10-04-2019 15:05:32 00:00:00:00:00:02 1
+10-04-2019 15:05:32 Switch 2:
+10-04-2019 15:05:32 00:00:00:00:00:02 2
+10-04-2019 15:05:32 00:00:00:00:00:01 1
+10-04-2019 15:05:32 Switch 3:
+10-04-2019 15:05:32 00:00:00:00:00:01 1
+10-04-2019 15:05:32 [DNN module] Iteration done.
+10-04-2019 15:05:32  ************************************************************

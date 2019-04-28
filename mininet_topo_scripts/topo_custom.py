@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from mininet.log import setLogLevel
 from mininet.net import Mininet
-from mininet.node import RemoteController, OVSKernelSwitch
+from mininet.node import RemoteController, UserSwitch, OVSKernelSwitch
 from mininet.link import TCLink
 from mininet.cli import CLI
 
@@ -10,10 +10,9 @@ def topo():
     net = Mininet(controller=RemoteController, link=TCLink, switch=OVSKernelSwitch)
 
     print 'Creating nodes...'
-    # h1 = net.addHost('h1', mac='3c:8c:f8:f6:0b:f0', ip='192.168.56.225/24')
-    # h2 = net.addHost('h2', mac='00:0c:29:76:e7:12', ip='192.168.56.31/24')
-    h1 = net.addHost('h1', mac='00:00:00:00:00:01', ip='175.45.176.0/2')
-    h2 = net.addHost('h2', mac='00:00:00:00:00:02', ip='149.171.126.16/2')
+    h1 = net.addHost('h1', mac='00:00:00:00:00:01', ip='10.0.0.1/24')
+    h2 = net.addHost('h2', mac='00:00:00:00:00:02', ip='10.0.0.2/24')
+    h3 = net.addHost('h3', mac='00:00:00:00:00:03', ip='10.0.0.3/24')
 
     s1 = net.addSwitch('s1')
     s2 = net.addSwitch('s2')
@@ -23,9 +22,10 @@ def topo():
 
     print 'Creating links...'
     net.addLink(h1, s1)
+    net.addLink(h2, s2)
+    net.addLink(h3, s3)
     net.addLink(s1, s2)
     net.addLink(s2, s3)
-    net.addLink(s3, h2)
 
     print 'Starting network...'
     net.build()
@@ -34,8 +34,8 @@ def topo():
     s2.start([c0])
     s3.start([c0])
 
-    print 'Verifying connectivity...'
-    loss = net.pingAll()
+    #print 'Verifying connectivity...'
+    #loss = net.pingAll()
 
     # if loss == 0:
         # h1, h2 = net.getNodeByName('h1', 'h2')

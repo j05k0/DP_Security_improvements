@@ -1,0 +1,282 @@
+loading app simple_switch_14.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_14.py of SimpleSwitch14
+07-04-2019 19:57:35 REFRESH_RATE is 5
+07-04-2019 19:57:35 FW_REFRESH_RATE is 1
+07-04-2019 19:57:35 TIMEOUT is 30
+07-04-2019 19:57:35 FLOWS_DUMP_FILE is ../results/pcap1000-1019.dump
+2019-04-07 19:57:36.296568: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+07-04-2019 19:57:38 DNN_MODEL is ../models/DNN_model_all_binary_full.h5
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+07-04-2019 19:57:39 DNN_SCALER is ../models/DNN_model_all_binary_full_scaler.sav
+07-04-2019 19:57:39 [DNN module] DNN module initialized
+07-04-2019 19:57:39 [DNN module] Waiting for forwarders...
+instantiating app ryu.controller.ofp_handler of OFPHandler
+07-04-2019 19:57:40 [DNN module] Getting datapaths of the forwarders...
+07-04-2019 19:57:40 [DNN module] Starting new iteration...
+07-04-2019 19:57:40 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:57:40 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:57:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:57:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:57:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+07-04-2019 19:57:41 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f64145b7110>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f64145b71d0>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f64145b7090>: [1, 4294967294]}
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[3]: Counters reset done
+[2]: Counters reset done
+[1]: Counters reset done
+07-04-2019 19:57:42 [DNN module] No flow stats available
+07-04-2019 19:57:42 [DNN module] Iteration done.
+07-04-2019 19:57:42  ************************************************************
+07-04-2019 19:57:47 [DNN module] Starting new iteration...
+07-04-2019 19:57:47 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:57:47 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:57:47 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:57:47 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:57:47 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+07-04-2019 19:57:48 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f64145b7110>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f64145b71d0>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f64145b7090>: [1, 4294967294]}
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Received flow stats
+[3]: Received flow stats
+[1]: Received flow stats
+[1]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Counters reset done
+[2]: Counters reset done
+[1]: Counters reset done
+07-04-2019 19:57:50 [DNN module] Processing 1135 packet_ins...
+07-04-2019 19:57:51 [DNN module] After unifying we have 1135 packet_ins.
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:492: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+07-04-2019 19:57:52 [DNN module] Evaluation of the flows is going to be saved into ../results/pcap1000-1019.dump
+07-04-2019 19:57:52 [DNN module] Evaluation of the flows is successfully saved
+07-04-2019 19:57:52 [DNN module] Actual MAC to port table:
+07-04-2019 19:57:52 Switch 1:
+07-04-2019 19:57:52 00:00:00:00:00:02 1
+07-04-2019 19:57:52 Switch 2:
+07-04-2019 19:57:52 00:00:00:00:00:02 2
+07-04-2019 19:57:52 00:00:00:00:00:01 1
+07-04-2019 19:57:52 Switch 3:
+07-04-2019 19:57:52 00:00:00:00:00:01 1
+07-04-2019 19:57:52 [DNN module] Iteration done.
+07-04-2019 19:57:52  ************************************************************
+SimpleSwitch14: Exception occurred during handler processing. Backtrace from offending handler [_packet_in_handler] servicing event [EventOFPPacketIn] follows.
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/ryu/base/app_manager.py", line 290, in _event_loop
+    handler(ev)
+  File "/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/simple_switch_14.py", line 117, in _packet_in_handler
+    pkt = packet.Packet(msg.data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 67, in __init__
+    self._parser(parse_cls)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 76, in _parser
+    proto, cls, rest_data = cls.parser(rest_data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/bgp.py", line 5230, in parser
+    kwargs = subcls.parser(binmsg)
+AttributeError: 'NoneType' object has no attribute 'parser'
+SimpleSwitch14: Exception occurred during handler processing. Backtrace from offending handler [_packet_in_handler] servicing event [EventOFPPacketIn] follows.
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/ryu/base/app_manager.py", line 290, in _event_loop
+    handler(ev)
+  File "/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/simple_switch_14.py", line 117, in _packet_in_handler
+    pkt = packet.Packet(msg.data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 67, in __init__
+    self._parser(parse_cls)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 76, in _parser
+    proto, cls, rest_data = cls.parser(rest_data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/bgp.py", line 5230, in parser
+    kwargs = subcls.parser(binmsg)
+AttributeError: 'NoneType' object has no attribute 'parser'
+07-04-2019 19:57:57 [DNN module] Starting new iteration...
+07-04-2019 19:57:57 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:57:57 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:57:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:57:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:57:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+[3]: Received port stats
+[1]: Received port stats
+[2]: Received port stats
+07-04-2019 19:58:02 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f64145b7110>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f64145b71d0>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f64145b7090>: [1, 4294967294]}
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Received flow stats
+[3]: Received flow stats
+[1]: Received flow stats
+[1]: Received flow stats
+SimpleSwitch14: Exception occurred during handler processing. Backtrace from offending handler [_packet_in_handler] servicing event [EventOFPPacketIn] follows.
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/ryu/base/app_manager.py", line 290, in _event_loop
+    handler(ev)
+  File "/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/simple_switch_14.py", line 117, in _packet_in_handler
+    pkt = packet.Packet(msg.data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 67, in __init__
+    self._parser(parse_cls)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 76, in _parser
+    proto, cls, rest_data = cls.parser(rest_data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/bgp.py", line 5220, in parser
+    '%d < %d' % (len(buf), cls._HDR_LEN))
+TooSmallException: 11 < 19
+SimpleSwitch14: Exception occurred during handler processing. Backtrace from offending handler [_packet_in_handler] servicing event [EventOFPPacketIn] follows.
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/ryu/base/app_manager.py", line 290, in _event_loop
+    handler(ev)
+  File "/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/simple_switch_14.py", line 117, in _packet_in_handler
+    pkt = packet.Packet(msg.data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 67, in __init__
+    self._parser(parse_cls)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/packet.py", line 76, in _parser
+    proto, cls, rest_data = cls.parser(rest_data)
+  File "/usr/local/lib/python2.7/dist-packages/ryu/lib/packet/bgp.py", line 5220, in parser
+    '%d < %d' % (len(buf), cls._HDR_LEN))
+TooSmallException: 11 < 19
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Counters reset done
+[2]: Counters reset done
+[1]: Counters reset done
+07-04-2019 19:58:08 [DNN module] Processing 7145 packet_ins...
+07-04-2019 19:58:30 [DNN module] After unifying we have 7145 packet_ins.
+07-04-2019 19:58:32 [DNN module] Evaluation of the flows is going to be saved into ../results/pcap1000-1019.dump
+07-04-2019 19:58:32 [DNN module] Evaluation of the flows is successfully saved
+07-04-2019 19:58:32 [DNN module] Actual MAC to port table:
+07-04-2019 19:58:32 Switch 1:
+07-04-2019 19:58:32 00:00:00:00:00:02 1
+07-04-2019 19:58:32 Switch 2:
+07-04-2019 19:58:32 00:00:00:00:00:02 2
+07-04-2019 19:58:32 00:00:00:00:00:01 1
+07-04-2019 19:58:32 Switch 3:
+07-04-2019 19:58:32 00:00:00:00:00:01 1
+07-04-2019 19:58:32 [DNN module] Iteration done.
+07-04-2019 19:58:32  ************************************************************
+07-04-2019 19:58:37 [DNN module] Starting new iteration...
+07-04-2019 19:58:37 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:58:37 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:58:37 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:58:37 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:58:37 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+07-04-2019 19:58:37 'Datapath' object is not iterable
+07-04-2019 19:58:37 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+07-04-2019 19:58:37 [DNN module] Actual MAC to port table:
+07-04-2019 19:58:37 Switch 1:
+07-04-2019 19:58:37 00:00:00:00:00:02 1
+07-04-2019 19:58:37 Switch 2:
+07-04-2019 19:58:37 00:00:00:00:00:02 2
+07-04-2019 19:58:37 00:00:00:00:00:01 1
+07-04-2019 19:58:37 Switch 3:
+07-04-2019 19:58:37 00:00:00:00:00:01 1
+07-04-2019 19:58:37 [DNN module] Iteration done.
+07-04-2019 19:58:37  ************************************************************
+07-04-2019 19:58:42 [DNN module] Starting new iteration...
+07-04-2019 19:58:42 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:58:42 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:58:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:58:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:58:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+07-04-2019 19:59:12 [DNN module] Wrong number of port stats replies received
+07-04-2019 19:59:12 [DNN module] Record count is 3
+07-04-2019 19:59:12 [DNN module] Size of the queue is 0
+07-04-2019 19:59:12 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+07-04-2019 19:59:12 [DNN module] Actual MAC to port table:
+07-04-2019 19:59:12 Switch 1:
+07-04-2019 19:59:12 00:00:00:00:00:02 1
+07-04-2019 19:59:12 Switch 2:
+07-04-2019 19:59:12 00:00:00:00:00:02 2
+07-04-2019 19:59:12 00:00:00:00:00:01 1
+07-04-2019 19:59:12 Switch 3:
+07-04-2019 19:59:12 00:00:00:00:00:01 1
+07-04-2019 19:59:12 [DNN module] Iteration done.
+07-04-2019 19:59:12  ************************************************************
+07-04-2019 19:59:17 [DNN module] Starting new iteration...
+07-04-2019 19:59:17 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:59:17 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:59:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:59:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:59:17 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+07-04-2019 19:59:47 [DNN module] Wrong number of port stats replies received
+07-04-2019 19:59:47 [DNN module] Record count is 3
+07-04-2019 19:59:47 [DNN module] Size of the queue is 0
+07-04-2019 19:59:47 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+07-04-2019 19:59:47 [DNN module] Actual MAC to port table:
+07-04-2019 19:59:47 Switch 1:
+07-04-2019 19:59:47 00:00:00:00:00:02 1
+07-04-2019 19:59:47 Switch 2:
+07-04-2019 19:59:47 00:00:00:00:00:02 2
+07-04-2019 19:59:47 00:00:00:00:00:01 1
+07-04-2019 19:59:47 Switch 3:
+07-04-2019 19:59:47 00:00:00:00:00:01 1
+07-04-2019 19:59:47 [DNN module] Iteration done.
+07-04-2019 19:59:47  ************************************************************
+07-04-2019 19:59:52 [DNN module] Starting new iteration...
+07-04-2019 19:59:52 [DNN module] Updating the status of the forwarders...
+07-04-2019 19:59:52 [DNN module] Getting active ports of the forwarders...
+07-04-2019 19:59:52 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7110>
+[3]: Requesting port stats...
+07-04-2019 19:59:52 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b71d0>
+[2]: Requesting port stats...
+07-04-2019 19:59:52 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f64145b7090>
+[1]: Requesting port stats...
+07-04-2019 20:00:22 [DNN module] Wrong number of port stats replies received
+07-04-2019 20:00:22 [DNN module] Record count is 3
+07-04-2019 20:00:22 [DNN module] Size of the queue is 0
+07-04-2019 20:00:22 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+07-04-2019 20:00:22 [DNN module] Actual MAC to port table:
+07-04-2019 20:00:22 Switch 1:
+07-04-2019 20:00:22 00:00:00:00:00:02 1
+07-04-2019 20:00:22 Switch 2:
+07-04-2019 20:00:22 00:00:00:00:00:02 2
+07-04-2019 20:00:22 00:00:00:00:00:01 1
+07-04-2019 20:00:22 Switch 3:
+07-04-2019 20:00:22 00:00:00:00:00:01 1
+07-04-2019 20:00:22 [DNN module] Iteration done.
+07-04-2019 20:00:22  ************************************************************

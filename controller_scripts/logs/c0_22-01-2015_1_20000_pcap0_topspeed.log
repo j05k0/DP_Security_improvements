@@ -1,0 +1,253 @@
+loading app simple_switch_13.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_13.py of SimpleSwitch13
+23-04-2019 16:42:53 REFRESH_RATE is 30
+23-04-2019 16:42:53 FW_REFRESH_RATE is 1
+23-04-2019 16:42:53 TIMEOUT is 60
+23-04-2019 16:42:53 FLOWS_DUMP_FILE is ../results/22-01-2015_1_20000_pcap0_topspeed.dump
+2019-04-23 16:42:54.201749: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+23-04-2019 16:42:55 DNN_MODEL is ../models/DNN_model_all_binary_full.h5
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+23-04-2019 16:42:56 DNN_SCALER is ../models/DNN_model_all_binary_full_scaler.sav
+23-04-2019 16:42:56 Intervals are:
+23-04-2019 16:42:56 Normal is [0.0, 0.5]
+23-04-2019 16:42:56 Warning is [0.5, 0.8]
+23-04-2019 16:42:56 Best Effort is [0.8, 0.95]
+23-04-2019 16:42:56 Attack is [0.95, 1.0]
+23-04-2019 16:42:56 [DNN module] DNN module initialized
+23-04-2019 16:42:56 [DNN module] Starting new iteration...
+23-04-2019 16:42:56 [DNN module] Updating the status of the forwarders...
+23-04-2019 16:42:56 [DNN module] Getting active ports of the forwarders...
+23-04-2019 16:42:56 [DNN module] No forwarders are online
+23-04-2019 16:42:56 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+23-04-2019 16:42:56 [DNN module] Iteration done.
+23-04-2019 16:42:56  ************************************************************
+instantiating app ryu.controller.ofp_handler of OFPHandler
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=0 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+23-04-2019 16:43:26 [DNN module] Starting new iteration...
+23-04-2019 16:43:26 [DNN module] Updating the status of the forwarders...
+23-04-2019 16:43:26 [DNN module] Getting active ports of the forwarders...
+23-04-2019 16:43:26 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4571962c10>
+[1]: Requesting port stats...
+23-04-2019 16:43:26 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4571962f10>
+[3]: Requesting port stats...
+23-04-2019 16:43:26 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f457197e190>
+[2]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+23-04-2019 16:43:27 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4571962c10>: [1], <ryu.controller.controller.Datapath object at 0x7f4571962f10>: [1], <ryu.controller.controller.Datapath object at 0x7f457197e190>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+23-04-2019 16:43:28 [DNN module] No flow stats available
+23-04-2019 16:43:28 [DNN module] Iteration done.
+23-04-2019 16:43:28  ************************************************************
+23-04-2019 16:43:58 [DNN module] Starting new iteration...
+23-04-2019 16:43:58 [DNN module] Updating the status of the forwarders...
+23-04-2019 16:43:58 [DNN module] Getting active ports of the forwarders...
+23-04-2019 16:43:58 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4571962c10>
+[1]: Requesting port stats...
+23-04-2019 16:43:58 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4571962f10>
+[3]: Requesting port stats...
+23-04-2019 16:43:58 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f457197e190>
+[2]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+23-04-2019 16:43:59 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4571962c10>: [1], <ryu.controller.controller.Datapath object at 0x7f4571962f10>: [1], <ryu.controller.controller.Datapath object at 0x7f457197e190>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 761 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1629 from port 2
+23-04-2019 16:44:02 [DNN module] Processing 7774 packet_ins...
+23-04-2019 16:44:24 [DNN module] After unifying we have 7774 packet_ins.
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:506: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+23-04-2019 16:44:30 [DNN module] Evaluation of the flows is going to be saved into ../results/22-01-2015_1_20000_pcap0_topspeed.dump
+23-04-2019 16:44:30 [DNN module] Evaluation of the flows is successfully saved
+23-04-2019 16:44:30 [DNN module] Number of saved flows is 558
+23-04-2019 16:44:30 Warnings are 32
+23-04-2019 16:44:30 Attacks are 1
+23-04-2019 16:44:30 Applying restrictions against warnings
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 4, 'packets_dst': 24, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 1104, 'packets_src': 12, 'port_src': 23357, 'bytes_dst': 25900, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.16', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.2', 'eth_type': 2048, 'port_src': 23357}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 4, 'packets_dst': 6, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 1576, 'packets_src': 14, 'port_src': 13284, 'bytes_dst': 364, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.16', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 13284}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.10', 'proto': 6, 'bytes_src': 996, 'packets_src': 10, 'port_src': 26939, 'bytes_dst': 364, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.10', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.2', 'eth_type': 2048, 'port_src': 26939}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 1366, 'packets_src': 10, 'port_src': 39500, 'bytes_dst': 364, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.15', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 39500}
+23-04-2019 16:44:30 Warning: {'port_dst': 3000, 'ipv4_src': '175.45.176.0', 'dst_count': 1, 'packets_dst': 6, 'ipv4_dst': '149.171.126.14', 'proto': 6, 'bytes_src': 996, 'packets_src': 10, 'port_src': 29309, 'bytes_dst': 364, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 2
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.14', 'proto': 6, 'port_dst': 3000, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 29309}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 8, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 956, 'packets_src': 10, 'port_src': 61089, 'bytes_dst': 1072, 'srv_dst_count': 3}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.18', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 61089}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 2296, 'packets_src': 14, 'port_src': 23910, 'bytes_dst': 364, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.15', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 23910}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.1', 'dst_count': 2, 'packets_dst': 8, 'ipv4_dst': '149.171.126.13', 'proto': 6, 'bytes_src': 896, 'packets_src': 10, 'port_src': 4765, 'bytes_dst': 1430, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.13', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.1', 'eth_type': 2048, 'port_src': 4765}
+23-04-2019 16:44:30 Warning: {'port_dst': 6661, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.10', 'proto': 6, 'bytes_src': 1132, 'packets_src': 10, 'port_src': 9590, 'bytes_dst': 364, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.10', 'proto': 6, 'port_dst': 6661, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 9590}
+23-04-2019 16:44:30 Warning: {'port_dst': 111, 'ipv4_src': '175.45.176.0', 'dst_count': 4, 'packets_dst': 8, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 716, 'packets_src': 10, 'port_src': 27804, 'bytes_dst': 484, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.16', 'proto': 6, 'port_dst': 111, 'ipv4_src': '175.45.176.0', 'eth_type': 2048, 'port_src': 27804}
+23-04-2019 16:44:30 Warning: {'port_dst': 8080, 'ipv4_src': '175.45.176.2', 'dst_count': 1, 'packets_dst': 8, 'ipv4_dst': '149.171.126.11', 'proto': 6, 'bytes_src': 1494, 'packets_src': 12, 'port_src': 63163, 'bytes_dst': 1296, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.11', 'proto': 6, 'port_dst': 8080, 'ipv4_src': '175.45.176.2', 'eth_type': 2048, 'port_src': 63163}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.3', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.12', 'proto': 6, 'bytes_src': 1098, 'packets_src': 10, 'port_src': 23776, 'bytes_dst': 364, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.12', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.3', 'eth_type': 2048, 'port_src': 23776}
+23-04-2019 16:44:30 Warning: {'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 3, 'packets_dst': 6, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 1296, 'packets_src': 10, 'port_src': 45388, 'bytes_dst': 364, 'srv_dst_count': 3}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.18', 'proto': 6, 'port_dst': 80, 'ipv4_src': '175.45.176.2', 'eth_type': 2048, 'port_src': 45388}
+23-04-2019 16:44:30 Warning: {'port_dst': 3071, 'ipv4_src': '59.166.0.6', 'dst_count': 49, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 404, 'packets_src': 6, 'port_src': 47925, 'bytes_dst': 140, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 2
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 3071, 'ipv4_src': '59.166.0.6', 'eth_type': 2048, 'port_src': 47925}
+23-04-2019 16:44:30 Warning: {'port_dst': 31379, 'ipv4_src': '59.166.0.1', 'dst_count': 39, 'packets_dst': 6, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 784, 'packets_src': 8, 'port_src': 52493, 'bytes_dst': 460, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 31379, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 52493}
+23-04-2019 16:44:30 Warning: {'port_dst': 21, 'ipv4_src': '59.166.0.6', 'dst_count': 39, 'packets_dst': 6, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 692, 'packets_src': 10, 'port_src': 54406, 'bytes_dst': 488, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 2
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 21, 'ipv4_src': '59.166.0.6', 'eth_type': 2048, 'port_src': 54406}
+23-04-2019 16:44:30 Warning: {'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'dst_count': 50, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 844, 'packets_src': 12, 'port_src': 64150, 'bytes_dst': 140, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 64150}
+23-04-2019 16:44:30 Warning: {'port_dst': 55702, 'ipv4_src': '59.166.0.8', 'dst_count': 51, 'packets_dst': 10, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 1164, 'packets_src': 10, 'port_src': 27166, 'bytes_dst': 956, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 55702, 'ipv4_src': '59.166.0.8', 'eth_type': 2048, 'port_src': 27166}
+23-04-2019 16:44:30 Warning: {'port_dst': 5190, 'ipv4_src': '59.166.0.3', 'dst_count': 50, 'packets_dst': 6, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 688, 'packets_src': 10, 'port_src': 9393, 'bytes_dst': 424, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 5190, 'ipv4_src': '59.166.0.3', 'eth_type': 2048, 'port_src': 9393}
+23-04-2019 16:44:30 Warning: {'port_dst': 36271, 'ipv4_src': '59.166.0.2', 'dst_count': 51, 'packets_dst': 4, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 532, 'packets_src': 6, 'port_src': 33752, 'bytes_dst': 276, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 36271, 'ipv4_src': '59.166.0.2', 'eth_type': 2048, 'port_src': 33752}
+23-04-2019 16:44:30 Warning: {'port_dst': 61361, 'ipv4_src': '59.166.0.0', 'dst_count': 51, 'packets_dst': 4, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 536, 'packets_src': 8, 'port_src': 21702, 'bytes_dst': 402, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 61361, 'ipv4_src': '59.166.0.0', 'eth_type': 2048, 'port_src': 21702}
+23-04-2019 16:44:30 Warning: {'port_dst': 143, 'ipv4_src': '59.166.0.7', 'dst_count': 49, 'packets_dst': 6, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 492, 'packets_src': 7, 'port_src': 21797, 'bytes_dst': 740, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 143, 'ipv4_src': '59.166.0.7', 'eth_type': 2048, 'port_src': 21797}
+23-04-2019 16:44:30 Warning: {'port_dst': 18601, 'ipv4_src': '59.166.0.2', 'dst_count': 38, 'packets_dst': 4, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 404, 'packets_src': 6, 'port_src': 1336, 'bytes_dst': 272, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.7', 'proto': 6, 'port_dst': 18601, 'ipv4_src': '59.166.0.2', 'eth_type': 2048, 'port_src': 1336}
+23-04-2019 16:44:30 Warning: {'port_dst': 10211, 'ipv4_src': '59.166.0.1', 'dst_count': 50, 'packets_dst': 6, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 1296, 'packets_src': 12, 'port_src': 41214, 'bytes_dst': 636, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 10211, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 41214}
+23-04-2019 16:44:30 Warning: {'port_dst': 39991, 'ipv4_src': '59.166.0.2', 'dst_count': 49, 'packets_dst': 6, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 784, 'packets_src': 8, 'port_src': 14075, 'bytes_dst': 404, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 39991, 'ipv4_src': '59.166.0.2', 'eth_type': 2048, 'port_src': 14075}
+23-04-2019 16:44:30 Warning: {'port_dst': 143, 'ipv4_src': '59.166.0.5', 'dst_count': 39, 'packets_dst': 13, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 796, 'packets_src': 11, 'port_src': 15833, 'bytes_dst': 1594, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 143, 'ipv4_src': '59.166.0.5', 'eth_type': 2048, 'port_src': 15833}
+23-04-2019 16:44:30 Warning: {'port_dst': 43597, 'ipv4_src': '59.166.0.8', 'dst_count': 39, 'packets_dst': 6, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 798, 'packets_src': 10, 'port_src': 65011, 'bytes_dst': 404, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 2
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 43597, 'ipv4_src': '59.166.0.8', 'eth_type': 2048, 'port_src': 65011}
+23-04-2019 16:44:30 Warning: {'port_dst': 29511, 'ipv4_src': '59.166.0.1', 'dst_count': 51, 'packets_dst': 4, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 878, 'packets_src': 10, 'port_src': 46197, 'bytes_dst': 394, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 29511, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 46197}
+23-04-2019 16:44:30 Warning: {'port_dst': 143, 'ipv4_src': '59.166.0.2', 'dst_count': 50, 'packets_dst': 8, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 694, 'packets_src': 10, 'port_src': 50641, 'bytes_dst': 884, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 143, 'ipv4_src': '59.166.0.2', 'eth_type': 2048, 'port_src': 50641}
+23-04-2019 16:44:30 Warning: {'port_dst': 22, 'ipv4_src': '59.166.0.6', 'dst_count': 49, 'packets_dst': 8, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 1956, 'packets_src': 10, 'port_src': 30853, 'bytes_dst': 578, 'srv_dst_count': 1}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 22, 'ipv4_src': '59.166.0.6', 'eth_type': 2048, 'port_src': 30853}
+23-04-2019 16:44:30 Warning: {'port_dst': 143, 'ipv4_src': '59.166.0.1', 'dst_count': 50, 'packets_dst': 4, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 874, 'packets_src': 12, 'port_src': 33095, 'bytes_dst': 942, 'srv_dst_count': 2}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 143, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 33095}
+23-04-2019 16:44:30 Warning: {'port_dst': 6881, 'ipv4_src': '59.166.0.2', 'dst_count': 39, 'packets_dst': 6, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 132, 'packets_src': 2, 'port_src': 32069, 'bytes_dst': 9084, 'srv_dst_count': 10}
+23-04-2019 16:44:30 Meter ID: 1
+23-04-2019 16:44:30 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 6881, 'ipv4_src': '59.166.0.2', 'eth_type': 2048, 'port_src': 32069}
+23-04-2019 16:44:30 Applying restrictions against attacks
+23-04-2019 16:44:30 Attack: {'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 1, 'packets_dst': 114, 'ipv4_dst': '149.171.126.17', 'proto': 6, 'bytes_src': 1930, 'packets_src': 26, 'port_src': 36918, 'bytes_dst': 143374, 'srv_dst_count': 1}
+23-04-2019 16:44:30 [DNN module] Actual MAC to port table:
+23-04-2019 16:44:30 Switch 1:
+23-04-2019 16:44:30 00:00:00:00:00:02 1
+23-04-2019 16:44:30 Switch 2:
+23-04-2019 16:44:30 00:00:00:00:00:02 2
+23-04-2019 16:44:30 00:00:00:00:00:01 1
+23-04-2019 16:44:30 Switch 3:
+23-04-2019 16:44:30 00:00:00:00:00:01 1
+23-04-2019 16:44:30 [DNN module] Iteration done.
+23-04-2019 16:44:30  ************************************************************
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=428000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=428000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=427000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=427000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=986000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=93 duration_nsec=986000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+23-04-2019 16:45:00 [DNN module] Starting new iteration...
+23-04-2019 16:45:00 [DNN module] Updating the status of the forwarders...
+23-04-2019 16:45:00 [DNN module] Getting active ports of the forwarders...
+23-04-2019 16:45:00 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f45706a6390>
+[1]: Requesting port stats...
+23-04-2019 16:45:00 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4570da6310>
+[3]: Requesting port stats...
+23-04-2019 16:45:00 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f455b73cb10>
+[2]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+23-04-2019 16:45:01 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f45706a6390>: [1], <ryu.controller.controller.Datapath object at 0x7f4570da6310>: [1], <ryu.controller.controller.Datapath object at 0x7f455b73cb10>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 761 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1629 from port 2
+23-04-2019 16:45:04 [DNN module] No new packet_ins.
+23-04-2019 16:45:04 [DNN module] No flow stats available
+23-04-2019 16:45:04 [DNN module] Actual MAC to port table:
+23-04-2019 16:45:04 Switch 1:
+23-04-2019 16:45:04 00:00:00:00:00:02 1
+23-04-2019 16:45:04 Switch 2:
+23-04-2019 16:45:04 00:00:00:00:00:02 2
+23-04-2019 16:45:04 00:00:00:00:00:01 1
+23-04-2019 16:45:04 Switch 3:
+23-04-2019 16:45:04 00:00:00:00:00:01 1
+23-04-2019 16:45:04 [DNN module] Iteration done.
+23-04-2019 16:45:04  ************************************************************
