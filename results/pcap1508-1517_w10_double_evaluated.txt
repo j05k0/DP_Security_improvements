@@ -1,0 +1,37 @@
+0.0.0.0,0,0.0.0.0,0
+First run:
+	Packets: 9460
+	TP: 6
+	TN: 151
+	FP: 8
+	FN: 10
+	Accuracy is 89.71%
+	Sensitivity is 37.50%
+	Specificity is 94.97%
+	Precision is 42.86%
+	F1 score is 40.00%
+
+Second run, first half ("packet_in" run):
+	Packets: 9339
+	TP: 7
+	TN: 148
+	FP: 6
+	FN: 7
+	Accuracy is 92.26%
+	Sensitivity is 50.00%
+	Specificity is 96.10%
+	Precision is 53.85%
+	F1 score is 51.85%
+
+Second run, second half ("flow tables" run):
+	Packets: 8852
+	TP: 5
+	TN: 142
+	FP: 6
+	FN: 9
+	Accuracy is 90.74%
+	Sensitivity is 35.71%
+	Specificity is 95.95%
+	Precision is 45.45%
+	F1 score is 40.00%
+

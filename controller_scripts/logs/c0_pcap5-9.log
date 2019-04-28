@@ -1,0 +1,509 @@
+loading app simple_switch_13.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_13.py of SimpleSwitch13
+14-04-2019 21:10:24 REFRESH_RATE is 5
+14-04-2019 21:10:24 FW_REFRESH_RATE is 1
+14-04-2019 21:10:24 TIMEOUT is 30
+14-04-2019 21:10:24 FLOWS_DUMP_FILE is ../results/pcap5-9.dump
+2019-04-14 21:10:24.212533: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+14-04-2019 21:10:25 DNN_MODEL is ../models/DNN_model_all_binary_full.h5
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+14-04-2019 21:10:25 DNN_SCALER is ../models/DNN_model_all_binary_full_scaler.sav
+14-04-2019 21:10:25 Intervals are:
+14-04-2019 21:10:25 Normal is [0.0, 0.5]
+14-04-2019 21:10:25 Warning is [0.5, 0.85]
+14-04-2019 21:10:25 Best Effort is [0.85, 0.95]
+14-04-2019 21:10:25 Attack is [0.95, 1.0]
+14-04-2019 21:10:25 [DNN module] DNN module initialized
+14-04-2019 21:10:25 [DNN module] Starting new iteration...
+14-04-2019 21:10:25 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:10:25 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:10:25 [DNN module] No forwarders are online
+14-04-2019 21:10:25 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+14-04-2019 21:10:25 [DNN module] Iteration done.
+14-04-2019 21:10:25  ************************************************************
+instantiating app ryu.controller.ofp_handler of OFPHandler
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=2000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=2000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=27 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=117 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+14-04-2019 21:10:30 [DNN module] Starting new iteration...
+14-04-2019 21:10:30 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:10:30 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:10:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:10:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:10:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:10:31 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:10:33 [DNN module] No new packet_ins.
+14-04-2019 21:10:33 [DNN module] No flow stats available
+14-04-2019 21:10:33 [DNN module] Iteration done.
+14-04-2019 21:10:33  ************************************************************
+14-04-2019 21:10:38 [DNN module] Starting new iteration...
+14-04-2019 21:10:38 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:10:38 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:10:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:10:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:10:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:10:39 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:10:41 [DNN module] No new packet_ins.
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:534: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+14-04-2019 21:10:43 [DNN module] Evaluation of the flows is going to be saved into ../results/pcap5-9.dump
+14-04-2019 21:10:43 [DNN module] Evaluation of the flows is successfully saved
+14-04-2019 21:10:43 [DNN module] Number of saved flows is 316
+14-04-2019 21:10:43 Warnings are 11
+14-04-2019 21:10:43 Attacks are 0
+14-04-2019 21:10:43 Applying warnings
+14-04-2019 21:10:43 Warning: {'port_dst': 5055, 'ipv4_src': '59.166.0.3', 'dst_count': 39, 'packets_dst': 12, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 878, 'packets_src': 10, 'port_src': 39252, 'bytes_dst': 1132, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.3', 'proto': 6, 'port_dst': 5055, 'ipv4_src': '59.166.0.3', 'eth_type': 2048, 'port_src': 39252}
+[OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 21, 'ipv4_src': '59.166.0.6', 'dst_count': 35, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 296, 'packets_src': 4, 'port_src': 54406, 'bytes_dst': 0, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 21, 'ipv4_src': '59.166.0.6', 'eth_type': 2048, 'port_src': 54406}
+[OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 38455, 'ipv4_src': '59.166.0.4', 'dst_count': 19, 'packets_dst': 22, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 1526, 'packets_src': 18, 'port_src': 40650, 'bytes_dst': 2476, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.7', 'proto': 6, 'port_dst': 38455, 'ipv4_src': '59.166.0.4', 'eth_type': 2048, 'port_src': 40650}
+[OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 21, 'ipv4_src': '59.166.0.3', 'dst_count': 23, 'packets_dst': 12, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 1012, 'packets_src': 14, 'port_src': 23415, 'bytes_dst': 1012, 'srv_dst_count': 2}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 21, 'ipv4_src': '59.166.0.3', 'eth_type': 2048, 'port_src': 23415}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 25, 'ipv4_src': '59.166.0.0', 'dst_count': 29, 'packets_dst': 8, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 662, 'packets_src': 8, 'port_src': 60749, 'bytes_dst': 1192, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 25, 'ipv4_src': '59.166.0.0', 'eth_type': 2048, 'port_src': 60749}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 48017, 'ipv4_src': '59.166.0.9', 'dst_count': 35, 'packets_dst': 20, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 1542, 'packets_src': 18, 'port_src': 42988, 'bytes_dst': 1736, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.8', 'proto': 6, 'port_dst': 48017, 'ipv4_src': '59.166.0.9', 'eth_type': 2048, 'port_src': 42988}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 21, 'ipv4_src': '59.166.0.3', 'dst_count': 19, 'packets_dst': 14, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 966, 'packets_src': 14, 'port_src': 40867, 'bytes_dst': 1198, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.7', 'proto': 6, 'port_dst': 21, 'ipv4_src': '59.166.0.3', 'eth_type': 2048, 'port_src': 40867}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 143, 'ipv4_src': '59.166.0.7', 'dst_count': 19, 'packets_dst': 20, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 1350, 'packets_src': 18, 'port_src': 1144, 'bytes_dst': 1834, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.7', 'proto': 6, 'port_dst': 143, 'ipv4_src': '59.166.0.7', 'eth_type': 2048, 'port_src': 1144}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 21, 'ipv4_src': '59.166.0.0', 'dst_count': 39, 'packets_dst': 10, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 690, 'packets_src': 10, 'port_src': 36184, 'bytes_dst': 826, 'srv_dst_count': 2}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.3', 'proto': 6, 'port_dst': 21, 'ipv4_src': '59.166.0.0', 'eth_type': 2048, 'port_src': 36184}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 25229, 'ipv4_src': '59.166.0.7', 'dst_count': 43, 'packets_dst': 12, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 1044, 'packets_src': 14, 'port_src': 30731, 'bytes_dst': 6548, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 25229, 'ipv4_src': '59.166.0.7', 'eth_type': 2048, 'port_src': 30731}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 Warning: {'port_dst': 22437, 'ipv4_src': '59.166.0.6', 'dst_count': 25, 'packets_dst': 12, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 1010, 'packets_src': 12, 'port_src': 11527, 'bytes_dst': 1130, 'srv_dst_count': 1}
+14-04-2019 21:10:43 Meter ID: 1
+14-04-2019 21:10:43 Params: {'ipv4_dst': '149.171.126.2', 'proto': 6, 'port_dst': 22437, 'ipv4_src': '59.166.0.6', 'eth_type': 2048, 'port_src': 11527}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:43 [DNN module] Actual MAC to port table:
+14-04-2019 21:10:43 Switch 1:
+14-04-2019 21:10:43 00:00:00:00:00:02 1
+14-04-2019 21:10:43 Switch 3:
+14-04-2019 21:10:43 00:00:00:00:00:01 1
+14-04-2019 21:10:43 [DNN module] Iteration done.
+14-04-2019 21:10:43  ************************************************************
+14-04-2019 21:10:48 [DNN module] Starting new iteration...
+14-04-2019 21:10:48 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:10:48 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:10:48 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:10:48 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:10:48 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:10:49 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:10:51 [DNN module] No new packet_ins.
+14-04-2019 21:10:52 [DNN module] Evaluation of the flows is going to be saved into ../results/pcap5-9.dump
+14-04-2019 21:10:52 [DNN module] Evaluation of the flows is successfully saved
+14-04-2019 21:10:52 [DNN module] Number of saved flows is 158
+14-04-2019 21:10:52 Warnings are 7
+14-04-2019 21:10:52 Attacks are 0
+14-04-2019 21:10:52 Applying warnings
+14-04-2019 21:10:52 Warning: {'port_dst': 25, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 530, 'packets_src': 6, 'port_src': 39029, 'bytes_dst': 0, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.2', 'proto': 6, 'port_dst': 25, 'ipv4_src': '59.166.0.7', 'eth_type': 2048, 'port_src': 39029}
+[OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 48241, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 12, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 1054, 'packets_src': 12, 'port_src': 10525, 'bytes_dst': 1010, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.2', 'proto': 6, 'port_dst': 48241, 'ipv4_src': '59.166.0.5', 'eth_type': 2048, 'port_src': 10525}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 38586, 'ipv4_src': '59.166.0.9', 'dst_count': 17, 'packets_dst': 10, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 780, 'packets_src': 10, 'port_src': 25023, 'bytes_dst': 1346, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.1', 'proto': 6, 'port_dst': 38586, 'ipv4_src': '59.166.0.9', 'eth_type': 2048, 'port_src': 25023}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 48061, 'ipv4_src': '59.166.0.3', 'dst_count': 14, 'packets_dst': 4, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 614, 'packets_src': 6, 'port_src': 2861, 'bytes_dst': 264, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.2', 'proto': 6, 'port_dst': 48061, 'ipv4_src': '59.166.0.3', 'eth_type': 2048, 'port_src': 2861}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 40637, 'ipv4_src': '59.166.0.8', 'dst_count': 26, 'packets_dst': 16, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 1318, 'packets_src': 16, 'port_src': 14580, 'bytes_dst': 1536, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.9', 'proto': 6, 'port_dst': 40637, 'ipv4_src': '59.166.0.8', 'eth_type': 2048, 'port_src': 14580}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 526, 'packets_src': 6, 'port_src': 64150, 'bytes_dst': 264, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.6', 'proto': 6, 'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'eth_type': 2048, 'port_src': 64150}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 Warning: {'port_dst': 59285, 'ipv4_src': '59.166.0.7', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 746, 'packets_src': 8, 'port_src': 60342, 'bytes_dst': 132, 'srv_dst_count': 1}
+14-04-2019 21:10:52 Meter ID: 1
+14-04-2019 21:10:52 Params: {'ipv4_dst': '149.171.126.0', 'proto': 6, 'port_dst': 59285, 'ipv4_src': '59.166.0.7', 'eth_type': 2048, 'port_src': 60342}
+[OFPInstructionMeter(len=8,meter_id=1,type=6), OFPInstructionActions(actions=[OFPActionOutput(len=16,max_len=65509,port=2,type=0)],len=24,type=4), OFPInstructionMeter(len=8,meter_id=1,type=6)]
+14-04-2019 21:10:52 [DNN module] Actual MAC to port table:
+14-04-2019 21:10:52 Switch 1:
+14-04-2019 21:10:52 00:00:00:00:00:02 1
+14-04-2019 21:10:52 Switch 3:
+14-04-2019 21:10:52 00:00:00:00:00:01 1
+14-04-2019 21:10:52 [DNN module] Iteration done.
+14-04-2019 21:10:52  ************************************************************
+14-04-2019 21:10:57 [DNN module] Starting new iteration...
+14-04-2019 21:10:57 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:10:57 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:10:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:10:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:10:57 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:10:58 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:11:00 [DNN module] No new packet_ins.
+14-04-2019 21:11:00 [DNN module] No flow stats available
+14-04-2019 21:11:00 [DNN module] Actual MAC to port table:
+14-04-2019 21:11:00 Switch 1:
+14-04-2019 21:11:00 00:00:00:00:00:02 1
+14-04-2019 21:11:00 Switch 3:
+14-04-2019 21:11:00 00:00:00:00:00:01 1
+14-04-2019 21:11:00 [DNN module] Iteration done.
+14-04-2019 21:11:00  ************************************************************
+14-04-2019 21:11:05 [DNN module] Starting new iteration...
+14-04-2019 21:11:05 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:11:05 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:11:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:11:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:11:05 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:11:06 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:11:08 [DNN module] No new packet_ins.
+14-04-2019 21:11:08 [DNN module] No flow stats available
+14-04-2019 21:11:08 [DNN module] Actual MAC to port table:
+14-04-2019 21:11:08 Switch 1:
+14-04-2019 21:11:08 00:00:00:00:00:02 1
+14-04-2019 21:11:08 Switch 3:
+14-04-2019 21:11:08 00:00:00:00:00:01 1
+14-04-2019 21:11:08 [DNN module] Iteration done.
+14-04-2019 21:11:08  ************************************************************
+14-04-2019 21:11:13 [DNN module] Starting new iteration...
+14-04-2019 21:11:13 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:11:13 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:11:13 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:11:13 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:11:13 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:11:14 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:11:15 [DNN module] No new packet_ins.
+14-04-2019 21:11:15 [DNN module] No flow stats available
+14-04-2019 21:11:15 [DNN module] Actual MAC to port table:
+14-04-2019 21:11:15 Switch 1:
+14-04-2019 21:11:15 00:00:00:00:00:02 1
+14-04-2019 21:11:15 Switch 3:
+14-04-2019 21:11:15 00:00:00:00:00:01 1
+14-04-2019 21:11:15 [DNN module] Iteration done.
+14-04-2019 21:11:15  ************************************************************
+14-04-2019 21:11:20 [DNN module] Starting new iteration...
+14-04-2019 21:11:20 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:11:20 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:11:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:11:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:11:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+14-04-2019 21:11:21 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:11:23 [DNN module] No new packet_ins.
+14-04-2019 21:11:23 [DNN module] No flow stats available
+14-04-2019 21:11:23 [DNN module] Actual MAC to port table:
+14-04-2019 21:11:23 Switch 1:
+14-04-2019 21:11:23 00:00:00:00:00:02 1
+14-04-2019 21:11:23 Switch 3:
+14-04-2019 21:11:23 00:00:00:00:00:01 1
+14-04-2019 21:11:23 [DNN module] Iteration done.
+14-04-2019 21:11:23  ************************************************************
+14-04-2019 21:11:28 [DNN module] Starting new iteration...
+14-04-2019 21:11:28 [DNN module] Updating the status of the forwarders...
+14-04-2019 21:11:28 [DNN module] Getting active ports of the forwarders...
+14-04-2019 21:11:28 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5f10>
+[2]: Requesting port stats...
+14-04-2019 21:11:28 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>
+[1]: Requesting port stats...
+14-04-2019 21:11:28 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+14-04-2019 21:11:29 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7fc3295f5f10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7fc3295f5dd0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7fc3295f5e50>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 542 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 1003 from port 2
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+14-04-2019 21:11:31 [DNN module] No new packet_ins.
+14-04-2019 21:11:31 [DNN module] No flow stats available
+14-04-2019 21:11:31 [DNN module] Actual MAC to port table:
+14-04-2019 21:11:31 Switch 1:
+14-04-2019 21:11:31 00:00:00:00:00:02 1
+14-04-2019 21:11:31 Switch 3:
+14-04-2019 21:11:31 00:00:00:00:00:01 1
+14-04-2019 21:11:31 [DNN module] Iteration done.
+14-04-2019 21:11:31  ************************************************************

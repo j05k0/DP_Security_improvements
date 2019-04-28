@@ -1,0 +1,560 @@
+Final flows:
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 6, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 1434, 'packets_src': 12, 'port_src': 13284, 'bytes_dst': 352, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 3593, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 49910, 'bytes_dst': 190, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 49664, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 6645, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 51022, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 42587, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 6051, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 10741, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 1464, 'bytes_dst': 206, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 15807, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 48584, 'bytes_dst': 140, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 1024, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 4, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 33661, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 1024, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 32119, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 33661, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 4, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 32119, 'bytes_dst': 368, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 52908, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 2109, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 52908, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 38981, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.0', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 1390, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.0', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 3231, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.0', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 11654, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 2142, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 25689, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 50089, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 27412, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.4', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 49346, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 43054, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 40650, 'bytes_dst': 0, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 48847, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 24551, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 42173, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 11836, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 48017, 'ipv4_src': '59.166.0.9', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 42988, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 44307, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 4, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 10393, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 44307, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 8989, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 10393, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 4, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 8989, 'bytes_dst': 368, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 10211, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 41214, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 10211, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 64150, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 12660, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 46719, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 14584, 'bytes_dst': 140, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 40726, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 34290, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 15794, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 43388, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 41049, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 4, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 24266, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 41049, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 21270, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 41049, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 52335, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 24266, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 4, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 21270, 'bytes_dst': 368, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 52335, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 24033, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 55385, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 62539, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 58304, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 20446, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.7', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 18282, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.3', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 18990, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.0', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 22848, 'bytes_dst': 206, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.0', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 60749, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 25100, 'bytes_dst': 206, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 27163, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 24946, 'bytes_dst': 192, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 44119, 'bytes_dst': 190, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 26731, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 21612, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 38983, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 9989, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 26872, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 58771, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 58325, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 28565, 'bytes_dst': 192, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 51626, 'bytes_dst': 140, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 61007, 'bytes_dst': 0, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 50815, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 13846, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 29704, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 3, 'packets_dst': 24, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 1104, 'packets_src': 12, 'port_src': 23357, 'bytes_dst': 25900, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 3, 'packets_dst': 0, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 13792, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 22, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 5544, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 22, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 39954, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 12660, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 46719, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 4567, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 8200, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 59053, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 4192, 'bytes_dst': 192, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 42587, 'bytes_dst': 0, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 6051, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 10741, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.9', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 5685, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.9', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 45285, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.9', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 42405, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 6438, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 4567, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 8200, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 59053, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 44759, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 40309, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 42587, 'bytes_dst': 0, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 6051, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 10741, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.0', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 9897, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.0', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 3231, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.0', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 11654, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 38902, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 40460, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 28756, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 35578, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 15925, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 5555, 'ipv4_src': '175.45.176.2', 'dst_count': 3, 'packets_dst': 0, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 23357, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5555, 'ipv4_src': '175.45.176.2', 'dst_count': 3, 'packets_dst': 6, 'ipv4_dst': '149.171.126.16', 'proto': 6, 'bytes_src': 8376, 'packets_src': 14, 'port_src': 13792, 'bytes_dst': 364, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 36998, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 17249, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 4567, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 8200, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 59053, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 1416, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 26731, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 21612, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 38983, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 9989, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 61361, 'ipv4_src': '59.166.0.0', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 21702, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.4', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 22873, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 60756, 'bytes_dst': 190, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.6', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 54406, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 26778, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 40460, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.4', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 28756, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 54634, 'bytes_dst': 192, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 58220, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 62539, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 58304, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 30266, 'bytes_dst': 140, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 24266, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 21270, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 52335, 'bytes_dst': 192, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 1736, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 28172, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.2', 'dst_count': 1, 'packets_dst': 6, 'ipv4_dst': '149.171.126.10', 'proto': 6, 'bytes_src': 996, 'packets_src': 10, 'port_src': 26939, 'bytes_dst': 364, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 47526, 'bytes_dst': 206, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 49350, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 23202, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 4, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 12527, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 23202, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 39558, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 12527, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 4, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 39558, 'bytes_dst': 368, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 39991, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 14075, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 22, 'ipv4_src': '59.166.0.0', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 3507, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 7419, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 47061, 'bytes_dst': 206, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 26731, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 21612, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 38983, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 9989, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 13883, 'ipv4_src': '59.166.0.4', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 8987, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 10510, 'bytes_dst': 190, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 143, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 5544, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 143, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 39954, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 42173, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 11836, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 13903, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 34290, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 15794, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 43388, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 38340, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 4, 'ipv4_dst': '149.171.126.3', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 16931, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 38340, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 15133, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 16931, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 4, 'ipv4_dst': '149.171.126.3', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 15133, 'bytes_dst': 368, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 36191, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 64239, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 36191, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 28468, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 64070, 'ipv4_src': '59.166.0.9', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 37442, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 41214, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 17453, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 64150, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 1366, 'packets_src': 10, 'port_src': 39500, 'bytes_dst': 364, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 1212, 'packets_src': 8, 'port_src': 23910, 'bytes_dst': 352, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 63324, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 51626, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 63324, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 61007, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 26872, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 58771, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 24697, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 1336, 'bytes_dst': 0, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 48847, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 24551, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 26232, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 2438, 'packets_src': 16, 'port_src': 39500, 'bytes_dst': 364, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 2, 'packets_dst': 6, 'ipv4_dst': '149.171.126.15', 'proto': 6, 'bytes_src': 2284, 'packets_src': 14, 'port_src': 23910, 'bytes_dst': 352, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 2142, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 25689, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 50089, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 27412, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 55173, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 4, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 584, 'packets_src': 4, 'port_src': 31564, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 55173, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 29622, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 31564, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 4, 'ipv4_dst': '149.171.126.8', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 29622, 'bytes_dst': 368, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 31379, 'ipv4_src': '59.166.0.1', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.8', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 52493, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 32859, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 4, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 576, 'packets_src': 4, 'port_src': 30507, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 32859, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 56644, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 30507, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 4, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 56644, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 30318, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 6645, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 30318, 'ipv4_src': '59.166.0.5', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 51022, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 22, 'ipv4_src': '59.166.0.6', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 30853, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 22, 'ipv4_src': '59.166.0.6', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 47925, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 32716, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 62824, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 36701, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 1643, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 53437, 'bytes_dst': 0, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 7419, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 47061, 'bytes_dst': 206, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 25, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 4936, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 3593, 'bytes_dst': 192, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.5', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 49910, 'bytes_dst': 190, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 34290, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 15794, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.5', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 43388, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 3000, 'ipv4_src': '175.45.176.0', 'dst_count': 1, 'packets_dst': 6, 'ipv4_dst': '149.171.126.14', 'proto': 6, 'bytes_src': 996, 'packets_src': 10, 'port_src': 29309, 'bytes_dst': 364, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.9', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 41515, 'bytes_dst': 190, 'srv_dst_count': 8}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.9', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.4', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 14906, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 24946, 'bytes_dst': 192, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 17, 'bytes_src': 158, 'packets_src': 2, 'port_src': 44119, 'bytes_dst': 190, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 26731, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 21612, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 38983, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 21, 'ipv4_src': '59.166.0.8', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 9989, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 50862, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 0, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 2109, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 50862, 'ipv4_src': '59.166.0.0', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 38981, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 44759, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.3', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 40309, 'bytes_dst': 192, 'srv_dst_count': 6}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.3', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 14306, 'bytes_dst': 140, 'srv_dst_count': 3}
+************************************************************
+{'port_dst': 38455, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 43054, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 38455, 'ipv4_src': '59.166.0.4', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 40650, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 50815, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 13846, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 1464, 'bytes_dst': 206, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 15807, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.6', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 17431, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 32716, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 62824, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 111, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 4, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 624, 'packets_src': 4, 'port_src': 36701, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 14455, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 32716, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 14455, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 4, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 576, 'packets_src': 4, 'port_src': 62824, 'bytes_dst': 360, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 14455, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 0, 'packets_src': 0, 'port_src': 36701, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 18601, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 0, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 24697, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 18601, 'ipv4_src': '59.166.0.2', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 1336, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 19393, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.2', 'dst_count': 17, 'packets_dst': 2, 'ipv4_dst': '149.171.126.9', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 21003, 'bytes_dst': 140, 'srv_dst_count': 4}
+************************************************************
+{'port_dst': 1173, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 61715, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 1173, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 47629, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.6', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 57983, 'bytes_dst': 192, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.6', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 50778, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 8, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 956, 'packets_src': 10, 'port_src': 61089, 'bytes_dst': 1072, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 10, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 990, 'packets_src': 10, 'port_src': 4159, 'bytes_dst': 1144, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 1736, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 5190, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.2', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 28172, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.1', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 26719, 'bytes_dst': 206, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 64239, 'bytes_dst': 0, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.1', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 28468, 'bytes_dst': 140, 'srv_dst_count': 5}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.7', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 160, 'packets_src': 2, 'port_src': 57137, 'bytes_dst': 192, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 50602, 'bytes_dst': 140, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.7', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 30731, 'bytes_dst': 0, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 25229, 'ipv4_src': '59.166.0.7', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 50602, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 25229, 'ipv4_src': '59.166.0.7', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.0', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 30731, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 32103, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 0, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 1643, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 32103, 'ipv4_src': '59.166.0.2', 'dst_count': 16, 'packets_dst': 2, 'ipv4_dst': '149.171.126.5', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 53437, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 8, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 956, 'packets_src': 10, 'port_src': 61089, 'bytes_dst': 1072, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '175.45.176.0', 'dst_count': 3, 'packets_dst': 10, 'ipv4_dst': '149.171.126.18', 'proto': 6, 'bytes_src': 990, 'packets_src': 10, 'port_src': 4159, 'bytes_dst': 1144, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 33289, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 0, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 61715, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 33289, 'ipv4_src': '59.166.0.8', 'dst_count': 13, 'packets_dst': 2, 'ipv4_dst': '149.171.126.3', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 47629, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 3071, 'ipv4_src': '59.166.0.6', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 30853, 'bytes_dst': 0, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 3071, 'ipv4_src': '59.166.0.6', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 47925, 'bytes_dst': 140, 'srv_dst_count': 1}
+************************************************************
+{'port_dst': 53, 'ipv4_src': '59.166.0.9', 'dst_count': 14, 'packets_dst': 2, 'ipv4_dst': '149.171.126.7', 'proto': 17, 'bytes_src': 174, 'packets_src': 2, 'port_src': 4864, 'bytes_dst': 206, 'srv_dst_count': 7}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.9', 'dst_count': 15, 'packets_dst': 0, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 0, 'packets_src': 0, 'port_src': 45285, 'bytes_dst': 0, 'srv_dst_count': 2}
+************************************************************
+{'port_dst': 80, 'ipv4_src': '59.166.0.9', 'dst_count': 15, 'packets_dst': 2, 'ipv4_dst': '149.171.126.1', 'proto': 6, 'bytes_src': 272, 'packets_src': 4, 'port_src': 42405, 'bytes_dst': 140, 'srv_dst_count': 2}
+************************************************************
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[DNN module] Iteration done.
+************************************************************
+

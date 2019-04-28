@@ -1,0 +1,543 @@
+loading app simple_switch_13.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_13.py of SimpleSwitch13
+DNN module is enabled
+28-04-2019 17:56:54 REFRESH_RATE is 20
+28-04-2019 17:56:54 FW_REFRESH_RATE is 1
+28-04-2019 17:56:54 TIMEOUT is 180
+28-04-2019 17:56:54 FLOWS_DUMP_FILE is ../results/22-01-2015_1_100000_pcap0_w20.dump
+2019-04-28 17:56:54.684766: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+28-04-2019 17:56:56 DNN_MODEL is ../models/DNN_model_all_binary_full.h5
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+28-04-2019 17:56:56 DNN_SCALER is ../models/DNN_model_all_binary_full_scaler.sav
+28-04-2019 17:56:56 Intervals are:
+28-04-2019 17:56:56 Normal is [0.0, 0.5]
+28-04-2019 17:56:56 Warning is [0.5, 0.8]
+28-04-2019 17:56:56 Best Effort is [0.8, 0.95]
+28-04-2019 17:56:56 Attack is [0.95, 1.0]
+28-04-2019 17:56:56 [DNN module] DNN module initialized
+28-04-2019 17:56:56 [DNN module] Starting new iteration...
+28-04-2019 17:56:56 [DNN module] Updating the status of the forwarders...
+28-04-2019 17:56:56 [DNN module] Getting active ports of the forwarders...
+28-04-2019 17:56:56 [DNN module] No forwarders are online
+28-04-2019 17:56:56 [DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+28-04-2019 17:56:56 [DNN module] Iteration done.
+28-04-2019 17:56:56  ************************************************************
+instantiating app ryu.controller.ofp_handler of OFPHandler
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=12000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=12000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=12000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=13000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=13000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1562 duration_nsec=13000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 17:57:16 [DNN module] Starting new iteration...
+28-04-2019 17:57:16 [DNN module] Updating the status of the forwarders...
+28-04-2019 17:57:16 [DNN module] Getting active ports of the forwarders...
+28-04-2019 17:57:16 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7ba2c310>
+[2]: Requesting port stats...
+28-04-2019 17:57:16 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7ba2c1d0>
+[1]: Requesting port stats...
+28-04-2019 17:57:16 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7ba2c250>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+28-04-2019 17:57:17 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e7ba2c310>: [1, 2], <ryu.controller.controller.Datapath object at 0x7f8e7ba2c1d0>: [1], <ryu.controller.controller.Datapath object at 0x7f8e7ba2c250>: [1]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+28-04-2019 17:57:36 [DNN module] No new packet_ins.
+28-04-2019 17:57:36 [DNN module] No flow stats available
+28-04-2019 17:57:36 [DNN module] Actual MAC to port table:
+28-04-2019 17:57:36 Switch 1:
+28-04-2019 17:57:36 00:00:00:00:00:02 1
+28-04-2019 17:57:36 [DNN module] Iteration done.
+28-04-2019 17:57:36  ************************************************************
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=471000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=471000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=471000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=994000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=994000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=994000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=992000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=992000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1600 duration_nsec=992000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 17:57:56 [DNN module] Starting new iteration...
+28-04-2019 17:57:56 [DNN module] Updating the status of the forwarders...
+28-04-2019 17:57:56 [DNN module] Getting active ports of the forwarders...
+28-04-2019 17:57:56 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7a823b10>
+[2]: Requesting port stats...
+28-04-2019 17:57:56 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79bbc710>
+[1]: Requesting port stats...
+28-04-2019 17:57:56 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79fd1c10>
+[3]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+28-04-2019 17:57:57 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e7a823b10>: [1, 2], <ryu.controller.controller.Datapath object at 0x7f8e79bbc710>: [1], <ryu.controller.controller.Datapath object at 0x7f8e79fd1c10>: [1]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+28-04-2019 17:58:15 [DNN module] No new packet_ins.
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:510: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+28-04-2019 17:58:18 [DNN module] Evaluation of the flows is going to be saved into ../results/22-01-2015_1_100000_pcap0_w20.dump
+28-04-2019 17:58:18 [DNN module] Evaluation of the flows is successfully saved
+28-04-2019 17:58:18 [DNN module] Number of saved flows is 302
+28-04-2019 17:58:18 Malicious flows are 28
+28-04-2019 17:58:18 [DNN module] Prevention mode is disabled
+28-04-2019 17:58:18 [DNN module] Actual MAC to port table:
+28-04-2019 17:58:18 Switch 1:
+28-04-2019 17:58:18 00:00:00:00:00:02 1
+28-04-2019 17:58:18 Switch 3:
+28-04-2019 17:58:18 00:00:00:00:00:01 1
+28-04-2019 17:58:18 [DNN module] Iteration done.
+28-04-2019 17:58:18  ************************************************************
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1642 duration_nsec=593000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1642 duration_nsec=593000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1642 duration_nsec=593000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=490000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=490000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=490000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=536000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=536000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1643 duration_nsec=536000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 17:58:38 [DNN module] Starting new iteration...
+28-04-2019 17:58:38 [DNN module] Updating the status of the forwarders...
+28-04-2019 17:58:38 [DNN module] Getting active ports of the forwarders...
+28-04-2019 17:58:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79600610>
+[2]: Requesting port stats...
+28-04-2019 17:58:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8ec367f450>
+[1]: Requesting port stats...
+28-04-2019 17:58:38 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7919a990>
+[3]: Requesting port stats...
+[2]: Received port stats
+[3]: Received port stats
+[1]: Received port stats
+28-04-2019 17:58:41 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e79600610>: [1, 2], <ryu.controller.controller.Datapath object at 0x7f8ec367f450>: [1], <ryu.controller.controller.Datapath object at 0x7f8e7919a990>: [1]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 17:59:00 [DNN module] No new packet_ins.
+28-04-2019 17:59:20 [DNN module] Evaluation of the flows is going to be saved into ../results/22-01-2015_1_100000_pcap0_w20.dump
+28-04-2019 17:59:20 [DNN module] Evaluation of the flows is successfully saved
+28-04-2019 17:59:20 [DNN module] Number of saved flows is 1757
+28-04-2019 17:59:20 Malicious flows are 15
+28-04-2019 17:59:20 [DNN module] Prevention mode is disabled
+28-04-2019 17:59:20 [DNN module] Actual MAC to port table:
+28-04-2019 17:59:20 Switch 1:
+28-04-2019 17:59:20 00:00:00:00:00:02 1
+28-04-2019 17:59:20 Switch 3:
+28-04-2019 17:59:20 00:00:00:00:00:01 1
+28-04-2019 17:59:20 [DNN module] Iteration done.
+28-04-2019 17:59:20  ************************************************************
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1704 duration_nsec=995000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1704 duration_nsec=996000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1704 duration_nsec=996000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1705 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 17:59:40 [DNN module] Starting new iteration...
+28-04-2019 17:59:40 [DNN module] Updating the status of the forwarders...
+28-04-2019 17:59:40 [DNN module] Getting active ports of the forwarders...
+28-04-2019 17:59:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79198f90>
+[3]: Requesting port stats...
+28-04-2019 17:59:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79198150>
+[2]: Requesting port stats...
+28-04-2019 17:59:40 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7917f510>
+[1]: Requesting port stats...
+[3]: Received port stats
+[1]: Received port stats
+[2]: Received port stats
+28-04-2019 17:59:41 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e79198f90>: [1], <ryu.controller.controller.Datapath object at 0x7f8e79198150>: [1, 2], <ryu.controller.controller.Datapath object at 0x7f8e7917f510>: [1]}
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[1]: Received flow stats
+No flow stats received
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 18:00:00 [DNN module] No new packet_ins.
+28-04-2019 18:00:00 [DNN module] No flow stats available
+28-04-2019 18:00:00 [DNN module] Actual MAC to port table:
+28-04-2019 18:00:00 Switch 1:
+28-04-2019 18:00:00 00:00:00:00:00:02 1
+28-04-2019 18:00:00 Switch 3:
+28-04-2019 18:00:00 00:00:00:00:00:01 1
+28-04-2019 18:00:00 [DNN module] Iteration done.
+28-04-2019 18:00:00  ************************************************************
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1744 duration_nsec=690000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1744 duration_nsec=690000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1744 duration_nsec=690000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=0 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=1000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1745 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 18:00:20 [DNN module] Starting new iteration...
+28-04-2019 18:00:20 [DNN module] Updating the status of the forwarders...
+28-04-2019 18:00:20 [DNN module] Getting active ports of the forwarders...
+28-04-2019 18:00:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79fd1d50>
+[1]: Requesting port stats...
+28-04-2019 18:00:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79fd1990>
+[3]: Requesting port stats...
+28-04-2019 18:00:20 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e79fd1890>
+[2]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+28-04-2019 18:00:21 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e79fd1d50>: [1], <ryu.controller.controller.Datapath object at 0x7f8e79fd1990>: [1], <ryu.controller.controller.Datapath object at 0x7f8e79fd1890>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 18:00:41 [DNN module] No new packet_ins.
+28-04-2019 18:00:41 [DNN module] No flow stats available
+28-04-2019 18:00:41 [DNN module] Actual MAC to port table:
+28-04-2019 18:00:41 Switch 1:
+28-04-2019 18:00:41 00:00:00:00:00:02 1
+28-04-2019 18:00:41 Switch 3:
+28-04-2019 18:00:41 00:00:00:00:00:01 1
+28-04-2019 18:00:41 [DNN module] Iteration done.
+28-04-2019 18:00:41  ************************************************************
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=395000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=395000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=395000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=999000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=999000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1785 duration_nsec=999000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1786 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1786 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1786 duration_nsec=5000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 18:01:01 [DNN module] Starting new iteration...
+28-04-2019 18:01:01 [DNN module] Updating the status of the forwarders...
+28-04-2019 18:01:01 [DNN module] Getting active ports of the forwarders...
+28-04-2019 18:01:01 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e73cb6390>
+[1]: Requesting port stats...
+28-04-2019 18:01:01 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e73cb6290>
+[3]: Requesting port stats...
+28-04-2019 18:01:01 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8ec367f150>
+[2]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+28-04-2019 18:01:02 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e73cb6390>: [1], <ryu.controller.controller.Datapath object at 0x7f8e73cb6290>: [1], <ryu.controller.controller.Datapath object at 0x7f8ec367f150>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 18:01:22 [DNN module] No new packet_ins.
+28-04-2019 18:01:22 [DNN module] No flow stats available
+28-04-2019 18:01:22 [DNN module] Actual MAC to port table:
+28-04-2019 18:01:22 Switch 1:
+28-04-2019 18:01:22 00:00:00:00:00:02 1
+28-04-2019 18:01:22 Switch 3:
+28-04-2019 18:01:22 00:00:00:00:00:01 1
+28-04-2019 18:01:22 [DNN module] Iteration done.
+28-04-2019 18:01:22  ************************************************************
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=616000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=617000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=617000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1826 duration_nsec=624000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 18:01:42 [DNN module] Starting new iteration...
+28-04-2019 18:01:42 [DNN module] Updating the status of the forwarders...
+28-04-2019 18:01:42 [DNN module] Getting active ports of the forwarders...
+28-04-2019 18:01:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7a2e4210>
+[1]: Requesting port stats...
+28-04-2019 18:01:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7a2e4690>
+[3]: Requesting port stats...
+28-04-2019 18:01:42 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7a2e42d0>
+[2]: Requesting port stats...
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+28-04-2019 18:01:43 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e7a2e4210>: [1], <ryu.controller.controller.Datapath object at 0x7f8e7a2e4690>: [1], <ryu.controller.controller.Datapath object at 0x7f8e7a2e42d0>: [1, 2]}
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 18:02:10 [DNN module] No new packet_ins.
+28-04-2019 18:02:10 [DNN module] No flow stats available
+28-04-2019 18:02:10 [DNN module] Actual MAC to port table:
+28-04-2019 18:02:10 Switch 1:
+28-04-2019 18:02:10 00:00:00:00:00:02 1
+28-04-2019 18:02:10 Switch 3:
+28-04-2019 18:02:10 00:00:00:00:00:01 1
+28-04-2019 18:02:10 [DNN module] Iteration done.
+28-04-2019 18:02:10  ************************************************************
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1874 duration_nsec=210000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1874 duration_nsec=210000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1874 duration_nsec=210000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=3000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=3000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=3000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=11000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=11000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1875 duration_nsec=11000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+28-04-2019 18:02:30 [DNN module] Starting new iteration...
+28-04-2019 18:02:30 [DNN module] Updating the status of the forwarders...
+28-04-2019 18:02:30 [DNN module] Getting active ports of the forwarders...
+28-04-2019 18:02:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e78bd9e10>
+[3]: Requesting port stats...
+28-04-2019 18:02:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8e7aed3cd0>
+[2]: Requesting port stats...
+28-04-2019 18:02:30 [DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f8ec36c8ad0>
+[1]: Requesting port stats...
+[2]: Received port stats
+[1]: Received port stats
+[3]: Received port stats
+28-04-2019 18:02:31 [DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f8e78bd9e10>: [1], <ryu.controller.controller.Datapath object at 0x7f8e7aed3cd0>: [1, 2], <ryu.controller.controller.Datapath object at 0x7f8ec36c8ad0>: [1]}
+[3]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Received flow stats
+No flow stats received
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+More flow stats replies are expected from port 1
+[3]: Received flow stats
+Number of received stats 1892 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 1
+[2]: Received flow stats
+Number of received stats 2218 from port 1
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+More flow stats replies are expected from port 2
+[2]: Received flow stats
+Number of received stats 3848 from port 2
+28-04-2019 18:02:56 [DNN module] No new packet_ins.
+28-04-2019 18:02:56 [DNN module] No flow stats available
+28-04-2019 18:02:56 [DNN module] Actual MAC to port table:
+28-04-2019 18:02:56 Switch 1:
+28-04-2019 18:02:56 00:00:00:00:00:02 1
+28-04-2019 18:02:56 Switch 3:
+28-04-2019 18:02:56 00:00:00:00:00:01 1
+28-04-2019 18:02:56 [DNN module] Iteration done.
+28-04-2019 18:02:56  ************************************************************
+MeterStats of 3: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=198000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=198000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=198000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 2: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=212000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=212000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=212000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']
+MeterStats of 1: ['meter_id=0x00000001 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=992000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000002 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=993000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]', 'meter_id=0x00000003 len=56 flow_count=0 packet_in_count=0 byte_in_count=0 duration_sec=1920 duration_nsec=993000000 band_stats=[OFPMeterBandStats(byte_band_count=0,packet_band_count=0)]']

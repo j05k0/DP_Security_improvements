@@ -1,0 +1,561 @@
+jozef@jozef-Ubuntu:~/PycharmProjects/DP_Security_improvements/controller_scripts$ ./controller_run.sh 
+loading app simple_switch_14.py
+Using TensorFlow backend.
+loading app ryu.controller.ofp_handler
+instantiating app simple_switch_14.py of SimpleSwitch14
+2019-03-30 19:14:21.548147: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+/usr/local/lib/python2.7/dist-packages/sklearn/base.py:251: UserWarning: Trying to unpickle estimator StandardScaler from version 0.20.3 when using version 0.20.2. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+[DNN module] DNN module initialized
+[DNN module] Waiting for forwarders...
+instantiating app ryu.controller.ofp_handler of OFPHandler
+[DNN module] Getting datapaths of the forwarders...
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[DNN module] No flow stats available
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[DNN module] No flow stats available
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[2]: Received port stats
+[3]: Received port stats
+[1]: Received port stats
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[1]: Received flow stats
+[1]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+Parsed flows:
+Unique flows:
+Merged flows:
+[DNN module] Processing 304 packet_ins...
+Packet_ins flows before unique:
+Unique packet_ins flows:
+[DNN module] After unifying we have 304 packet_ins.
+Added packet_ins:
+Removed dead connections:
+Extended flows:
+/home/jozef/PycharmProjects/DP_Security_improvements/controller_scripts/dnn_module.py:451: DataConversionWarning: Data with input dtype object were all converted to float64 by StandardScaler.
+  return self.scaler.transform(samples)
+Predictions: [[0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]]
+Probabilities: [[0.02021633]
+ [0.00577707]
+ [0.00564413]
+ [0.00990255]
+ [0.00811785]
+ [0.00577707]
+ [0.9202427 ]
+ [0.02154521]
+ [0.34131023]
+ [0.93666166]
+ [0.0054487 ]
+ [0.01433897]
+ [0.00257553]
+ [0.00219862]
+ [0.0030376 ]
+ [0.00949841]
+ [0.01185839]
+ [0.01433897]
+ [0.00621997]
+ [0.00625357]
+ [0.00990255]
+ [0.03973281]
+ [0.06830107]
+ [0.00544454]
+ [0.02159461]
+ [0.5129169 ]
+ [0.01289641]
+ [0.06830107]
+ [0.9087187 ]
+ [0.03973008]
+ [0.06830107]
+ [0.27362278]
+ [0.00544454]
+ [0.0030376 ]
+ [0.6907783 ]]
+[DNN module] Evaluation of the flows is going to be saved into ../results/flows_dump_part2-5_tmp.txt
+[DNN module] Evaluation of the flows is successfully saved
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[1]: Received port stats
+[3]: Received port stats
+[2]: Received port stats
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[3]: Received flow stats
+[3]: Received flow stats
+[1]: Received flow stats
+[1]: Received flow stats
+Parsed flows:
+Unique flows:
+Merged flows:
+[DNN module] Processing 557 packet_ins...
+Packet_ins flows before unique:
+Unique packet_ins flows:
+[DNN module] After unifying we have 557 packet_ins.
+Added packet_ins:
+Removed dead connections:
+Extended flows:
+Predictions: [[1]
+ [0]
+ [1]
+ [1]
+ [0]
+ [1]
+ [0]
+ [1]
+ [1]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]
+ [0]
+ [1]
+ [0]
+ [0]]
+Probabilities: [[8.5011202e-01]
+ [1.5276673e-04]
+ [8.7460440e-01]
+ [8.4471971e-01]
+ [1.1065598e-03]
+ [1.0000000e+00]
+ [1.2439415e-04]
+ [9.2403442e-01]
+ [9.1702288e-01]
+ [7.6013434e-01]
+ [3.0376026e-03]
+ [2.8108638e-02]
+ [1.5627757e-04]
+ [8.7440247e-03]
+ [9.9244015e-04]
+ [6.4629503e-02]
+ [4.8531070e-03]
+ [2.0459294e-03]
+ [1.3536060e-01]
+ [9.0720707e-01]
+ [4.3752167e-02]
+ [4.1553695e-03]
+ [3.7739749e-04]
+ [5.3548384e-02]
+ [3.9162549e-01]
+ [4.5469502e-04]
+ [3.5483134e-03]
+ [9.2732749e-04]
+ [2.0951668e-02]
+ [1.6518137e-03]
+ [9.2732749e-04]
+ [6.3564200e-03]
+ [9.2732749e-04]
+ [1.4071086e-02]
+ [9.9244015e-04]
+ [1.3536060e-01]
+ [8.8725889e-01]
+ [6.5138596e-01]
+ [9.9244015e-04]
+ [5.0132517e-03]
+ [1.5627757e-04]
+ [4.2868522e-03]
+ [1.1427717e-01]
+ [3.5461024e-03]
+ [1.4338970e-02]
+ [1.9445191e-01]
+ [1.9345302e-02]
+ [2.0459294e-03]
+ [1.4281223e-02]
+ [2.4209773e-02]
+ [2.1480607e-02]
+ [3.0376026e-03]
+ [6.4807665e-01]
+ [9.2730140e-03]
+ [4.5077768e-03]
+ [4.1553695e-03]
+ [4.5469502e-04]
+ [5.3548384e-02]
+ [6.5143842e-01]
+ [1.3775567e-03]
+ [1.9404743e-02]
+ [1.5627757e-04]
+ [7.8713521e-02]
+ [1.4071086e-02]
+ [2.0459294e-03]
+ [9.4114155e-02]
+ [2.7362278e-01]
+ [6.3523585e-03]
+ [3.0376026e-03]
+ [5.5642533e-01]
+ [7.8713521e-02]
+ [4.2868522e-03]
+ [1.9445191e-01]
+ [3.7943691e-03]
+ [4.5469502e-04]
+ [7.8713521e-02]
+ [4.4440757e-03]
+ [3.7739749e-04]
+ [2.7362278e-01]
+ [2.0869421e-02]
+ [1.6515794e-03]
+ [9.2732749e-04]
+ [7.8713521e-02]
+ [1.9404743e-02]
+ [4.5469502e-04]
+ [5.0274762e-03]
+ [9.9244015e-04]
+ [9.4114155e-02]
+ [6.5101117e-01]
+ [4.2005771e-04]
+ [3.9042422e-01]
+ [2.0459294e-03]
+ [6.5143842e-01]
+ [4.5077768e-03]
+ [2.0119272e-02]]
+[DNN module] Evaluation of the flows is going to be saved into ../results/flows_dump_part2-5_tmp.txt
+[DNN module] Evaluation of the flows is successfully saved
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[3]: Received port stats
+[2]: Received port stats
+[1]: Received port stats
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Received flow stats
+[3]: Received flow stats
+[1]: Received flow stats
+[1]: Received flow stats
+[DNN module] Wrong number of flow stats replies received
+[DNN module] Record count is 7
+[DNN module] Size of the queue is 4
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[DNN module] Wrong number of port stats replies received
+[DNN module] Record count is 3
+[DNN module] Size of the queue is 4
+[DNN module] An error occured during updating forwarders. Skipping requesting of flow stats.
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[1]: Received port stats
+[2]: Received port stats
+[3]: Received port stats
+[2]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+[DNN module] Starting new iteration...
+[DNN module] Updating the status of the forwarders...
+[DNN module] Getting active ports of the forwarders...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99c10>
+[2]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>
+[1]: Requesting port stats...
+[DNN module] Datapath: <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>
+[3]: Requesting port stats...
+[DNN module] Forwarders: {<ryu.controller.controller.Datapath object at 0x7f4074f99c10>: [4294967294, 1, 2], <ryu.controller.controller.Datapath object at 0x7f4074f99ad0>: [1, 4294967294], <ryu.controller.controller.Datapath object at 0x7f4074fb13d0>: [1, 4294967294]}
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[2]: Requesting flow stats...
+[1]: Requesting flow stats...
+[1]: Requesting flow stats...
+[3]: Requesting flow stats...
+[3]: Requesting flow stats...
+[2]: Received port stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[2]: Received flow stats
+[1]: Received port stats
+[1]: Received flow stats
+[1]: Received flow stats
+[3]: Received port stats
+[3]: Received flow stats
+[3]: Received flow stats
+[DNN module] Wrong number of flow stats replies received
+[DNN module] Record count is 7
+[DNN module] Size of the queue is 12
+[DNN module] Actual MAC to port table:
+Switch 1:
+00:00:00:00:00:02 1
+Switch 2:
+00:00:00:00:00:02 2
+00:00:00:00:00:01 1
+Switch 3:
+00:00:00:00:00:01 1
+[2]: Counters reset done
+[1]: Counters reset done
+[3]: Counters reset done
+[DNN module] Iteration done.
+************************************************************
+jozef@jozef-Ubuntu:~/PycharmProjects/DP_Security_improvements/controller_scripts$ 
+

@@ -1,0 +1,14 @@
+** SYN flood attack using mausezahn
+mausezahn h1-eth0 -A rand -B 10.0.0.100 -c 10 -t tcp "dp=1-1023, flags=syn" -P "Good morning! This is a SYN Flood Attack. We apologize for any inconvenience."
+
+*** Custom Ethernet frame
+mausezahn h1-eth0 "ff:ff:ff:ff:ff:ff ff:ff:ff:ff:ff:ff 00:00 ca:fe:ba:be"
+
+*** Send 10 Ethernet frames with random source MAC and BROADCAST dest. MAC. Also set padding to 1000 bytes
+mausezahn h1-eth0 -c 10 -a rand -b bcast -p 1000 "08 00 aa bb cc dd"
+
+*** Send 1 frame with delay 1 sec between frames. Use range of source IP addresses and 1 dest. IP with UDP on L4
+mausezahn h1-eth0 -c 1 -d 1s -b aa:bb:cc:dd:ee:ff -A 10.0.0.1-10.0.0.10 -B 10.0.0.100 -t udp
+
+*** Send 100 frames with custom dest. MAC with random source IP add and to concrete dest. IP. Use UDP as L4 proto
+mausezahn h2-eth0 -c 10 -b 00:00:00:00:00:01 -B 10.0.0.1 -t udp sp=56789,dp=1234 -c 10 -d 10msec
